@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.*;
+import play.libs.Json;
 
 import model.User;
 import java.text.*;
@@ -32,7 +33,7 @@ public class UserController extends Controller {
 	    
 	    u.save();
 
-		return ok("St");
+	    return ok(Json.toJson(u));
 	}
 	
 	public 	Result getAllUser()
@@ -44,8 +45,8 @@ public class UserController extends Controller {
 	}
 	
 	public Result getUserById(long id){
-	    User u = User.find.byId(id);
-	    System.out.println(u.firstname);
-		return ok(u.firstname);
+	   // User u = User.find.byId(id);
+	    //System.out.println(u.firstname);
+		return ok(Json.toJson(User.find.byId(id)));
 	}
 }

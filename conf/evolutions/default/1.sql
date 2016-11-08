@@ -13,7 +13,6 @@ create table user (
   address                       varchar(255),
   postal_code                   varchar(255),
   city                          varchar(255),
-  date_of_birth                 timestamp,
   name_profil_image             varchar(255),
   constraint pk_user primary key (id)
 );

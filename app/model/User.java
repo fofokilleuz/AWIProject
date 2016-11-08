@@ -39,15 +39,12 @@ import play.data.validation.*;
 	    @Constraints.Required
 	    public String city;
 	    
-	    @Constraints.Required
-	    @Formats.DateTime(pattern="dd/MM/yyyy")
-	    public Date dateOfBirth;
 	    
 	    @Constraints.Required
 	    public String nameProfilImage;
 	    
 		public User(String email, String firstname, String lastname, String password, String mobile, String address,
-				String postalCode, String city, Date dateOfBirth, String nameProfilImage) {
+				String postalCode, String city,String nameProfilImage) {
 			super();
 			this.email = email;
 			this.firstname = firstname;
@@ -57,7 +54,6 @@ import play.data.validation.*;
 			this.address = address;
 			this.postalCode = postalCode;
 			this.city = city;
-			this.dateOfBirth = dateOfBirth;
 			this.nameProfilImage = nameProfilImage;
 		}
 		

@@ -18,5 +18,5 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 POST	/users				controllers.UserController.createUser	
 GET   	/users      		controllers.UserController.getAllUser
-GET		/users/id			controllers.UserController.getUserById(id : Long)
+GET		/users/:id			controllers.UserController.getUserById(id : Long)
 

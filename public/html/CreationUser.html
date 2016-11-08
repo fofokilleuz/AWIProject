@@ -1,0 +1,37 @@
+<p>Creation User</p>
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<SCRIPT LANGUAGE="javascript">
+
+function controle(formCreationUser) {
+
+var firstname 	= document.getElementById("firstname").value;
+var surname	 	= document.getElementById("surname").value;
+var email 		= document.getElementById("email").value;
+var password 	= document.getElementById("mdp").value;
+var mobile 		= document.getElementById("mobile").value;
+var address 	= document.getElementById("address").value;
+var postalCode 	= document.getElementById("postalCode").value;
+var city	 	= document.getElementById("city").value;
+var dateOfBirth = document.getElementById("dateOfBirth").value;
+alert(firstname)
+
+   $.ajax({
+   				url : 'UserController.java', // La ressource ciblé
+                type : 'POST' // Le type de la requête HTTP.
+            });
+
+}
+</SCRIPT>
+
+<form method="post" name="formCreationUser" action="UserController">
+   <input type="text" name="firstname" id="firstname" />
+   <input type="text" name="Surname" id="surname" />
+   <input type="email" name="email" id="email" />
+   <input type="password" name="mdp" id="mdp"/>
+   <input type="tel" name="mobile" id="mobile" />
+   <input type="text" name="address" id="address" />
+   <input type="text" name="postalCode" id="postalCode" />
+   <input type="text" name="city" id="city" />
+   <input type="date" name="dateOfBirth" id="dateOfBirth"/>
+   <INPUT TYPE="button" NAME="bouton" VALUE="Contrôler" onClick="controle(formCreationUser)">
+</form>

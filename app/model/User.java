@@ -61,6 +61,41 @@ import play.data.validation.*;
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
 		
+		
+		 public void setFirstname(String firstname)
+		 {
+		     this.firstname=firstname;
+		 }
+		 
+		 public void setLastname(String lastname)
+		 {
+		     this.lastname=lastname;
+		 }
+		 
+		 public void setPassword(String password)
+		 {
+		     this.password=password;
+		 }
+		 
+		 public void setMobile(String mobile)
+		 {
+		     this.mobile=mobile;
+		 }
+		 
+		 public void setAddress(String address)
+		 {
+		     this.address=address;
+		 }
+		 
+		 public void setPostalCode(String postalCode)
+		 {
+		     this.postalCode=postalCode;
+		 }
+		 
+		 public void setCity(String city)
+		 {
+		     this.city=city;
+		 }
 	    
 	   
 	}

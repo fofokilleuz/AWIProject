@@ -33,22 +33,53 @@ alert(id)
 
 }
 
+function updateProduct(formUpdateProduct) {
+
+var id          = document.getElementById("idUpdate").value;
+var ref 	    = document.getElementById("refUpdate").value;
+var name	 	= document.getElementById("nameUpdate").value;
+var price 		= document.getElementById("priceUpdate").value;
+var qty     	= document.getElementById("qtyUpdate").value;
+var desc 		= document.getElementById("descUpdate").value;
+
+
+   $.ajax({
+   				url : '/product/'+id, // La ressource ciblé
+                type : 'PUT', // Le type de la requête HTTP.
+                data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
+            });
+
+}
+
 </SCRIPT>
+
+<p>Create Produt<p>
 
 <form method="post" name="fromCreationProduct" action="ProductController">
    <input type="text" name="ref" id="ref" />
    <input type="text" name="name" id="name" />
    <input type="text" name="price" id="price" />
-   <input type="qte available" name="qty" id="qty"/>
+   <input type="number" name="qty" id="qty"/>
    <input type="text" name="desc" id="desc" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="Contrôler" onClick="creationProduct(fromCreationProduct)">
+   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="creationProduct(fromCreationProduct)">
 </form>
 
-<p>Deletion User</p>
+<p>Deletion Product</p>
 
 <form method="post" name="formDeletion" action="ProductController">
    <input type="number" name="idDeletion" id="idDeletion" />
    <INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
+</form>
+
+<p>Update Product</p>
+<form method="post" name="formUpdateProduct" action="ProductController">
+   <input type=number name="idUpdate" id="idUpdate" />
+   <input type="text" name="refUpdate" id="refUpdate" />
+   <input type="text" name="nameUpdate" id="nameUpdate" />
+   <input type="text" name="priceUpdate" id="priceUpdate" />
+   <input type="number" name="qtyUpdate" id="qtyUpdate"/>
+   <input type="text" name="descUpdate" id="descUpdate" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="updateProduct(formUpdateProduct)">
 </form>
 
 

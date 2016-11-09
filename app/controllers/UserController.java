@@ -82,27 +82,25 @@ public class UserController extends Controller {
 	    
 	    if(u!=null)
 	    {
-	        if(firstname!=null)
-	            {
-	                System.out.println("Fistname non nul");
-	                u.firstname=firstname;}
-	        else if(lastname!=null)
-	            {
-	                System.out.println("lastname nul");
-	                u.lastname=lastname;}
-	        else if(password!=null)
+	        if(!firstname.isEmpty())
+	            {u.setFirstname(firstname);}
+	        if(!lastname.isEmpty())
+	            {u.lastname=lastname;}
+	        if(!email.isEmpty())
 	            {u.password=password;}
-	        else if(mobile!=null)
+	        if(!mobile.isEmpty())
 	            {u.mobile=mobile;}
-	        else if(address!=null)
+	        if(!address.isEmpty())
 	            {u.address=address;}
-	        else if(postalCode!=null)
+	        if(!postalCode.isEmpty())
 	            {u.postalCode=postalCode;}
-	        else if(city!=null)
+	        if(!city.isEmpty())
 	            {u.city=city;}
+	            
+	        u.save();
 	   }
 	   System.out.println(u.firstname);
-	   u.save();
+	   
 	   return ok("ok");
 	    
 

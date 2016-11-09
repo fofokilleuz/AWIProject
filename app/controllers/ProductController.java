@@ -61,28 +61,47 @@ public class ProductController extends Controller {
 	    }
 	}
 	
-	public Result UpdateProductById(long id) {
+	public Result updateProductById(long id) {
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("surname")[0];
-	    String email = values.get("email")[0];
-	    String password = values.get("password")[0];
-	    String mobile = values.get("mobile")[0];
-	    String address = values.get("address")[0];
-	    String postalCode = values.get("postalCode")[0];
-	    String city = values.get("city")[0];
-	    
+	    String ref = values.get("ref")[0];
+	    String name = values.get("name")[0];
+	    Double price = Double.parseDouble(values.get("price")[0]);
+	    Integer qty = Integer.parseInt(values.get("qty")[0]);
+	    String desc = values.get("desc")[0];
         System.out.println("Fonction UdapteProduct");
 	    Product p = Product.find.byId(id);
 	    
 	    if(p!=null)
 	    {
-        
-	   }
-	   System.out.println(p.name);
+	        System.out.println("Product trouvé");
+	        System.out.println(name);
+            if(!ref.isEmpty())
+            {
+                p.setRef(ref);
+            }
+            if(!name.isEmpty())
+            {
+                System.out.println("Name non nul");
+                p.setName(name);
+            }
+            if(price!=null)
+            {
+                p.setPrice(price);
+            }
+            if(qty!=null)
+            {
+                p.setQuantity(qty);
+            }
+            if(!desc.isEmpty())
+            {
+                p.setDescription(desc);
+            }
+	    }
+	   System.out.println("NOM product");
+	   System.out.println(p.getName());
+	   System.out.println("NOM PRODUCT");
 	   p.save();
 	   return ok("ok");
-	    
 
 	}
 	

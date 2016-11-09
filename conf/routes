@@ -32,3 +32,4 @@ POST    /product            controllers.ProductController.createProduct
 GET     /products           controllers.ProductController.getAllProduct
 GET     /product/:id        controllers.ProductController.getProductById(id : Long)
 DELETE  /product/:id        controllers.ProductController.deleteProductById(id : Long)
+PUT     /product/:id        controllers.ProductController.updateProductById(id : Long)

@@ -42,5 +42,33 @@ import play.data.validation.*;
 		}
 		
 		 public static Finder<Long, Product> find = new Finder<Long,Product>(Product.class);
+		 
+		 public void setRef(String ref)
+		 {
+		     this.ref=ref;
+		 }
+		 
+		 public void setName(String name)
+		 {
+		     this.name=name;
+		 }
+		 
+		 public String getName()
+		 {return this.name;}
+		 
+		 public void setPrice(Double price)
+		 {
+		     this.price=price;
+		 }
+		 
+		 public void setQuantity(Integer quantity)
+		 {
+		     this.availableQuantity = quantity;
+		 }
+		 
+		 public void setDescription(String description)
+		 {
+		     this.description = description;
+		 }
         
 }

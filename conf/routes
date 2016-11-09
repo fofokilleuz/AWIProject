@@ -16,7 +16,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 #//////USER////////#
 #//////////////////#
 
-POST	/users				controllers.UserController.createUser	
+POST	/user   			controllers.UserController.createUser	
 GET   	/users      		controllers.UserController.getAllUser
-GET		/users/:id			controllers.UserController.getUserById(id : Long)
-
+GET		/user/:id			controllers.UserController.getUserById(id : Long)
+DELETE  /user/:id           controllers.UserController.deleteUserById(id : Long)
+PATCH  /user/:id            controllers.UserController.UpdateUserById(id : Long)

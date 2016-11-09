@@ -13,6 +13,8 @@ import play.data.validation.*;
 	public class User extends Model {
 
 	    @Id
+	    @GeneratedValue
+	    @Column(name = "id", updatable = false, nullable = false)
 	    public long id;
 	    
 	    @Constraints.Required

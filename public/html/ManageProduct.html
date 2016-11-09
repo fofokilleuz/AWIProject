@@ -1,0 +1,55 @@
+<p>Manage Product/p>
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<SCRIPT LANGUAGE="javascript">
+
+function creationProduct(fromCreationProduct) {
+
+var ref 	= document.getElementById("ref").value;
+var name	 	= document.getElementById("name").value;
+var price 		= document.getElementById("price").value;
+var qty 	= document.getElementById("qty").value;
+var desc 		= document.getElementById("desc").value;
+
+
+   $.ajax({
+   				url : '/product', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+                data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
+            });
+
+}
+
+function deletion(formDeletion) {
+
+var id 	= document.getElementById("idDeletion").value;
+
+
+alert(id)
+
+   $.ajax({
+   				url : '/product/'+id, // La ressource ciblé
+                type : 'DELETE', // Le type de la requête HTTP.
+            });
+
+}
+
+</SCRIPT>
+
+<form method="post" name="fromCreationProduct" action="ProductController">
+   <input type="text" name="ref" id="ref" />
+   <input type="text" name="name" id="name" />
+   <input type="text" name="price" id="price" />
+   <input type="qte available" name="qty" id="qty"/>
+   <input type="text" name="desc" id="desc" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="Contrôler" onClick="creationProduct(fromCreationProduct)">
+</form>
+
+<p>Deletion User</p>
+
+<form method="post" name="formDeletion" action="ProductController">
+   <input type="number" name="idDeletion" id="idDeletion" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
+</form>
+
+
+

@@ -55,7 +55,7 @@ alert(firstname)
 
    $.ajax({
    				url : '/user/'+id, // La ressource ciblé
-                type : 'PATCH', // Le type de la requête HTTP.
+                type : 'PUT', // Le type de la requête HTTP.
                 data : { firstname : firstname, surname : surname, email : email, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth},
             });
 

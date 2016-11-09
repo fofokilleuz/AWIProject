@@ -3,7 +3,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET		/creationUser				    controllers.Assets.at(path="/public/html", file="CreationUser.html")
+GET		/creationUser				    controllers.Assets.at(path="/public/html", file="ManageProduct.html")
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
 # An example controller showing how to write asynchronous code
@@ -20,4 +20,15 @@ POST	/user   			controllers.UserController.createUser
 GET   	/users      		controllers.UserController.getAllUser
 GET		/user/:id			controllers.UserController.getUserById(id : Long)
 DELETE  /user/:id           controllers.UserController.deleteUserById(id : Long)
-PATCH  /user/:id            controllers.UserController.UpdateUserById(id : Long)
+PUT     /user/:id           controllers.UserController.UpdateUserById(id : Long)
+
+
+#/////////////////////#
+#//////PRODUCT////////#
+#/////////////////////#
+
+
+POST    /product            controllers.ProductController.createProduct
+GET     /products           controllers.ProductController.getAllProduct
+GET     /product/:id        controllers.ProductController.getProductById(id : Long)
+DELETE  /product/:id        controllers.ProductController.deleteProductById(id : Long)

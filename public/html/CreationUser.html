@@ -7,29 +7,39 @@
   </head>
   <body>
 
-
+<div ng-controller="manageUserCtrl">
 <p>Creation User</p>
-
 <form method="post" name="formCreationUser" action="UserController">
-   <input type="text" name="firstname" id="firstname" />
-   <input type="text" name="Surname" id="surname" />
-   <input type="email" name="email" id="email" />
-   <input type="password" name="mdp" id="mdp"/>
-   <input type="tel" name="mobile" id="mobile" />
-   <input type="text" name="address" id="address" />
-   <input type="text" name="postalCode" id="postalCode" />
-   <input type="text" name="city" id="city" />
-   <input type="date" name="dateOfBirth" id="dateOfBirth"/>
-   <input type="number" name="status" id="status"/>
-   <input type="text" name="siret" id="siret"/>
+	<label>First Name : </label>
+   		<input type="text" name="firstname" id="firstname" />
+   	<label>Surname : </label>
+   		<input type="text" name="Surname" id="surname" />
+   	<label>Email : </label>
+   		<input type="email" name="email" id="email" required />
+   	<label>Password : </label>
+   		<input type="password" name="mdp" id="mdp" required />
+   	<label>Phone number : </label>
+   		<input type="tel" name="mobile" id="mobile" />
+   	<label>Address : </label>
+   		<input type="text" name="address" id="address" />
+   	<label>Postal Code : </label>
+   		<input type="text" name="postalCode" id="postalCode" />
+   	<label>City : </label>
+   		<input type="text" name="city" id="city" />
+   	<label>Date Of Birth : </label>
+   		<input type="date" name="dateOfBirth" id="dateOfBirth"/>
+   	<label>Statut (Admin/SU/SC) : </label>
+   		<input type="number" name="status" id="status" required />
+   	<label>Siret (if SC) : </label>
+   		<input type="text" name="siret" id="siret"/>
    <INPUT TYPE="button" NAME="bouton" VALUE="Contrôler" onClick="controle(formCreationUser)">
 </form>
 
 <p>Deletion User</p>
-
 <form method="post" name="formDeletion" action="UserController">
-   <input type="number" name="idDeletion" id="idDeletion" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
+	<label>Id de l'utilisateur : </label>
+   		<input type="number" name="idDeletion" id="idDeletion" />
+   	<INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
 </form>
 
 <p>Update User</p>
@@ -46,6 +56,8 @@
    <INPUT TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateUser)">
 </form>
 	<script src="../js/manageUser.js"></script>
+	
+	</div>
   </body>
 </html>
 

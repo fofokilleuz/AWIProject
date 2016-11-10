@@ -14,6 +14,22 @@ create table product (
 );
 create sequence product_seq;
 
+create table seller (
+  id                            bigint not null,
+  email                         varchar(255),
+  firstname                     varchar(255),
+  lastname                      varchar(255),
+  password                      varchar(255),
+  mobile                        varchar(255),
+  address                       varchar(255),
+  postal_code                   varchar(255),
+  city                          varchar(255),
+  urlweb                        varchar(255),
+  siret                         varchar(255),
+  constraint pk_seller primary key (id)
+);
+create sequence seller_seq;
+
 create table user (
   id                            bigint not null,
   email                         varchar(255),
@@ -24,7 +40,8 @@ create table user (
   address                       varchar(255),
   postal_code                   varchar(255),
   city                          varchar(255),
-  name_profil_image             varchar(255),
+  status                        integer,
+  siret                         varchar(255),
   constraint pk_user primary key (id)
 );
 create sequence user_seq;
@@ -34,6 +51,9 @@ create sequence user_seq;
 
 drop table if exists product;
 drop sequence if exists product_seq;
+
+drop table if exists seller;
+drop sequence if exists seller_seq;
 
 drop table if exists user;
 drop sequence if exists user_seq;

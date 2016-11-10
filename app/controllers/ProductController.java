@@ -18,7 +18,6 @@ public class ProductController extends Controller {
 
 	public Result createProduct()
 	{
-	    System.out.println("CREATE PRODUCT");
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String ref = values.get("ref")[0];
 	    String name = values.get("name")[0];
@@ -46,12 +45,10 @@ public class ProductController extends Controller {
 	}
 	
 	public Result deleteProductById(long id) {
-	    System.out.println("FONCTION DELETE");
 	    Product p = Product.find.byId(id);
 	    
 	    if(p!=null)
 	    {
-	        System.out.println("JE DELETE Le PRODUCT");
 	        p.delete();
 	        return ok("HTTP status 200 (OK)");
 	    }
@@ -68,20 +65,16 @@ public class ProductController extends Controller {
 	    Double price = Double.parseDouble(values.get("price")[0]);
 	    Integer qty = Integer.parseInt(values.get("qty")[0]);
 	    String desc = values.get("desc")[0];
-        System.out.println("Fonction UdapteProduct");
 	    Product p = Product.find.byId(id);
 	    
 	    if(p!=null)
 	    {
-	        System.out.println("Product trouvé");
-	        System.out.println(name);
             if(!ref.isEmpty())
             {
                 p.setRef(ref);
             }
             if(!name.isEmpty())
             {
-                System.out.println("Name non nul");
                 p.setName(name);
             }
             if(price!=null)
@@ -97,9 +90,6 @@ public class ProductController extends Controller {
                 p.setDescription(desc);
             }
 	    }
-	   System.out.println("NOM product");
-	   System.out.println(p.getName());
-	   System.out.println("NOM PRODUCT");
 	   p.save();
 	   return ok("ok");
 

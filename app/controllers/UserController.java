@@ -8,6 +8,11 @@ import java.text.*;
 import play.mvc.*;
 import views.html.*;
 
+import play.api.libs.Codecs;
+import play.libs.Json;
+
+
+
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's user.
@@ -26,10 +31,12 @@ public class UserController extends Controller {
 	    String address = values.get("address")[0];
 	    String postalCode = values.get("postalCode")[0];
 	    String city = values.get("city")[0];
+	    int status = Integer.parseInt(values.get("status")[0]);
+	    String siret = values.get("siret")[0];
 	    System.out.println("CREATEUSER");
 	    
 	    
-	    User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,"image");
+	    User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status,siret);
 	    
 	    u.save();
 
@@ -38,15 +45,13 @@ public class UserController extends Controller {
 	
 	public 	Result getAllUser()
 	{
-		List<User> users = User.find.all();
-
+	    List<User> users = User.find.where().eq("status", 0).findList();
 		return ok(Json.toJson(users));
 		
 	}
 	
+	
 	public Result getUserById(long id){
-	   // User u = User.find.byId(id);
-	    //System.out.println(u.firstname);
 		return ok(Json.toJson(User.find.byId(id)));
 	}
 	

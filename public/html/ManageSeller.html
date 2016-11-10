@@ -46,7 +46,6 @@ function Update(formUpdateSeller) {
 var id 	        = document.getElementById("id").value;
 var firstname 	= document.getElementById("firstnameUpdate").value;
 var surname	 	= document.getElementById("surnameUpdate").value;
-var email 		= document.getElementById("emailUpdate").value;
 var password 	= document.getElementById("mdpUpdate").value;
 var mobile 		= document.getElementById("mobileUpdate").value;
 var address 	= document.getElementById("addressUpdate").value;
@@ -54,13 +53,14 @@ var postalCode 	= document.getElementById("postalCodeUpdate").value;
 var city	 	= document.getElementById("cityUpdate").value;
 var dateOfBirth = document.getElementById("dateOfBirthUpdate").value;
 var siret       = document.getElementById("siretUpdate").value;
+var urlweb      = document.getElementById("urlwebUpdate").value;
 
-alert(firstname)
+
 
    $.ajax({
    				url : '/seller/'+id, // La ressource ciblé
                 type : 'PUT', // Le type de la requête HTTP.
-                data : { firstname : firstname, surname : surname, email : email, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth
+                data : { firstname : firstname, surname : surname, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth
                     ,siret : siret, urlweb : urlweb},
             });
 
@@ -97,7 +97,6 @@ alert(firstname)
    <input type="number" name="id" id="id" />
    <input type="text" name="firstname" id="firstnameUpdate" />
    <input type="text" name="Surname" id="surnameUpdate" />
-   <input type="email" name="email" id="emailUpdate" />
    <input type="password" name="mdp" id="mdpUpdate"/>
    <input type="tel" name="mobile" id="mobileUpdate" />
    <input type="text" name="address" id="addressUpdate" />

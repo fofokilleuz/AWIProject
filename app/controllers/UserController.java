@@ -90,17 +90,17 @@ public class UserController extends Controller {
 	        if(!firstname.isEmpty())
 	            {u.setFirstname(firstname);}
 	        if(!lastname.isEmpty())
-	            {u.lastname=lastname;}
-	        if(!email.isEmpty())
-	            {u.password=password;}
+	            {u.setLastname(lastname);}
+	        if(!password.isEmpty())
+	            {u.setPassword(password);}
 	        if(!mobile.isEmpty())
-	            {u.mobile=mobile;}
+	            {u.setMobile(mobile);}
 	        if(!address.isEmpty())
-	            {u.address=address;}
+	            {u.setAddress(address);}
 	        if(!postalCode.isEmpty())
-	            {u.postalCode=postalCode;}
+	            {u.setPostalCode(postalCode);}
 	        if(!city.isEmpty())
-	            {u.city=city;}
+	            {u.setCity(city);}
 	            
 	        u.save();
 	   }

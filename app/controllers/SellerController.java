@@ -90,22 +90,21 @@ public class SellerController extends Controller {
 	        if(!firstname.isEmpty())
 	            {s.setFirstname(firstname);}
 	        if(!lastname.isEmpty())
-	            {s.lastname=lastname;}
-	        if(!email.isEmpty())
-	            {s.password=password;}
+	            {s.setLastname(lastname);}
+	        if(!password.isEmpty())
+	            {s.setPassword(password);}
 	        if(!mobile.isEmpty())
-	            {s.mobile=mobile;}
+	            {s.setMobile(mobile);}
 	        if(!address.isEmpty())
-	            {s.address=address;}
+	            {s.setAddress(address);}
 	        if(!postalCode.isEmpty())
-	            {s.postalCode=postalCode;}
+	            {s.setPostalCode(postalCode);}
 	        if(!city.isEmpty())
-	            {s.city=city;}
+	            {s.setCity(city);}
 	        if(!siret.isEmpty())
-	            {s.siret=siret;}
+	            {s.setSiret(siret);}
 	        if(!urlweb.isEmpty())
-	            {s.urlweb=urlweb;}
-	            
+	            {s.setUrlweb(urlweb);}
 	        s.save();
 	   }
 	   System.out.println(s.firstname);

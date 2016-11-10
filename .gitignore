@@ -1,6 +1,7 @@
 /.sbtserver
 /.settings
-/conf/evolutions
+/conf/evolutions/**
+/conf/evolutions/default/**
 /logs
 /project/project
 /project/target

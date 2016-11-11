@@ -12,20 +12,15 @@ app.controller("manageUserCtrl", function($scope, $http) {
                     address : $scope.address, 
                     postalCode : $scope.postalCode, 
                     city : $scope.city, 
-                    dateOfBirth : $scope.dateOfBirth,
-                    status : $scope.statut,
-                    siret : $scope.siret
+                    status : $scope.statut
         };
 
-        
         $http.post('/user', data).then(function (response) {
             if (response.data)
-            $scope.result = "Post Data Submitted Successfully!";
+            $scope.result = "User was successfully created!";
         }, function (response) {
-                $scope.result = data;
+                $scope.result = "An error was occured";
         });
-        
-        
     };
 
     

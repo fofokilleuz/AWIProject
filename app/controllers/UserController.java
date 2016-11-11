@@ -34,54 +34,40 @@ public class UserController extends Controller {
 	    	  String address = json.findPath("address").textValue();
 	    	  String postalCode = json.findPath("postalCode").textValue();
 	    	  String city = json.findPath("city").textValue();
-	    	  int status = json.findPath("status").intValue();
-	    	  String siret = json.findPath("siret").textValue();
-	    
-
-	    	  User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status,siret);
+	    	  int status = 0 ;
+	    	  System.out.println("CREATEUSER");
+	    	  
+	    	  User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status);
 	    	  u.save();
-	    	  return ok("200 - Ok ");
+	    	  return ok(Json.toJson(u));
 	      }
 	}
 	
 	public 	Result getAllUser()
 	{
-	    List<User> users = User.getAllUser();
-	    if(users==null)
-	    {
-	        return ok("404 - Not Found");
-	    }
-	    else
-	    {
-		    return ok(Json.toJson(users));
-	    }
+	    List<User> users = User.find.where().eq("status", 0).findList();
+		return ok(Json.toJson(users));
 		
 	}
 	
 	
 	public Result getUserById(long id){
-		User u = User.getUserById(id);
-		if(u==null)
-		{
-		    return ok("404 - Not Found");
-		}
-		else
-		{
-		    return ok(Json.toJson(u));
-		}
+		return ok(Json.toJson(User.find.byId(id)));
 	}
 	
 	public Result deleteUserById(long id) {
-    	User u = User.getUserById(id);
+	    System.out.println("FONCTION DELETE");
+	    User u = User.find.byId(id);
 	    
 	    if(u!=null)
 	    {
+	        System.out.println("JE DELETE L USER");
 	        u.delete();
-	        return ok("200 - OK");
+	        return ok("HTTP status 200 (OK)");
 	    }
 	    else
 	    {
-	        return ok("404 - Not Found");
+	        return ok("404 (Not Found)");
 	    }
 	}
 	
@@ -89,13 +75,15 @@ public class UserController extends Controller {
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String firstname = values.get("firstname")[0];
 	    String lastname = values.get("surname")[0];
+	    String email = values.get("email")[0];
 	    String password = values.get("password")[0];
 	    String mobile = values.get("mobile")[0];
 	    String address = values.get("address")[0];
 	    String postalCode = values.get("postalCode")[0];
 	    String city = values.get("city")[0];
-
-	    User u = User.getUserById(id);
+	    
+        System.out.println("Fonction UdapteUser");
+	    User u = User.find.byId(id);
 	    
 	    if(u!=null)
 	    {
@@ -115,12 +103,11 @@ public class UserController extends Controller {
 	            {u.setCity(city);}
 	            
 	        u.save();
-	        return ok("200 -OK");
 	   }
-	   else
-	   {
-	       return ok ("404 - Not Found");
-	   }
+	   System.out.println(u.firstname);
+	   
+	   return ok("ok");
+	    
 
 	}
 	

@@ -1,8 +1,8 @@
 var app = angular.module("myApp", []);
 
-app.controller("manageUserCtrl", function($scope, $http) {
+app.controller("manageSellerCtrl", function($scope, $http) {
     
-    $scope.createUser = function () {
+    $scope.createSeller = function () {
         var data = {
                     firstname : $scope.firstname, 
                     lastname : $scope.lastname, 
@@ -11,10 +11,12 @@ app.controller("manageUserCtrl", function($scope, $http) {
                     mobile : $scope.mobile, 
                     address : $scope.address, 
                     postalCode : $scope.postalCode, 
-                    city : $scope.city
+                    city : $scope.city, 
+                    siret : $scope.siret,
+                    urlweb : $scope.urlweb,
         };
 
-        $http.post('/user', data).then(function (response) {
+        $http.post('/seller', data).then(function (response) {
             if (response.data)
             $scope.resultCreate = "User was successfully created!";
         }, function (response) {
@@ -23,19 +25,19 @@ app.controller("manageUserCtrl", function($scope, $http) {
     };
     
     
-     $scope.deleteUser = function () {
-        var id =  $scope.idDeletion;
+     $scope.deleteSeller = function () {
+        /**var id =  $scope.idDeletion;
         $http.delete('/user/' + id).then(function (response) {
             if (response.data)
             $scope.resultDelete = "User was successfully deleted! (id : " + id + " )";
         }, function (response) {
                 $scope.resultDelete = "An error was occured!" ;
-        });
+        });*/
     };
 
 
-    $scope.updateUser = function () {
-        var id =  $scope.idDeletion;
+    $scope.updateSeller = function () {
+        /**var id =  $scope.idDeletion;
         var data = {
                     firstname : $scope.firstnameUpdate, 
                     lastname : $scope.lastnameUpdate, 
@@ -52,7 +54,7 @@ app.controller("manageUserCtrl", function($scope, $http) {
             $scope.resultUpdate = "User was successfully updated!";
         }, function (response) {
                 $scope.resultUpdate = "An error was occured!" + firstname + email;
-        });
+        });*/
     };
     
     

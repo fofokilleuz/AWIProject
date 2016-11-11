@@ -1,28 +1,21 @@
-<p>Manage Seller</p>
-<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<!doctype html>
+<html>
+  <head>
+    <title>Manage Seller</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="./public/js/controller/manageSeller.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="manageSellerCtrl">
+
+<div class="container">
+
+
 <SCRIPT LANGUAGE="javascript">
 
 function creation(formCreationSeller) {
-alert("CONNNARD")
-var firstname 	= document.getElementById("firstname").value;
-var lastname	= document.getElementById("surname").value;
-var email 		= document.getElementById("email").value;
-var password 	= document.getElementById("mdp").value;
-var mobile 		= document.getElementById("mobile").value;
-var address 	= document.getElementById("address").value;
-var postalCode 	= document.getElementById("postalCode").value;
-var city	 	= document.getElementById("city").value;
-var siret       = document.getElementById("siret").value;
-var urlweb	 	= document.getElementById("urlweb").value;
-
-   $.ajax({
-   				url : '/seller', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-                data : { firstname : firstname, lastname : lastname, email : email, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city,
-                    urlweb : urlweb, siret :siret},
-            });
-
-}
 
 function deletion(formDeletion) {
 alert("deletion")
@@ -75,25 +68,59 @@ alert("merde 1")
                 data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
             });
 
-}
+};
 
 
 
 </SCRIPT>
 
-<form method="post" name="formCreationSeller" action="SellerController">
-   <input type="text" name="firstname" id="firstname" />
-   <input type="text" name="Surname" id="surname" />
-   <input type="email" name="email" id="email" />
-   <input type="password" name="mdp" id="mdp"/>
-   <input type="tel" name="mobile" id="mobile" />
-   <input type="text" name="address" id="address" />
-   <input type="text" name="postalCode" id="postalCode" />
-   <input type="text" name="city" id="city" />
-   <input type="text" name="siret" id="siret"/>
-   <input type="text" name="urlweb" id="urlweb"/>
-   <INPUT TYPE="button" NAME="bouton" VALUE="CREATION" onClick="creation(formCreationSeller)">
-</form>
+<h3> Create Seller </h3>
+
+<div class="row">
+    <form ng-submit="createSeller()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>FirstName : </label>
+   		<input type="text" name="firstname" ng-model="firstname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Lastname : </label>
+   		<input type="text" name="lastname" ng-model="lastname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Email : </label>
+   		<input type="text" name="email" ng-model="email" />
+    </div>
+    <div class="col s12 m6">
+        <label>mobile : </label>
+   		<input type="text" name="mobile" ng-model="mobile" />
+    </div>
+    <div class="col s12 m6">
+        <label>address : </label>
+   		<input type="text" name="address" ng-model="address" />
+    </div>
+    <div class="col s12 m6">
+        <label>postalCode : </label>
+   		<input type="text" name="postalCode" ng-model="postalCode" />
+    </div>
+    <div class="col s12 m6">
+        <label>City : </label>
+   		<input type="text" name="city" ng-model="city" />
+    </div>
+    <div class="col s12 m6">
+        <label>Siret : </label>
+   		<input type="text" name="siret" ng-model="siret" />
+    </div>
+    <div class="col s12 m6">
+        <label>UrlWeb : </label>
+   		<input type="text" name="urlweb" ng-model="urlweb" />
+    </div>
+    <div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ resultCreate }}
+    </div></div>
+    </form>
+</div>
 
 <p>Deletion Seller</p>
 

@@ -8,9 +8,11 @@
     <script type="text/javascript" src="./public/js/controller/manageUser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   </head>
-  <body ng-app="myApp" ng-controller="manageUserCtrl">
 
-<div class="container">
+<body ng-app="myApp">
+
+<div class="container" ng-controller="manageUserCtrl">
+
 <h3>Create an user</h3>
 <div class="row">
     <form ng-submit="createUser()" class="col s12">

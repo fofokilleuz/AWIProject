@@ -12,7 +12,7 @@ import views.html.*;
 import play.api.libs.Codecs;
 import play.libs.Json;
 
-
+import com.fasterxml.jackson.databind.JsonNode;
 
 /**
  * This controller contains an action to handle HTTP requests
@@ -21,25 +21,32 @@ import play.libs.Json;
 
 public class SellerController extends Controller {
 
-	public Result createSeller()
-	{
-	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("lastname")[0];
-	    String email = values.get("email")[0];
-	    String password = values.get("password")[0];
-	    String mobile = values.get("mobile")[0];
-	    String address = values.get("address")[0];
-	    String postalCode = values.get("postalCode")[0];
-	    String city = values.get("city")[0];
-	    String siret = values.get("siret")[0];
-	    String urlweb = values.get("urlweb")[0];
-	    
-	    Seller s = new Seller(email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
-	    
-	    s.save();
 
-	    return ok("200 - OK");
+	/** To create a seller
+     * 
+     * call with $http.post('/seller', data)
+     * 
+     */
+    public Result createSeller() {
+	    JsonNode json = request().body().asJson();
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	    	  String firstname = json.findPath("firstname").textValue();
+	    	  String lastname = json.findPath("lastname").textValue();
+	    	  String email = json.findPath("email").textValue();
+	    	  String password = json.findPath("password").textValue();
+	    	  String mobile = json.findPath("mobile").textValue();
+	    	  String address = json.findPath("address").textValue();
+	    	  String postalCode = json.findPath("postalCode").textValue();
+	    	  String city = json.findPath("city").textValue();
+	    	  String siret = json.findPath("siret").textValue();
+	    	  String urlweb = json.findPath("urlweb").textValue();
+	    	  
+              Seller s = new Seller(email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
+              s.save();
+	    	  return ok("200 - OK");
+	      }
 	}
 	
 	public 	Result getAllSeller()

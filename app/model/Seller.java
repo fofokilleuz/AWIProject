@@ -116,5 +116,15 @@ import java.util.List;
 		 {
 		     this.urlweb=urlweb;
 		 }
+		 
+		 	 public static List<Seller> getAllSeller()
+		 {
+		     return Seller.find.all();
+		 }
+		 
+		 public static Seller getSellerById(long id)
+		 {
+		     return Seller.find.byId(id);
+		 }
 
 	}

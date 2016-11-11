@@ -120,6 +120,11 @@ import java.util.List;
 		     this.urlweb=urlweb;
 		 }
 		 
+		 	 public void addProduct(Product p)
+		 {
+		     this.products.add(p);
+		 }
+		 
 		 	 public static List<Seller> getAllSeller()
 		 {
 		     return Seller.find.all();
@@ -129,5 +134,7 @@ import java.util.List;
 		 {
 		     return Seller.find.byId(id);
 		 }
+		 
+	
 
 	}

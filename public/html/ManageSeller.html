@@ -31,9 +31,6 @@ function deletion(formDeletion) {
 
 var id 	= document.getElementById("idDeletion").value;
 
-
-alert(id)
-
    $.ajax({
    				url : '/seller/'+id, // La ressource ciblé
                 type : 'DELETE', // Le type de la requête HTTP.
@@ -63,6 +60,26 @@ var urlweb      = document.getElementById("urlwebUpdate").value;
                 data : { firstname : firstname, surname : surname, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth
                     ,siret : siret, urlweb : urlweb},
             });
+
+}
+
+function creationProduct(fromCreationProduct){
+    
+var id 	        = document.getElementById("idSeller").value;    
+var ref 	    = document.getElementById("ref").value;
+var name	 	= document.getElementById("name").value;
+var price 		= document.getElementById("price").value;
+var qty 	    = document.getElementById("qty").value;
+var desc 		= document.getElementById("desc").value;
+
+
+   $.ajax({
+   				url : '/seller/'+id+'/product/', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+                data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
+            });
+
+}
 
 }
 
@@ -108,3 +125,14 @@ var urlweb      = document.getElementById("urlwebUpdate").value;
    <input TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateSeller)">
 </form>
 
+<p>Create Produt and add to user<p>
+
+<form method="post" name="fromCreationProduct" action="SellerController">
+   <input type="number" name="idSeller" id="idSeller" />
+   <input type="text" name="ref" id="ref" />
+   <input type="text" name="name" id="name" />
+   <input type="text" name="price" id="price" />
+   <input type="number" name="qty" id="qty"/>
+   <input type="text" name="desc" id="desc" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="creationProduct(fromCreationProduct)">
+</form>

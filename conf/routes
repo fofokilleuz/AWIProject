@@ -36,6 +36,7 @@ GET   	/sellers      		controllers.SellerController.getAllSeller
 GET		/seller/:id			controllers.SellerController.getSellerById(id : Long)
 DELETE  /seller/:id         controllers.SellerController.deleteSellerById(id : Long)
 PUT     /seller/:id         controllers.SellerController.UpdateSellerById(id : Long)
+POST    /seller/:id/product controllers.SellerController.addProduct(id  :  Long)
 
 
 #/////////////////////#

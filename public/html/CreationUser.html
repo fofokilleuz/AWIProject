@@ -34,7 +34,7 @@
        	<label>Phone number : </label>
        	<input type="tel" name="tel" ng-model="mobile" />
     </div>
-    <div class="col s12">
+    <div class="col s12 m6">
        	<label>Address : </label>
        	<input type="text" name="address" ng-model="adress" />
     </div>
@@ -48,21 +48,24 @@
     </div>
    	<div class="col s12">
         <input type="submit" class="waves-effect waves-light btn">
-        {{ result }}
+        {{ resultCreate }}
     </div></div>
     </form>
 </div>
 
 <h3>Delete an user</h3>
 <div class="row">
-    <form method="post" name="formDeletion" action="UserController" class="col s12">
+    <form ng-submit="deleteUser()" class="col s12">
     <div class="row">
-    <div class="col s12">
+    <div class="col s12 m6">
 	    <label>Id User : </label>
-   		<input type="number" name="idDeletion" id="idDeletion" />
+   		<input type="number" name="idDeletion" ng-model="idDeletion" required />
    	</div>
-   	<div class="col s12">
-   	    <INPUT TYPE="button"  class="waves-effect waves-light btn" NAME="bouton" VALUE="DELETE" onClick="deletion(formDeletion)">
+   	</div>
+   	<div class="row">
+   	<div class="col s12 m6">
+   	    <input type="submit"  class="waves-effect waves-light btn">
+   	    {{ resultDelete }}
    	</div>
     </div>
     </form>

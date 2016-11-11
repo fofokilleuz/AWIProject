@@ -17,11 +17,23 @@ app.controller("manageUserCtrl", function($scope, $http) {
 
         $http.post('/user', data).then(function (response) {
             if (response.data)
-            $scope.result = "User was successfully created!";
+            $scope.resultCreate = "User was successfully created!";
         }, function (response) {
-                $scope.result = "An error was occured";
+                $scope.resultCreate = "An error was occured";
         });
     };
+    
+    
+     $scope.deleteUser = function () {
+        var id =  $scope.idDeletion;
+        $http.delete('/user/' + id).then(function (response) {
+            if (response.data)
+            $scope.resultDelete = "User was successfully deleted! (id : " + id + " )";
+        }, function (response) {
+                $scope.resultDelete = "An error was occured!" ;
+        });
+    };
+
 
     
 });

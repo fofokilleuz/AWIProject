@@ -31,13 +31,13 @@ PUT     /user/:id           controllers.UserController.UpdateUserById(id : Long)
 #//////SELLER////////#
 #////////////////////#
 
-POST	/seller   			controllers.SellerController.createSeller	
-GET   	/sellers      		controllers.SellerController.getAllSeller
-GET		/seller/:id			controllers.SellerController.getSellerById(id : Long)
-DELETE  /seller/:id         controllers.SellerController.deleteSellerById(id : Long)
-PUT     /seller/:id         controllers.SellerController.UpdateSellerById(id : Long)
-POST    /seller/:id/product controllers.SellerController.addProduct(id  :  Long)
-
+POST	/seller   			    controllers.SellerController.createSeller	
+GET   	/sellers      	    	controllers.SellerController.getAllSeller
+GET		/seller/:id			    controllers.SellerController.getSellerById(id : Long)
+DELETE  /seller/:id             controllers.SellerController.deleteSellerById(id : Long)
+PUT     /seller/:id             controllers.SellerController.UpdateSellerById(id : Long)
+POST    /seller/:id/product     controllers.SellerController.addProduct(id  :  Long)
+GET     /seller/:id/products    controllers.SellerController.getAllProduct(id   :   Long)
 
 #/////////////////////#
 #//////PRODUCT////////#

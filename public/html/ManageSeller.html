@@ -3,32 +3,29 @@
 <SCRIPT LANGUAGE="javascript">
 
 function creation(formCreationSeller) {
-
+alert("CONNNARD")
 var firstname 	= document.getElementById("firstname").value;
-var surname	 	= document.getElementById("surname").value;
+var lastname	= document.getElementById("surname").value;
 var email 		= document.getElementById("email").value;
 var password 	= document.getElementById("mdp").value;
 var mobile 		= document.getElementById("mobile").value;
 var address 	= document.getElementById("address").value;
 var postalCode 	= document.getElementById("postalCode").value;
 var city	 	= document.getElementById("city").value;
-var dateOfBirth = document.getElementById("dateOfBirth").value;
 var siret       = document.getElementById("siret").value;
 var urlweb	 	= document.getElementById("urlweb").value;
-
-alert(firstname)
 
    $.ajax({
    				url : '/seller', // La ressource ciblé
                 type : 'POST', // Le type de la requête HTTP.
-                data : { firstname : firstname, surname : surname, email : email, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth,
+                data : { firstname : firstname, lastname : lastname, email : email, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city,
                     urlweb : urlweb, siret :siret},
             });
 
 }
 
 function deletion(formDeletion) {
-
+alert("deletion")
 var id 	= document.getElementById("idDeletion").value;
 
    $.ajax({
@@ -39,49 +36,47 @@ var id 	= document.getElementById("idDeletion").value;
 }
 
 function Update(formUpdateSeller) {
-
+alert("ici")
 var id 	        = document.getElementById("id").value;
 var firstname 	= document.getElementById("firstnameUpdate").value;
-var surname	 	= document.getElementById("surnameUpdate").value;
+var lastname	 = document.getElementById("surnameUpdate").value;
 var password 	= document.getElementById("mdpUpdate").value;
 var mobile 		= document.getElementById("mobileUpdate").value;
 var address 	= document.getElementById("addressUpdate").value;
 var postalCode 	= document.getElementById("postalCodeUpdate").value;
 var city	 	= document.getElementById("cityUpdate").value;
-var dateOfBirth = document.getElementById("dateOfBirthUpdate").value;
 var siret       = document.getElementById("siretUpdate").value;
 var urlweb      = document.getElementById("urlwebUpdate").value;
 
-
+alert("la")
 
    $.ajax({
    				url : '/seller/'+id, // La ressource ciblé
                 type : 'PUT', // Le type de la requête HTTP.
-                data : { firstname : firstname, surname : surname, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth
-                    ,siret : siret, urlweb : urlweb},
+                data : { firstname : firstname, lastname : lastname, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city,
+                    urlweb : urlweb, siret :siret},
             });
 
 }
 
 function creationProduct(fromCreationProduct){
-    
-var id 	        = document.getElementById("idSeller").value;    
+
+var id 	        = document.getElementById("idSeller").value; 
 var ref 	    = document.getElementById("ref").value;
 var name	 	= document.getElementById("name").value;
 var price 		= document.getElementById("price").value;
 var qty 	    = document.getElementById("qty").value;
 var desc 		= document.getElementById("desc").value;
-
+alert("merde 1")
 
    $.ajax({
-   				url : '/seller/'+id+'/product/', // La ressource ciblé
+   				url : '/seller/'+id+'/product', // La ressource ciblé
                 type : 'POST', // Le type de la requête HTTP.
                 data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
             });
 
 }
 
-}
 
 
 </SCRIPT>
@@ -95,7 +90,6 @@ var desc 		= document.getElementById("desc").value;
    <input type="text" name="address" id="address" />
    <input type="text" name="postalCode" id="postalCode" />
    <input type="text" name="city" id="city" />
-   <input type="date" name="dateOfBirth" id="dateOfBirth"/>
    <input type="text" name="siret" id="siret"/>
    <input type="text" name="urlweb" id="urlweb"/>
    <INPUT TYPE="button" NAME="bouton" VALUE="CREATION" onClick="creation(formCreationSeller)">
@@ -119,7 +113,6 @@ var desc 		= document.getElementById("desc").value;
    <input type="text" name="address" id="addressUpdate" />
    <input type="text" name="postalCode" id="postalCodeUpdate" />
    <input type="text" name="city" id="cityUpdate" />
-   <input type="date" name="dateOfBirth" id="dateOfBirthUpdate"/>
    <input type="text" name="siret" id="siretUpdate" />
    <input type="text" name="urlweb" id="urlwebUpdate"/>
    <input TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateSeller)">

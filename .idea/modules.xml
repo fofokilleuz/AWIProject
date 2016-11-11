@@ -1,8 +1,0 @@
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/goldfish-build.iml" filepath="$PROJECT_DIR$/.idea_modules/goldfish-build.iml"/>
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/goldfish.iml" filepath="$PROJECT_DIR$/.idea_modules/goldfish.iml"/>
-    </modules>
-  </component>
-</project>

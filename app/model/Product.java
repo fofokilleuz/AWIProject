@@ -70,5 +70,16 @@ import play.data.validation.*;
 		 {
 		     this.description = description;
 		 }
+		 
+		  public static List<Product> getAllProduct()
+		 {
+		     return Product.find.all();
+		 }
+		 
+		 public static Product getProductById(long id)
+		 {
+		     return Product.find.byId(id);
+		 }
+		 
         
 }

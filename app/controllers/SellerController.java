@@ -85,7 +85,7 @@ public class SellerController extends Controller {
 	public Result UpdateSellerById(long id) {
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("lastname")[0];
+	    String lastname = values.get("lastname---")[0];
 	    String password = values.get("password")[0];
 	    String mobile = values.get("mobile")[0];
 	    String address = values.get("address")[0];

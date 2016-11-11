@@ -29,32 +29,45 @@ public class ProductController extends Controller {
 	    
 	    p.save();
         
-	    return ok(Json.toJson(p));
+	    return ok("200 - OK");
 	}
 	
 	public 	Result getAllProduct()
 	{
-		List<Product> products = Product.find.all();
-
-		return ok(Json.toJson(products));
+		List<Product> products = Product.getAllProduct();
+	    if(products == null)
+	    {
+	        return ok("400 - Not Found");
+	    }
+	    else
+	    {
+	    	return ok(Json.toJson(products));
+	    }
 		
 	}
 	
 	public Result getProductById(long id){
-		return ok(Json.toJson(Product.find.byId(id)));
+		Product p = Product.getProductById(id);
+		if(p==null)
+		{
+		    return ok("404 - Not Found");
+		}
+		else
+		{
+		    return ok(Json.toJson(p));
+		}
 	}
 	
 	public Result deleteProductById(long id) {
-	    Product p = Product.find.byId(id);
-	    
+	    Product p = Product.getProductById(id);
 	    if(p!=null)
 	    {
 	        p.delete();
-	        return ok("HTTP status 200 (OK)");
+	        return ok("200 - OK");
 	    }
 	    else
 	    {
-	        return ok("404 (Not Found)");
+	        return ok("404 - Not Found");
 	    }
 	}
 	
@@ -65,7 +78,7 @@ public class ProductController extends Controller {
 	    Double price = Double.parseDouble(values.get("price")[0]);
 	    Integer qty = Integer.parseInt(values.get("qty")[0]);
 	    String desc = values.get("desc")[0];
-	    Product p = Product.find.byId(id);
+	    Product p = Product.getProductById(id);
 	    
 	    if(p!=null)
 	    {
@@ -89,10 +102,13 @@ public class ProductController extends Controller {
             {
                 p.setDescription(desc);
             }
+            p.save();
+            return ok("20 - OK");
 	    }
-	   p.save();
-	   return ok("ok");
-
+	    else
+	    {
+	        return ok("400 - Not Found");
+	    }
 	}
 	
 }

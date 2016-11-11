@@ -1,26 +1,32 @@
 var app = angular.module("myApp", []);
 
-app.controller("manageUserCtrl", function($scope) {
+app.controller("manageUserCtrl", function($scope, $http) {
     
-    $scope.createUser = function ($http) {
-        $http({
-            url: '/user',
-            method: 'POST',
-        }).success(function (data) {
-            $scope.user = data;
-        });
-    };
-    
-    $scope.result = "yeeeees";
+    $scope.createUser = function () {
+        var data = {
+                    firstname : $scope.firstname, 
+                    surname : $scope.surname, 
+                    email : $scope.email, 
+                    password : $scope.password, 
+                    mobile : $scope.mobile, 
+                    address : $scope.address, 
+                    postalCode : $scope.postalCode, 
+                    city : $scope.city, 
+                    dateOfBirth : $scope.dateOfBirth,
+                    status : $scope.statut,
+                    siret : $scope.siret
+        };
 
-    
-    $scope.myTxt = "You have not yet clicked submit";
-    $scope.myFunc = function () {
-        $scope.myTxt = "You clicked submit!";
-    }
-    
-    
-    
-    
+        
+        $http.post('/user', data).then(function (response) {
+            if (response.data)
+            $scope.result = "Post Data Submitted Successfully!";
+        }, function (response) {
+                $scope.result = data;
+        });
+        
+        
+    };
+
     
 });

@@ -6,6 +6,8 @@
 /project/project
 /project/target
 /project/.sbtserver
+/project/play-fork-run.sbt
+/project/sbt-ui.sbt
 /target
 /tmp
 .classpath

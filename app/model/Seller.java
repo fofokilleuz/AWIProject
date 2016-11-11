@@ -54,7 +54,7 @@ import java.util.List;
 	    @Constraints.Required
 	    public String siret;
 	    
-	    @ManyToMany
+	    @ManyToMany(cascade=CascadeType.ALL)
 	    public List<Product> products = new ArrayList<Product>();
 	    
 		public Seller(String email, String firstname, String lastname, String password, String mobile, String address,
@@ -133,6 +133,12 @@ import java.util.List;
 		 public static Seller getSellerById(long id)
 		 {
 		     return Seller.find.byId(id);
+		 }
+		 
+		 public static List<Product> getAllProduct(long id)
+		 {
+		     Seller s = Seller.getSellerById(id);
+		     return s.products;
 		 }
 		 
 	

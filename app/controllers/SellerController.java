@@ -25,7 +25,7 @@ public class SellerController extends Controller {
 	{
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("surname")[0];
+	    String lastname = values.get("lastname")[0];
 	    String email = values.get("email")[0];
 	    String password = values.get("password")[0];
 	    String mobile = values.get("mobile")[0];
@@ -34,7 +34,6 @@ public class SellerController extends Controller {
 	    String city = values.get("city")[0];
 	    String siret = values.get("siret")[0];
 	    String urlweb = values.get("urlweb")[0];
-	    
 	    
 	    Seller s = new Seller(email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
 	    
@@ -84,9 +83,10 @@ public class SellerController extends Controller {
 	}
 	
 	public Result UpdateSellerById(long id) {
+	    System.out.println("Update");
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("lastname---")[0];
+	    String lastname = values.get("lastname")[0];
 	    String password = values.get("password")[0];
 	    String mobile = values.get("mobile")[0];
 	    String address = values.get("address")[0];
@@ -129,6 +129,7 @@ public class SellerController extends Controller {
 	
 	public Result addProduct(long id)
 	{
+	    System.out.println("addProduct");
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String ref = values.get("ref")[0];
 	    String name = values.get("name")[0];
@@ -150,6 +151,19 @@ public class SellerController extends Controller {
 	        return ok("200 - ok");
 	    }
 	    
+	}
+	
+	public Result getAllProduct(long id)
+	{
+	    Seller s = Seller.getSellerById(id);
+	    if (s==null)
+	    {
+	        return ok("404 - Not Found");
+	    }
+	    else
+	    {
+	        return ok(Json.toJson(s.products));
+	    }
 	}
 	
 }

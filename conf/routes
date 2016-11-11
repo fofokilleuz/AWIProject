@@ -3,7 +3,7 @@
 # ~~~~
 
 # An example controller showing a sample home page
-GET		/creationUser				    controllers.Assets.at(path="/public/html", file="CreationUser.html")
+GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 
 
 

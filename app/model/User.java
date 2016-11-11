@@ -53,10 +53,9 @@ import java.util.List;
 	    @Constraints.Required
 	    public int status;
 	    
-	    public String siret;
 	    
 		public User(String email, String firstname, String lastname, String password, String mobile, String address,
-				String postalCode, String city,int status, String siret) {
+				String postalCode, String city,int status) {
 			super();
 			this.email = email;
 			this.firstname = firstname;
@@ -67,7 +66,6 @@ import java.util.List;
 			this.postalCode = postalCode;
 			this.city = city;
 			this.status = status;
-			this.siret = siret;
 		}
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
@@ -111,11 +109,6 @@ import java.util.List;
 	    public void setStatus(int status)
 		 {
 		     this.status=status;
-		 }
-		 
-		 public void setSiret(String siret)
-		 {
-		     this.siret=siret;
 		 }
 		 
 		 public static List<User> getAllUser()

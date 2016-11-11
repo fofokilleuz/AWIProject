@@ -51,8 +51,11 @@ import java.util.List;
 	    @Constraints.Required
 	    public String urlweb;
 	    
-	    
+	    @Constraints.Required
 	    public String siret;
+	    
+	    @ManyToMany
+	    public List<Product> products = new ArrayList<Product>();
 	    
 		public Seller(String email, String firstname, String lastname, String password, String mobile, String address,
 				String postalCode, String city, String siret, String urlweb) {

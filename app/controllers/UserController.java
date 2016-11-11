@@ -21,13 +21,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class UserController extends Controller {
     
+    
+    /** To create an user
+     * 
+     * call with $http.post('/user', data)
+     * 
+     */
     public Result createUser() {
 	    JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
 	    	  String firstname = json.findPath("firstname").textValue();
-	    	  String lastname = json.findPath("surname").textValue();
+	    	  String lastname = json.findPath("lastname").textValue();
 	    	  String email = json.findPath("email").textValue();
 	    	  String password = json.findPath("password").textValue();
 	    	  String mobile = json.findPath("mobile").textValue();
@@ -43,6 +49,11 @@ public class UserController extends Controller {
 	      }
 	}
 	
+	/** To get all users
+     * 
+     * call with ???
+     * 
+     */
 	public 	Result getAllUser()
 	{
 	    List<User> users = User.find.where().eq("status", 0).findList();
@@ -50,15 +61,24 @@ public class UserController extends Controller {
 		
 	}
 	
-	
+	/** To get one user by Id
+     * 
+     * call with $http.get('/user/' + id)
+     * 
+     */
 	public Result getUserById(long id){
 		return ok(Json.toJson(User.find.byId(id)));
 	}
 	
+	
+	/** To delete an user by id
+     * 
+     * call with $http.delete('/user/' + id)
+     * 
+     */
 	public Result deleteUserById(long id) {
 	    System.out.println("FONCTION DELETE");
 	    User u = User.find.byId(id);
-	    
 	    if(u!=null)
 	    {
 	        System.out.println("JE DELETE L USER");
@@ -71,26 +91,34 @@ public class UserController extends Controller {
 	    }
 	}
 	
+	/** To update an user by id
+     * 
+     * call with $http.put('/user/' + id, data)
+     * 
+     */
 	public Result UpdateUserById(long id) {
-	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("surname")[0];
-	    String email = values.get("email")[0];
-	    String password = values.get("password")[0];
-	    String mobile = values.get("mobile")[0];
-	    String address = values.get("address")[0];
-	    String postalCode = values.get("postalCode")[0];
-	    String city = values.get("city")[0];
 	    
-        System.out.println("Fonction UdapteUser");
-	    User u = User.find.byId(id);
-	    
-	    if(u!=null)
-	    {
-	        if(!firstname.isEmpty())
+	    JsonNode json = request().body().asJson();
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	    	  String firstname = json.findPath("firstname").textValue();
+	    	  String lastname = json.findPath("lastname").textValue();
+	    	  String email = json.findPath("email").textValue();
+	    	  String password = json.findPath("password").textValue();
+	    	  String mobile = json.findPath("mobile").textValue();
+	    	  String address = json.findPath("address").textValue();
+	    	  String postalCode = json.findPath("postalCode").textValue();
+	    	  String city = json.findPath("city").textValue();
+              System.out.println("Fonction UdapteUser");
+	          User u = User.find.byId(id);
+	    if(u!=null) {
+	        if(firstname.isEmpty())
 	            {u.setFirstname(firstname);}
 	        if(!lastname.isEmpty())
 	            {u.setLastname(lastname);}
+	        if(!email.isEmpty())
+	            {u.setEmail(email);}
 	        if(!password.isEmpty())
 	            {u.setPassword(password);}
 	        if(!mobile.isEmpty())
@@ -101,14 +129,12 @@ public class UserController extends Controller {
 	            {u.setPostalCode(postalCode);}
 	        if(!city.isEmpty())
 	            {u.setCity(city);}
-	            
 	        u.save();
 	   }
 	   System.out.println(u.firstname);
-	   
 	   return ok("ok");
-	    
-
+	   }
 	}
+	
 	
 }

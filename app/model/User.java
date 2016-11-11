@@ -70,7 +70,11 @@ import java.util.List;
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
 		
-		
+		 public void setEmail(String email)
+		 {
+		     this.email=email;
+		 }
+		 
 		 public void setFirstname(String firstname)
 		 {
 		     this.firstname=firstname;

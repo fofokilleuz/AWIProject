@@ -6,6 +6,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <script type="text/javascript" src="./public/js/controller/manageUser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   </head>
   <body ng-app="myApp" ng-controller="manageUserCtrl">
 
@@ -19,8 +20,8 @@
    		<input type="text" name="firstname" ng-model="firstname" />
     </div>
     <div class="col s12 m6">
-        <label>Surname : </label>
-       	<input type="text" name="surname" ng-model="surname" />
+        <label>Lastname : </label>
+       	<input type="text" name="lastname" ng-model="lastname" />
     </div>
     <div class="col s12 m6">
        	<label>Email : </label>
@@ -73,53 +74,54 @@
 
 <h3>Update an user</h3>
 <div class="row">
-    <form method="post" name="formUpdateUser" action="UserController" class="col s12">
+    <form ng-submit="updateUser()" class="col s12">
     <div class="row">
     <div class="col s12 m6">
         <label>Id User</label>
-        <input type="number" name="id" id="id" />
+        <input type="number" name="idDeletion" ng-model="idDeletion" />
     </div>
     <div class="col s12 m6">
         <label>Firstname</label>
-        <input type="text" name="firstname" id="firstnameUpdate" />
+        <input type="text" name="firstnameUpdate" ng-model="firstnameUpdate" />
     </div>
     <div class="col s12 m6">
-        <label>Surname</label>
-        <input type="text" name="Surname" id="surnameUpdate" />
+        <label>Lastname</label>
+        <input type="text" name="lastnameUpdate" ng-model="lastnameUpdate" />
     </div>
     <div class="col s12 m6">
         <label>Password</label>
-            <input type="password" name="mdp" id="mdpUpdate"/>
+            <input type="password" name="passwordUpdate" ng-model="passwordUpdate"/>
+    </div>
+    <div class="col s12 m6">
+       	<label>Email : </label>
+       	<input type="email" name="emailUpdate" ng-model="emailUpdate" required />
     </div>
     <div class="col s12 m6">
         <label>Phone</label>
-        <input type="tel" name="mobile" id="mobileUpdate" />
-    </div>
-    <div class="col s12 m6">
-        <label>Date of birth</label>
-        <input type="date" name="dateOfBirth" id="dateOfBirthUpdate"/>
+        <input type="tel" name="mobileUpdate" ng-model="mobileUpdate" />
     </div>
     <div class="col s12">
         <label>Adress</label>
-        <input type="text" name="address" id="addressUpdate" />
+        <input type="text" name="addressUpdate" ng-model="addressUpdate" />
     </div>
     <div class="col s12 m6">
         <label>Postal code</label>
-        <input type="text" name="postalCode" id="postalCodeUpdate" />
+        <input type="text" name="postalCodeUpdate" ng-model="postalCodeUpdate" />
     </div>
     <div class="col s12 m6">
         <label>City</label>
-        <input type="text" name="city" id="cityUpdate" />
+        <input type="text" name="city" ng-model="cityUpdate" />
     </div>
     <div class="col s12">
-    <INPUT TYPE="button" class="waves-effect waves-light btn" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateUser)">
-    </div></div>
+    <INPUT TYPE="submit" class="waves-effect waves-light btn">
+    {{ resultUpdate }}
+    </div>
+    </div>
 </form>
 </div>
     
     
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   </body>
 </html>
 

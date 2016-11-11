@@ -1,63 +1,134 @@
 <!doctype html>
-<html ng-app>
+<html>
   <head>
-    <title>Creation User</title>
+    <title>Manage User</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="./public/js/manageUser.js"></script>
   </head>
-  <body>
+  <body ng-app="myApp" ng-controller="manageUserCtrl">
 
-<div ng-controller="manageUserCtrl">
-<p>Creation User</p>
-<form method="post" name="formCreationUser" action="UserController">
-	<label>First Name : </label>
-   		<input type="text" name="firstname" id="firstname" />
-   	<label>Surname : </label>
-   		<input type="text" name="Surname" id="surname" />
-   	<label>Email : </label>
-   		<input type="email" name="email" id="email" required />
-   	<label>Password : </label>
-   		<input type="password" name="mdp" id="mdp" required />
-   	<label>Phone number : </label>
-   		<input type="tel" name="mobile" id="mobile" />
-   	<label>Address : </label>
-   		<input type="text" name="address" id="address" />
-   	<label>Postal Code : </label>
-   		<input type="text" name="postalCode" id="postalCode" />
-   	<label>City : </label>
-   		<input type="text" name="city" id="city" />
-   	<label>Date Of Birth : </label>
-   		<input type="date" name="dateOfBirth" id="dateOfBirth"/>
-   	<label>Statut (Admin/SU/SC) : </label>
-   		<input type="number" name="status" id="status" required />
-   	<label>Siret (if SC) : </label>
-   		<input type="text" name="siret" id="siret"/>
-   <INPUT TYPE="button" NAME="bouton" VALUE="Contrôler" onClick="controle(formCreationUser)">
-</form>
+<div class="container">
+<h3>Create an user</h3>
+<div class="row">
+    <form ng-submit="createUser()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>FirstName : </label>
+   		<input type="text" ng-model="user.firstname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Surname : </label>
+       	<input type="text" ng-model="user.surname" />
+    </div>
+    <div class="col s12 m6">
+       	<label>Email : </label>
+       	<input type="email" ng-model="user.email" required />
+    </div>
+    <div class="col s12 m6">
+       	<label>Password : </label>
+       	<input type="password" ng-model="user.password" required />
+    </div>
+    <div class="col s12 m6">
+       	<label>Phone number : </label>
+       	<input type="tel" ng-model="user.mobile" />
+    </div>
+    <div class="col s12 m6">
+   	    <label>Date Of Birth : </label>
+   	    <input type="date" ng-model="user.dateOfBirth" />
+   	</div>
+    <div class="col s12">
+       	<label>Address : </label>
+       	<input type="text" ng-model="user.adress" />
+    </div>
+    <div class="col s12 m6">
+       	<label>Postal Code : </label>
+       	<input type="text" ng-model="user.postalCode" />
+    </div>
+    <div class="col s12 m6">
+       	<label>City : </label>
+       	<input type="text" ng-model="user.city" />
+    </div>
+    <div class="col s12 m6">
+   	    <label>Statut (Admin/SU/SC) : </label>
+   	    <input type="number" ng-model="user.statut" required />
+   	</div>
+    <div class="col s12 m6">
+   	    <label>Siret (if SC) : </label>
+   	    <input type="text" ng-model="user.siret" />
+   	</div>
+   	<div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ result }}
+    </div></div>
+    </form>
+</div>
 
-<p>Deletion User</p>
-<form method="post" name="formDeletion" action="UserController">
-	<label>Id de l'utilisateur : </label>
+<h3>Delete an user</h3>
+<div class="row">
+    <form method="post" name="formDeletion" action="UserController" class="col s12">
+    <div class="row">
+    <div class="col s12">
+	    <label>Id User : </label>
    		<input type="number" name="idDeletion" id="idDeletion" />
-   	<INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
-</form>
+   	</div>
+   	<div class="col s12">
+   	    <INPUT TYPE="button"  class="waves-effect waves-light btn" NAME="bouton" VALUE="DELETE" onClick="deletion(formDeletion)">
+   	</div>
+    </div>
+    </form>
+</div>
 
-<p>Update User</p>
-<form method="post" name="formUpdateUser" action="UserController">
-   <input type="number" name="id" id="id" />
-   <input type="text" name="firstname" id="firstnameUpdate" />
-   <input type="text" name="Surname" id="surnameUpdate" />
-   <input type="password" name="mdp" id="mdpUpdate"/>
-   <input type="tel" name="mobile" id="mobileUpdate" />
-   <input type="text" name="address" id="addressUpdate" />
-   <input type="text" name="postalCode" id="postalCodeUpdate" />
-   <input type="text" name="city" id="cityUpdate" />
-   <input type="date" name="dateOfBirth" id="dateOfBirthUpdate"/>
-   <INPUT TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateUser)">
+<h3>Update an user</h3>
+<div class="row">
+    <form method="post" name="formUpdateUser" action="UserController" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>Id User</label>
+        <input type="number" name="id" id="id" />
+    </div>
+    <div class="col s12 m6">
+        <label>Firstname</label>
+        <input type="text" name="firstname" id="firstnameUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Surname</label>
+        <input type="text" name="Surname" id="surnameUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Password</label>
+            <input type="password" name="mdp" id="mdpUpdate"/>
+    </div>
+    <div class="col s12 m6">
+        <label>Phone</label>
+        <input type="tel" name="mobile" id="mobileUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Date of birth</label>
+        <input type="date" name="dateOfBirth" id="dateOfBirthUpdate"/>
+    </div>
+    <div class="col s12">
+        <label>Adress</label>
+        <input type="text" name="address" id="addressUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Postal code</label>
+        <input type="text" name="postalCode" id="postalCodeUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>City</label>
+        <input type="text" name="city" id="cityUpdate" />
+    </div>
+    <div class="col s12">
+    <INPUT TYPE="button" class="waves-effect waves-light btn" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateUser)">
+    </div></div>
 </form>
-	<script src="../js/manageUser.js"></script>
-	
-	</div>
+</div>
+    
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
   </body>
 </html>
 

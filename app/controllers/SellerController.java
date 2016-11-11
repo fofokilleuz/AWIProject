@@ -4,6 +4,7 @@ import java.util.*;
 import play.libs.Json;
 
 import model.Seller;
+import model.Product;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
@@ -123,6 +124,31 @@ public class SellerController extends Controller {
 	   {
 	        return ok("404 - Not Found");
 	   }
+	    
+	}
+	
+	public Result addProduct(long id)
+	{
+	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
+	    String ref = values.get("ref")[0];
+	    String name = values.get("name")[0];
+	    Double price = Double.parseDouble(values.get("price")[0]);
+	    int qty = Integer.parseInt(values.get("qty")[0]);
+	    String desc = values.get("desc")[0];
+	    
+	    Product p = new Product(ref,name,price,qty,desc);
+	    p.save();
+	    Seller s = Seller.getSellerById(id);
+	    if(s==null)
+	    {
+	        return ok("404 - Not Found");
+	    }
+	    else
+	    {
+	        s.addProduct(p);
+	        s.save();
+	        return ok("200 - ok");
+	    }
 	    
 	}
 	

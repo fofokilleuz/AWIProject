@@ -10,10 +10,6 @@
 /tmp
 .classpath
 .project
-
-
-
-
-
-
-
+/.idea
+/.idea_modules
+RUNNING_PID

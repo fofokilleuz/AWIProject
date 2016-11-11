@@ -117,4 +117,14 @@ import java.util.List;
 		 {
 		     this.siret=siret;
 		 }
+		 
+		 public static List<User> getAllUser()
+		 {
+		     return User.find.all();
+		 }
+		 
+		 public static User getUserById(long id)
+		 {
+		     return User.find.byId(id);
+		 }
 	}

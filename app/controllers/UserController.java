@@ -113,25 +113,24 @@ public class UserController extends Controller {
               System.out.println("Fonction UdapteUser");
 	          User u = User.find.byId(id);
 	    if(u!=null) {
-	        if(firstname.isEmpty())
+	        if(firstname != null)
 	            {u.setFirstname(firstname);}
-	        if(!lastname.isEmpty())
+	        if(lastname != null)
 	            {u.setLastname(lastname);}
-	        if(!email.isEmpty())
+	        if(email != null)
 	            {u.setEmail(email);}
-	        if(!password.isEmpty())
+	        if(password != null)
 	            {u.setPassword(password);}
-	        if(!mobile.isEmpty())
+	        if(mobile != null)
 	            {u.setMobile(mobile);}
-	        if(!address.isEmpty())
+	        if(address != null)
 	            {u.setAddress(address);}
-	        if(!postalCode.isEmpty())
+	        if(postalCode != null)
 	            {u.setPostalCode(postalCode);}
-	        if(!city.isEmpty())
+	        if(city != null)
 	            {u.setCity(city);}
 	        u.save();
 	   }
-	   System.out.println(u.firstname);
 	   return ok("ok");
 	   }
 	}

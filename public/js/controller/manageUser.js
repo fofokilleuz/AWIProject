@@ -52,7 +52,7 @@ app.controller("manageUserCtrl", function($scope, $http) {
             if (response.data)
             $scope.resultUpdate = "User was successfully updated!";
         }, function (response) {
-                $scope.resultUpdate = "An error was occured!";
+                $scope.resultUpdate = "An error was occured!" + firstname + email;
         });
     };
     

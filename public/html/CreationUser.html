@@ -1,104 +1,134 @@
-<p>Creation User</p>
-<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<SCRIPT LANGUAGE="javascript">
+<!doctype html>
+<html>
+  <head>
+    <title>Manage User</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="./public/js/manageUser.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="manageUserCtrl">
 
-function controle(formCreationUser) {
+<div class="container">
+<h3>Create an user</h3>
+<div class="row">
+    <form ng-submit="createUser()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>FirstName : </label>
+   		<input type="text" name="firstname" ng-model="firstname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Surname : </label>
+       	<input type="text" name="surname" ng-model="surname" />
+    </div>
+    <div class="col s12 m6">
+       	<label>Email : </label>
+       	<input type="email" name="email" ng-model="email" required />
+    </div>
+    <div class="col s12 m6">
+       	<label>Password : </label>
+       	<input type="password" name="password" ng-model="password" required />
+    </div>
+    <div class="col s12 m6">
+       	<label>Phone number : </label>
+       	<input type="tel" name="tel" ng-model="mobile" />
+    </div>
+    <div class="col s12 m6">
+   	    <label>Date Of Birth : </label>
+   	    <input type="date" name="dateOfBirth" ng-model="dateOfBirth" />
+   	</div>
+    <div class="col s12">
+       	<label>Address : </label>
+       	<input type="text" name="address" ng-model="adress" />
+    </div>
+    <div class="col s12 m6">
+       	<label>Postal Code : </label>
+       	<input type="text" name="postalCode" ng-model="postalCode" />
+    </div>
+    <div class="col s12 m6">
+       	<label>City : </label>
+       	<input type="text" name="city" ng-model="city" />
+    </div>
+    <div class="col s12 m6">
+   	    <label>Statut (Admin/SU/SC) : </label>
+   	    <input type="number" name="statut" ng-model="statut" required />
+   	</div>
+    <div class="col s12 m6">
+   	    <label>Siret (if SC) : </label>
+   	    <input type="text" name="siret" ng-model="siret" />
+   	</div>
+   	<div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ result }}
+    </div></div>
+    </form>
+</div>
 
-var firstname 	= document.getElementById("firstname").value;
-var surname	 	= document.getElementById("surname").value;
-var email 		= document.getElementById("email").value;
-var password 	= document.getElementById("mdp").value;
-var mobile 		= document.getElementById("mobile").value;
-var address 	= document.getElementById("address").value;
-var postalCode 	= document.getElementById("postalCode").value;
-var city	 	= document.getElementById("city").value;
-var dateOfBirth = document.getElementById("dateOfBirth").value;
-var status	 	= document.getElementById("status").value;
-var siret = document.getElementById("siret").value;
+<h3>Delete an user</h3>
+<div class="row">
+    <form method="post" name="formDeletion" action="UserController" class="col s12">
+    <div class="row">
+    <div class="col s12">
+	    <label>Id User : </label>
+   		<input type="number" name="idDeletion" id="idDeletion" />
+   	</div>
+   	<div class="col s12">
+   	    <INPUT TYPE="button"  class="waves-effect waves-light btn" NAME="bouton" VALUE="DELETE" onClick="deletion(formDeletion)">
+   	</div>
+    </div>
+    </form>
+</div>
 
-alert(firstname)
-
-   $.ajax({
-   				url : '/user', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-                data : { firstname : firstname, surname : surname, email : email, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth,
-                    status : status, siret :siret},
-            });
-
-}
-
-function deletion(formDeletion) {
-
-var id 	= document.getElementById("idDeletion").value;
-
-
-alert(idDeletion)
-
-   $.ajax({
-   				url : '/user/'+id, // La ressource ciblé
-                type : 'DELETE', // Le type de la requête HTTP.
-            });
-
-}
-
-function Update(formUpdateUser) {
-
-var id 	= document.getElementById("id").value;
-var firstname 	= document.getElementById("firstnameUpdate").value;
-var surname	 	= document.getElementById("surnameUpdate").value;
-var password 	= document.getElementById("mdpUpdate").value;
-var mobile 		= document.getElementById("mobileUpdate").value;
-var address 	= document.getElementById("addressUpdate").value;
-var postalCode 	= document.getElementById("postalCodeUpdate").value;
-var city	 	= document.getElementById("cityUpdate").value;
-var dateOfBirth = document.getElementById("dateOfBirthUpdate").value;
-
-alert(firstname)
-
-   $.ajax({
-   				url : '/user/'+id, // La ressource ciblé
-                type : 'PUT', // Le type de la requête HTTP.
-                data : { firstname : firstname, surname : surname, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city, dateOfBirth : dateOfBirth},
-            });
-
-}
-
-
-</SCRIPT>
-
-<form method="post" name="formCreationUser" action="UserController">
-   <input type="text" name="firstname" id="firstname" />
-   <input type="text" name="Surname" id="surname" />
-   <input type="email" name="email" id="email" />
-   <input type="password" name="mdp" id="mdp"/>
-   <input type="tel" name="mobile" id="mobile" />
-   <input type="text" name="address" id="address" />
-   <input type="text" name="postalCode" id="postalCode" />
-   <input type="text" name="city" id="city" />
-   <input type="date" name="dateOfBirth" id="dateOfBirth"/>
-   <input type="number" name="status" id="status"/>
-   <input type="text" name="siret" id="siret"/>
-   <INPUT TYPE="button" NAME="bouton" VALUE="Contrôler" onClick="controle(formCreationUser)">
+<h3>Update an user</h3>
+<div class="row">
+    <form method="post" name="formUpdateUser" action="UserController" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>Id User</label>
+        <input type="number" name="id" id="id" />
+    </div>
+    <div class="col s12 m6">
+        <label>Firstname</label>
+        <input type="text" name="firstname" id="firstnameUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Surname</label>
+        <input type="text" name="Surname" id="surnameUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Password</label>
+            <input type="password" name="mdp" id="mdpUpdate"/>
+    </div>
+    <div class="col s12 m6">
+        <label>Phone</label>
+        <input type="tel" name="mobile" id="mobileUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Date of birth</label>
+        <input type="date" name="dateOfBirth" id="dateOfBirthUpdate"/>
+    </div>
+    <div class="col s12">
+        <label>Adress</label>
+        <input type="text" name="address" id="addressUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Postal code</label>
+        <input type="text" name="postalCode" id="postalCodeUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>City</label>
+        <input type="text" name="city" id="cityUpdate" />
+    </div>
+    <div class="col s12">
+    <INPUT TYPE="button" class="waves-effect waves-light btn" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateUser)">
+    </div></div>
 </form>
-
-<p>Deletion User</p>
-
-<form method="post" name="formDeletion" action="UserController">
-   <input type="number" name="idDeletion" id="idDeletion" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
-</form>
-
-<p>Update User</p>
-<form method="post" name="formUpdateUser" action="UserController">
-   <input type="number" name="id" id="id" />
-   <input type="text" name="firstname" id="firstnameUpdate" />
-   <input type="text" name="Surname" id="surnameUpdate" />
-   <input type="password" name="mdp" id="mdpUpdate"/>
-   <input type="tel" name="mobile" id="mobileUpdate" />
-   <input type="text" name="address" id="addressUpdate" />
-   <input type="text" name="postalCode" id="postalCodeUpdate" />
-   <input type="text" name="city" id="cityUpdate" />
-   <input type="date" name="dateOfBirth" id="dateOfBirthUpdate"/>
-   <INPUT TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateUser)">
-</form>
+</div>
+    
+    
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  </body>
+</html>
 

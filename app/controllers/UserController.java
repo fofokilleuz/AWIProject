@@ -11,6 +11,7 @@ import views.html.*;
 import play.api.libs.Codecs;
 import play.libs.Json;
 
+import com.fasterxml.jackson.databind.JsonNode;
 
 
 /**
@@ -19,10 +20,24 @@ import play.libs.Json;
  */
 
 public class UserController extends Controller {
-
-	public Result createUser()
-	{
-	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
+    
+    public Result createUser() {
+	    JsonNode json = request().body().asJson();
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	    	  String firstname = json.findPath("firstname").textValue();
+	    	  String lastname = json.findPath("surname").textValue();
+	    	  String email = json.findPath("email").textValue();
+	    	  String password = json.findPath("password").textValue();
+	    	  String mobile = json.findPath("mobile").textValue();
+	    	  String address = json.findPath("address").textValue();
+	    	  String postalCode = json.findPath("postalCode").textValue();
+	    	  String city = json.findPath("city").textValue();
+	    	  int status = json.findPath("status").intValue();
+	    	  String siret = json.findPath("siret").textValue();
+	    
+	   /** Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String firstname = values.get("firstname")[0];
 	    String lastname = values.get("surname")[0];
 	    String email = values.get("email")[0];
@@ -32,15 +47,12 @@ public class UserController extends Controller {
 	    String postalCode = values.get("postalCode")[0];
 	    String city = values.get("city")[0];
 	    int status = Integer.parseInt(values.get("status")[0]);
-	    String siret = values.get("siret")[0];
-	    System.out.println("CREATEUSER");
-	    
-	    
-	    User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status,siret);
-	    
-	    u.save();
-
-	    return ok(Json.toJson(u));
+	    String siret = values.get("siret")[0];  */
+	    	  System.out.println("CREATEUSER");
+	    	  User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status,siret);
+	    	  u.save();
+	    	  return ok(Json.toJson(u));
+	      }
 	}
 	
 	public 	Result getAllUser()

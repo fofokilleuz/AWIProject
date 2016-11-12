@@ -133,4 +133,9 @@ import java.util.List;
 		 {
 		     return User.find.byId(id);
 		 }
+		 
+		 public Product getProductShoppingCartByNum(long numP){
+		     int num = (int) numP;
+		     return this.shoppingCart.get(num);
+		 }
 	}

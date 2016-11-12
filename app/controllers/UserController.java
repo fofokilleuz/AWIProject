@@ -52,7 +52,7 @@ public class UserController extends Controller {
 	
 	/** To get all users
      * 
-     * call with $http.get('/users')
+     * call with ???
      * 
      */
 	public 	Result getAllUser()
@@ -143,15 +143,24 @@ public class UserController extends Controller {
 	    User u = User.getUserById(idUser);
 	    if(u==null)
 	    {
-	        return ok("404 - Not Found");
+	        return badRequest("404 - User Not Found");
 	    }
-	    else
-	    {
-	        u.addProduct(p);
-	        u.save();
-	        return ok("200 - ok");
+	    if(p==null){
+	        return badRequest("404 - Product Not Found");
+	        
 	    }
+	    u.addProduct(p);
+	    u.save();
+	    return ok("200 - ok");
 	    
 	}
 	
+	public Result getProductShoppingCartByNum(long idUser, long numP){
+	    User u = User.getUserById(idUser);
+	    if(u==null){
+	        return badRequest("404 - User Not Found");
+	    }
+	    Product p = u.getProductShoppingCartByNum(numP);
+	    return ok(Json.toJson(p));
+	    }
 }

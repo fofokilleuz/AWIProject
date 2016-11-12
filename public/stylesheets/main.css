@@ -1,0 +1,7 @@
+input.ng-invalid.ng-touched {
+    border-bottom: 2px solid red;
+}
+
+.warning{
+     font-weight : 600;
+}

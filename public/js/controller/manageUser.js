@@ -58,7 +58,7 @@ app.controller("manageUserCtrl", function($scope, $http) {
 });
 
 
-
+//to control the AllUsers.html page
 app.controller("allUsersCtrl", function($scope, $http) {
     
     $http.get("/users").then(function(response) {

@@ -51,6 +51,17 @@ var desc 		= document.getElementById("descUpdate").value;
 
 }
 
+function addProductUser(formAddProduct) {
+
+var idUser              = document.getElementById("idUser").value;
+var idProduct           = document.getElementById("idProduct").value;
+   $.ajax({
+   				url : '/user/'+idUser+'/product/'+idProduct, // La ressource ciblé
+                type : 'PUT', // Le type de la requête HTTP.
+            });
+
+}
+
 </SCRIPT>
 
 <p>Create Produt<p>
@@ -80,6 +91,13 @@ var desc 		= document.getElementById("descUpdate").value;
    <input type="number" name="qtyUpdate" id="qtyUpdate"/>
    <input type="text" name="descUpdate" id="descUpdate" />
    <INPUT TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="updateProduct(formUpdateProduct)">
+</form>
+
+<p>Add Product to user</p>
+<form method="post" name="formAddProduct" action="UserController">
+   <input type=number name="idUser" id="idUser" />
+   <input type=number name="idProduct" id="idProduct" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="ADDPRODUCTUSER" onClick="addProductUser(formAddProduct)">
 </form>
 
 

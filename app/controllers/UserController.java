@@ -4,6 +4,8 @@ import java.util.*;
 import play.libs.Json;
 
 import model.User;
+import model.Product;
+import model.ShoppingCart;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
@@ -42,8 +44,7 @@ public class UserController extends Controller {
 	    	  String city = json.findPath("city").textValue();
 	    	  int status = 0 ;
 	    	  System.out.println("CREATEUSER");
-	    	  
-	    	  User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status);
+	    	  User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status);  
 	    	  u.save();
 	    	  return ok(Json.toJson(u));
 	      }
@@ -104,7 +105,6 @@ public class UserController extends Controller {
 	     } else {
 	    	  String firstname = json.findPath("firstname").textValue();
 	    	  String lastname = json.findPath("lastname").textValue();
-	    	  String email = json.findPath("email").textValue();
 	    	  String password = json.findPath("password").textValue();
 	    	  String mobile = json.findPath("mobile").textValue();
 	    	  String address = json.findPath("address").textValue();
@@ -117,8 +117,6 @@ public class UserController extends Controller {
 	            {u.setFirstname(firstname);}
 	        if(lastname != null)
 	            {u.setLastname(lastname);}
-	        if(email != null)
-	            {u.setEmail(email);}
 	        if(password != null)
 	            {u.setPassword(password);}
 	        if(mobile != null)
@@ -131,9 +129,29 @@ public class UserController extends Controller {
 	            {u.setCity(city);}
 	        u.save();
 	   }
-	   return ok("ok");
+	   return ok("200 - ok");
 	   }
 	}
 	
+	
+		public Result addProduct(long idUser,long idProduct)
+	{
+	    System.out.println("addProduct");
+
+	    
+	    Product p = Product.getProductById(idProduct);
+	    User u = User.getUserById(idUser);
+	    if(u==null)
+	    {
+	        return ok("404 - Not Found");
+	    }
+	    else
+	    {
+	        u.addProduct(p);
+	        u.save();
+	        return ok("200 - ok");
+	    }
+	    
+	}
 	
 }

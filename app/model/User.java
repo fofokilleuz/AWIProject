@@ -53,6 +53,9 @@ import java.util.List;
 	    @Constraints.Required
 	    public int status;
 	    
+	    @ManyToMany(cascade=CascadeType.ALL)
+	    public List<Product> shoppingCart = new ArrayList<Product>();
+	    
 	    
 		public User(String email, String firstname, String lastname, String password, String mobile, String address,
 				String postalCode, String city,int status) {
@@ -66,6 +69,7 @@ import java.util.List;
 			this.postalCode = postalCode;
 			this.city = city;
 			this.status = status;
+
 		}
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
@@ -113,6 +117,11 @@ import java.util.List;
 	    public void setStatus(int status)
 		 {
 		     this.status=status;
+		 }
+		 
+		 public void addProduct(Product p)
+		 {
+		     this.shoppingCart.add(p);
 		 }
 		 
 		 public static List<User> getAllUser()

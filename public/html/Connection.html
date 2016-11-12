@@ -1,0 +1,33 @@
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<SCRIPT LANGUAGE="javascript">
+
+function authenticate(formAuthenticate) {
+
+var email     	= document.getElementById("email").value;
+var mdp	 	= document.getElementById("mdp").value;
+
+
+
+   $.ajax({
+   				url : '/login', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+                data : { email : email, mdp : mdp},
+            });
+
+}
+
+
+
+
+</SCRIPT>
+
+
+<p>Add Authenticater</p>
+<form method="post" name="formAuthenticate" action="UserController">
+   <input type=text name="email" id="email" />
+   <input type=text name="mdp" id="mdp" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="CONNECTION" onClick="authenticate(formAuthenticate)">
+</form>
+
+
+

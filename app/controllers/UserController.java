@@ -5,7 +5,6 @@ import play.libs.Json;
 
 import model.User;
 import model.Product;
-import model.ShoppingCart;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;

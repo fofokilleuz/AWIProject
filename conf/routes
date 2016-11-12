@@ -10,7 +10,6 @@
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
 GET		/manageProduct			    controllers.Assets.at(path="/public/html", file="ManageProduct.html")
-GET     /allUsers                   controllers.Assets.at(path="/public/html", file="AllUsers.html")
 
 
 # An example controller showing how to use dependency injection
@@ -25,12 +24,15 @@ GET     /public/*file               controllers.Assets.versioned(path="/public",
 #//////USER////////#
 #//////////////////#
 
-POST	/user   			controllers.UserController.createUser	
-GET   	/users      		controllers.UserController.getAllUser
-GET		/user/:id			controllers.UserController.getUserById(id : Long)
-DELETE  /user/:id           controllers.UserController.deleteUserById(id : Long)
-PUT     /user/:id           controllers.UserController.UpdateUserById(id : Long)
-
+POST	/user   			                controllers.UserController.createUser	
+GET   	/users      		                controllers.UserController.getAllUser
+GET		/user/:id			                controllers.UserController.getUserById(id : Long)
+DELETE  /user/:id                           controllers.UserController.deleteUserById(id : Long)
+PUT     /user/:id                           controllers.UserController.UpdateUserById(id : Long)
+PUT     /user/:idUser/product/:idProduct    controllers.UserController.addProduct(idUser : Long, idProduct : Long)
+GET     /user/:idUser/shoppingCart/:numL    controllers.UserController.getProductShoppingCartByNum(idUser : Long, numL : Long)
+DELETE  /user/:idUser/shoppingCart/:numL    controllers.UserController.deleteProductShoppingCartByNum(idUser : Long,numL : Long)
+GET     /user/:idUser/shoppingCartTotal    controllers.UserController.sommeProductShoppingCart(idUser : Long)
 
 #////////////////////#
 #//////SELLER////////#
@@ -44,6 +46,7 @@ PUT     /seller/:id             controllers.SellerController.UpdateSellerById(id
 POST    /seller/:id/product     controllers.SellerController.addProduct(id  :  Long)
 GET     /seller/:id/products    controllers.SellerController.getAllProduct(id   :   Long)
 
+
 #/////////////////////#
 #//////PRODUCT////////#
 #/////////////////////#
@@ -54,3 +57,7 @@ GET     /products           controllers.ProductController.getAllProduct
 GET     /product/:id        controllers.ProductController.getProductById(id : Long)
 DELETE  /product/:id        controllers.ProductController.deleteProductById(id : Long)
 PUT     /product/:id        controllers.ProductController.updateProductById(id : Long)
+
+
+
+

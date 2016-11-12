@@ -133,4 +133,22 @@ import java.util.List;
 		 {
 		     return User.find.byId(id);
 		 }
+		 
+		 public Product getProductShoppingCartByNum(long numP){
+		     int num = (int) numP;
+		     return this.shoppingCart.get(num);
+		 }
+		 
+		 public void deleteProductShoppingCartByNum(long numP){
+		     int num = (int) numP;
+		     this.shoppingCart.remove(num);
+		 }
+		 
+		 public Double sommeProductShoppingCart(){
+		     Double total = 0.0;
+		     for(int i=0;i<this.shoppingCart.size();i++){
+		         total = total + this.shoppingCart.get(i).price;
+		     }
+		     return total;
+		 }
 	}

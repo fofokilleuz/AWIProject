@@ -58,7 +58,7 @@ app.controller("manageUserCtrl", function($scope, $http) {
 });
 
 
-
+//to control the AllUsers.html page
 app.controller("allUsersCtrl", function($scope, $http) {
     
     $http.get("/users").then(function(response) {
@@ -67,5 +67,15 @@ app.controller("allUsersCtrl", function($scope, $http) {
     }, function (response) {
         $scope.users = "An error was occured!" ;
     });
+    
+    $scope.aUser = function () {
+        $http.get('/user/' + id).then(function (response) {
+            if (response.data)
+            $scope.resultDelete = "User was successfully deleted! (id : " + id + " )";
+        }, function (response) {
+                $scope.resultDelete = "An error was occured!" ;
+        });
+    };
+    
     
 });

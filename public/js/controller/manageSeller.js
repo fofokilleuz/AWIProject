@@ -4,6 +4,7 @@ app.controller("manageSellerCtrl", function($scope, $http) {
     
     $scope.createSeller = function () {
         var data = {
+                    userName : $scope.userName,
                     firstname : $scope.firstname, 
                     lastname : $scope.lastname, 
                     email : $scope.email, 
@@ -18,7 +19,7 @@ app.controller("manageSellerCtrl", function($scope, $http) {
 
         $http.post('/seller', data).then(function (response) {
             if (response.data)
-            $scope.resultCreate = "User was successfully created!";
+            $scope.resultCreate = "Seller was successfully created!";
         }, function (response) {
                 $scope.resultCreate = "An error was occured!";
         });

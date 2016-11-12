@@ -32,6 +32,7 @@ public class SellerController extends Controller {
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
+	          String userName = json.findPath("userName").textValue();
 	    	  String firstname = json.findPath("firstname").textValue();
 	    	  String lastname = json.findPath("lastname").textValue();
 	    	  String email = json.findPath("email").textValue();
@@ -43,7 +44,7 @@ public class SellerController extends Controller {
 	    	  String siret = json.findPath("siret").textValue();
 	    	  String urlweb = json.findPath("urlweb").textValue();
 	    	  
-              Seller s = new Seller(email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
+              Seller s = new Seller(userName,email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
               s.save();
 	    	  return ok("200 - OK");
 	      }

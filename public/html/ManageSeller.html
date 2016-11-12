@@ -18,12 +18,20 @@
     <form ng-submit="createSeller()" class="col s12">
     <div class="row">
     <div class="col s12 m6">
+        <label>User name : </label>
+   		<input type="text" name="userName" placeholder="the name you wan't to use to loggin" ng-model="userName" />
+    </div>
+    <div class="col s12 m6">
         <label>FirstName : </label>
    		<input type="text" name="firstname" ng-model="firstname" />
     </div>
     <div class="col s12 m6">
         <label>Lastname : </label>
    		<input type="text" name="lastname" ng-model="lastname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Password : </label>
+   		<input type="password" name="password" ng-model="password" />
     </div>
     <div class="col s12 m6">
         <label>Email : </label>

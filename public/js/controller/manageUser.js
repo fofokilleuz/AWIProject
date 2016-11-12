@@ -35,7 +35,7 @@ app.controller("manageUserCtrl", function($scope, $http) {
 
 
     $scope.updateUser = function () {
-        var id =  $scope.idDeletion;
+        var id =  $scope.idUpdate;
         var data = {
                     firstname : $scope.firstnameUpdate, 
                     lastname : $scope.lastnameUpdate, 

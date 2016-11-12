@@ -25,6 +25,9 @@ import java.util.List;
 	    public long id;
 	    
 	    @Constraints.Required
+	    public String userName;
+	    
+	    @Constraints.Required
 	    public String email;
 	    
 	    @Constraints.Required
@@ -57,9 +60,10 @@ import java.util.List;
 	    @ManyToMany(cascade=CascadeType.ALL)
 	    public List<Product> products = new ArrayList<Product>();
 	    
-		public Seller(String email, String firstname, String lastname, String password, String mobile, String address,
+		public Seller(String userName, String email, String firstname, String lastname, String password, String mobile, String address,
 				String postalCode, String city, String siret, String urlweb) {
 			super();
+			this.userName = userName;
 			this.email = email;
 			this.firstname = firstname;
 			this.lastname = lastname;
@@ -74,7 +78,16 @@ import java.util.List;
 		
 		 public static Finder<Long, Seller> find = new Finder<Long,Seller>(Seller.class);
 		
-		
+		 public void setEmail(String email)
+		 {
+		     this.email=email;
+		 }
+		 
+		 public void setUserName(String userName)
+		 {
+		     this.userName=userName;
+		 }
+		 
 		 public void setFirstname(String firstname)
 		 {
 		     this.firstname=firstname;

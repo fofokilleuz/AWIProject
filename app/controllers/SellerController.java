@@ -32,6 +32,7 @@ public class SellerController extends Controller {
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
+	          String userName = json.findPath("userName").textValue();
 	    	  String firstname = json.findPath("firstname").textValue();
 	    	  String lastname = json.findPath("lastname").textValue();
 	    	  String email = json.findPath("email").textValue();
@@ -43,7 +44,7 @@ public class SellerController extends Controller {
 	    	  String siret = json.findPath("siret").textValue();
 	    	  String urlweb = json.findPath("urlweb").textValue();
 	    	  
-              Seller s = new Seller(email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
+              Seller s = new Seller(userName,email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
               s.save();
 	    	  return ok("200 - OK");
 	      }
@@ -93,75 +94,85 @@ public class SellerController extends Controller {
 	    }
 	}
 	
+	
+	/** To update a seller by id
+     * 
+     * call with $http.post('/seller/' + id, data)
+     * 
+     */
 	public Result UpdateSellerById(long id) {
-	    System.out.println("Update");
-	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String firstname = values.get("firstname")[0];
-	    String lastname = values.get("lastname")[0];
-	    String password = values.get("password")[0];
-	    String mobile = values.get("mobile")[0];
-	    String address = values.get("address")[0];
-	    String postalCode = values.get("postalCode")[0];
-	    String city = values.get("city")[0];
-	    String siret = values.get("siret")[0];
-	    String urlweb = values.get("urlweb")[0];
-        System.out.println("Fonction UdapteSeller");
-	    Seller s = Seller.getSellerById(id);
-	    
-	    if(s!=null)
-	    {
-	        if(!firstname.isEmpty())
+	    JsonNode json = request().body().asJson();
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	    	  String firstname = json.findPath("firstname").textValue();
+	    	  String lastname = json.findPath("lastname").textValue();
+	    	  String email = json.findPath("email").textValue();
+	    	  String password = json.findPath("password").textValue();
+	    	  String mobile = json.findPath("mobile").textValue();
+	    	  String address = json.findPath("address").textValue();
+	    	  String postalCode = json.findPath("postalCode").textValue();
+	    	  String city = json.findPath("city").textValue();
+	    	  String siret = json.findPath("siret").textValue();
+	    	  String urlweb = json.findPath("urlweb").textValue();
+              System.out.println("Fonction UpdateSellerById");
+              Seller s = Seller.getSellerById(id);
+	    if(s!=null){
+	        if(firstname != null)
 	            {s.setFirstname(firstname);}
-	        if(!lastname.isEmpty())
+	        if(lastname != null)
 	            {s.setLastname(lastname);}
-	        if(!password.isEmpty())
+	        if(password != null)
 	            {s.setPassword(password);}
-	        if(!mobile.isEmpty())
+	        if(email != null)
+	            {s.setEmail(email);}
+	        if(mobile != null)
 	            {s.setMobile(mobile);}
-	        if(!address.isEmpty())
+	        if(address != null)
 	            {s.setAddress(address);}
-	        if(!postalCode.isEmpty())
+	        if(postalCode != null)
 	            {s.setPostalCode(postalCode);}
-	        if(!city.isEmpty())
+	        if(city != null)
 	            {s.setCity(city);}
-	        if(!siret.isEmpty())
+	        if(siret != null)
 	            {s.setSiret(siret);}
-	        if(!urlweb.isEmpty())
+	        if(urlweb != null)
 	            {s.setUrlweb(urlweb);}
 	        s.save();
 	        return ok("200 - OK");
-	   }
-	   else
-	   {
+	   } else {
 	        return ok("404 - Not Found");
+	   }
 	   }
 	    
 	}
 	
-	public Result addProduct(long id)
-	{
-	    System.out.println("addProduct");
-	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String ref = values.get("ref")[0];
-	    String name = values.get("name")[0];
-	    Double price = Double.parseDouble(values.get("price")[0]);
-	    int qty = Integer.parseInt(values.get("qty")[0]);
-	    String desc = values.get("desc")[0];
-	    
-	    Product p = new Product(ref,name,price,qty,desc);
-	    p.save();
-	    Seller s = Seller.getSellerById(id);
-	    if(s==null)
-	    {
-	        return ok("404 - Not Found");
-	    }
-	    else
-	    {
-	        s.addProduct(p);
-	        s.save();
-	        return ok("200 - ok");
-	    }
-	    
+	/** To add a product to a Seller by Seller id
+     * 
+     * call with $http.post('/seller/' + id, data)
+     * 
+     */
+	public Result addProduct(long id){
+	    JsonNode json = request().body().asJson();
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	    	  String ref = json.findPath("ref").textValue();
+	    	  String name = json.findPath("name").textValue();
+	    	  double price = json.findPath("price").doubleValue();
+	    	  int qty = json.findPath("qty").intValue();
+	    	  String desc = json.findPath("desc").textValue();
+              Product p = new Product(ref,name,price,qty,desc);
+              p.save();
+              Seller s = Seller.getSellerById(id);
+	          if(s==null) {
+	                return ok("404 - Not Found");
+	          } else {
+	                s.addProduct(p);
+	                s.save();
+	                return ok("200 - ok");
+	          }
+	     }
 	}
 	
 	public Result getAllProduct(long id)

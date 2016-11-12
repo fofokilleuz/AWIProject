@@ -51,7 +51,7 @@ public class UserController extends Controller {
 	
 	/** To get all users
      * 
-     * call with ???
+     * call with $http.get('/users')
      * 
      */
 	public 	Result getAllUser()

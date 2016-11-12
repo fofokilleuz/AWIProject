@@ -37,7 +37,7 @@ app.controller("manageSellerCtrl", function($scope, $http) {
 
 
     $scope.updateSeller = function () {
-        /**var id =  $scope.idDeletion;
+        var id =  $scope.idUpdate;
         var data = {
                     firstname : $scope.firstnameUpdate, 
                     lastname : $scope.lastnameUpdate, 
@@ -45,16 +45,38 @@ app.controller("manageSellerCtrl", function($scope, $http) {
                     password : $scope.passwordUpdate, 
                     mobile : $scope.mobileUpdate, 
                     address : $scope.addressUpdate, 
-                    postalCode : $scope.postalCodeUpdate, 
+                    postalCode : $scope.postalcodeUpdate, 
                     city : $scope.cityUpdate, 
+                    siret : $scope.siretUpdate,
+                    urlweb : $scope.urlwebUpdate
         };
 
-        $http.put('/user/' + id, data).then(function (response) {
+        $http.put('/seller/' + id, data).then(function (response) {
             if (response.data)
-            $scope.resultUpdate = "User was successfully updated!";
+            $scope.resultUpdate = "Seller was successfully updated!";
         }, function (response) {
-                $scope.resultUpdate = "An error was occured!" + firstname + email;
-        });*/
+                $scope.resultUpdate = "An error was occured!" + email;
+        });
+    };
+    
+    
+    
+    $scope.createProductToSeller = function() {
+        var id =  $scope.idSellerToProduct;        
+        var data = {
+                    ref : $scope.ref, 
+                    name : $scope.productName, 
+                    price : $scope.price, 
+                    qty : $scope.quantity, 
+                    desc : $scope.description
+        };
+        
+        $http.post('/seller/' + id + "/product", data).then(function (response) {
+            if (response.data)
+            $scope.resultAddProducttoSeller = "Product was successfully added to seller's id : " + id;
+        }, function (response) {
+            $scope.resultAddProducttoSeller = "An error was occured!";
+        });
     };
     
     

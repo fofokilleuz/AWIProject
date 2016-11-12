@@ -74,7 +74,11 @@ import java.util.List;
 		
 		 public static Finder<Long, Seller> find = new Finder<Long,Seller>(Seller.class);
 		
-		
+		 public void setEmail(String email)
+		 {
+		     this.email=email;
+		 }
+		 
 		 public void setFirstname(String firstname)
 		 {
 		     this.firstname=firstname;

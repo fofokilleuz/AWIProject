@@ -12,68 +12,6 @@
 
 <div class="container">
 
-
-<SCRIPT LANGUAGE="javascript">
-
-function creation(formCreationSeller) {
-
-function deletion(formDeletion) {
-alert("deletion")
-var id 	= document.getElementById("idDeletion").value;
-
-   $.ajax({
-   				url : '/seller/'+id, // La ressource ciblé
-                type : 'DELETE', // Le type de la requête HTTP.
-            });
-
-}
-
-function Update(formUpdateSeller) {
-alert("ici")
-var id 	        = document.getElementById("id").value;
-var firstname 	= document.getElementById("firstnameUpdate").value;
-var lastname	 = document.getElementById("surnameUpdate").value;
-var password 	= document.getElementById("mdpUpdate").value;
-var mobile 		= document.getElementById("mobileUpdate").value;
-var address 	= document.getElementById("addressUpdate").value;
-var postalCode 	= document.getElementById("postalCodeUpdate").value;
-var city	 	= document.getElementById("cityUpdate").value;
-var siret       = document.getElementById("siretUpdate").value;
-var urlweb      = document.getElementById("urlwebUpdate").value;
-
-alert("la")
-
-   $.ajax({
-   				url : '/seller/'+id, // La ressource ciblé
-                type : 'PUT', // Le type de la requête HTTP.
-                data : { firstname : firstname, lastname : lastname, password : password, mobile : mobile, address : address, postalCode : postalCode, city : city,
-                    urlweb : urlweb, siret :siret},
-            });
-
-}
-
-function creationProduct(fromCreationProduct){
-
-var id 	        = document.getElementById("idSeller").value; 
-var ref 	    = document.getElementById("ref").value;
-var name	 	= document.getElementById("name").value;
-var price 		= document.getElementById("price").value;
-var qty 	    = document.getElementById("qty").value;
-var desc 		= document.getElementById("desc").value;
-alert("merde 1")
-
-   $.ajax({
-   				url : '/seller/'+id+'/product', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-                data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
-            });
-
-};
-
-
-
-</SCRIPT>
-
 <h3> Create Seller </h3>
 
 <div class="row">
@@ -138,30 +76,100 @@ alert("merde 1")
     </form>
 </div>
 
-<p>Update Seller</p>
+<h3>Update Seller</h3>
+<div class="row">
+    <form ng-submit="updateSeller()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>Seller id : </label>
+   		<input type="number" name="idUpdate" ng-model="idUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Firstname : </label>
+   		<input type="text" name="firstnameUpdate" ng-model="firstnameUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Lastname : </label>
+   		<input type="text" name="lastnameUpdate" ng-model="lastnameUpdate" />
+    </div>
+        <div class="col s12 m6">
+        <label>Email : </label>
+   		<input type="text" name="emailUpdate" ng-model="emailUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Password : </label>
+   		<input type="password" name="passwordUpdate" ng-model="passwordUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Phone : </label>
+   		<input type="tel" name="mobileUpdate" ng-model="mobileUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Address : </label>
+   		<input type="text" name="addressUpdate" ng-model="addressUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Postal code : </label>
+   		<input type="text" name="postalcodeUpdate" ng-model="postalcodeUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>City : </label>
+   		<input type="text" name="cityUpdate" ng-model="cityUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>Siret : </label>
+   		<input type="text" name="siretUpdate" ng-model="siretUpdate" />
+    </div>
+    <div class="col s12 m6">
+        <label>URL web : </label>
+   		<input type="text" name="urlwebUpdate" ng-model="urlwebUpdate" />
+    </div>
+   <div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ resultUpdate }}
+    </div>
+    </div>
+    </form>
+</div>
 
-<form method="post" name="formUpdateSeller" action="SellerController">
-   <input type="number" name="id" id="id" />
-   <input type="text" name="firstname" id="firstnameUpdate" />
-   <input type="text" name="Surname" id="surnameUpdate" />
-   <input type="password" name="mdp" id="mdpUpdate"/>
-   <input type="tel" name="mobile" id="mobileUpdate" />
-   <input type="text" name="address" id="addressUpdate" />
-   <input type="text" name="postalCode" id="postalCodeUpdate" />
-   <input type="text" name="city" id="cityUpdate" />
-   <input type="text" name="siret" id="siretUpdate" />
-   <input type="text" name="urlweb" id="urlwebUpdate"/>
-   <input TYPE="button" NAME="bouton" VALUE="UPDATE" onClick="Update(formUpdateSeller)">
-</form>
 
-<p>Create Produt and add to user<p>
+<h3>Create Produt and add to Seller</h3>
+<div class="row">
+    <form ng-submit="createProductToSeller()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>Seller id : </label>
+   		<input type="number" name="idSellerToProduct" ng-model="idSellerToProduct" />
+    </div>
+    <div class="col s12 m6">
+        <label>Product Reference : </label>
+   		<input type="text" name="ref" ng-model="ref" />
+    </div>
+    <div class="col s12 m6">
+        <label>Product name : </label>
+   		<input type="text" name="productName" ng-model="productName" />
+    </div>
+    <div class="col s12 m6">
+        <label>Product Price : </label>
+   		<input type="number" name="price" ng-model="price" />
+    </div>
+    <div class="col s12 m6">
+        <label>Product quantity : </label>
+   		<input type="number" name="quantity" ng-model="quantity" />
+    </div>
+    <div class="col s12 m6">
+        <label>Product description : </label>
+   		<input type="text" name="description" ng-model="description" />
+    </div>
+   <div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ resultAddProducttoSeller }}
+    </div>
+    </div>
+    </form>
+</div>
 
-<form method="post" name="fromCreationProduct" action="SellerController">
-   <input type="number" name="idSeller" id="idSeller" />
-   <input type="text" name="ref" id="ref" />
-   <input type="text" name="name" id="name" />
-   <input type="text" name="price" id="price" />
-   <input type="number" name="qty" id="qty"/>
-   <input type="text" name="desc" id="desc" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="creationProduct(fromCreationProduct)">
-</form>
+
+</div>
+</body>
+</html>

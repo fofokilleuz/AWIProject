@@ -151,4 +151,13 @@ import java.util.List;
 		     }
 		     return total;
 		 }
+		 
+		 public static boolean verification(String email, String password){
+		     User u = User.find.where().eq("email",email).eq("password",password).findUnique();
+		     if(u!=null){
+		         return true;
+		     }else{
+		         return false;
+		     }
+		 }
 	}

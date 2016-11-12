@@ -25,14 +25,14 @@ app.controller("manageSellerCtrl", function($scope, $http) {
     };
     
     
-     $scope.deleteSeller = function () {
-        /**var id =  $scope.idDeletion;
-        $http.delete('/user/' + id).then(function (response) {
+    $scope.deleteSeller = function () {
+        var id =  $scope.idDeletion;
+        $http.delete('/seller/' + id).then(function (response) {
             if (response.data)
-            $scope.resultDelete = "User was successfully deleted! (id : " + id + " )";
+            $scope.resultDelete = "Seller was successfully deleted! (id : " + id + " )";
         }, function (response) {
                 $scope.resultDelete = "An error was occured!" ;
-        });*/
+        });
     };
 
 

@@ -75,9 +75,13 @@ public class SellerController extends Controller {
 		}
 	}
 	
+	/** To delete a seller by id
+     * 
+     * call with $http.post('/seller/' + id, data)
+     * 
+     */
 	public Result deleteSellerById(long id) {
-	    Seller s = Seller.getSellerById(id);;
-	    
+	    Seller s = Seller.getSellerById(id);
 	    if(s!=null)
 	    {
 	        s.delete();

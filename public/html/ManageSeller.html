@@ -122,12 +122,21 @@ alert("merde 1")
     </form>
 </div>
 
-<p>Deletion Seller</p>
-
-<form method="post" name="formDeletion" action="SellerController">
-   <input type="number" name="idDeletion" id="idDeletion" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="DELETION" onClick="deletion(formDeletion)">
-</form>
+<h3>Deletion Seller</h3>
+<div class="row">
+    <form ng-submit="deleteSeller()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>Seller id : </label>
+   		<input type="number" name="idDeletion" ng-model="idDeletion" />
+    </div>
+   <div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ resultDelete }}
+    </div>
+    </div>
+    </form>
+</div>
 
 <p>Update Seller</p>
 

@@ -11,6 +11,7 @@ GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageU
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
 GET		/manageProduct			    controllers.Assets.at(path="/public/html", file="ManageProduct.html")
 GET     /allUsers                   controllers.Assets.at(path="/public/html", file="AllUSers.html")
+GET     /login                      controllers.Assets.at(path="/public/html", file="Connection.html")
 
 
 # An example controller showing how to use dependency injection
@@ -20,6 +21,15 @@ GET     /message                    controllers.AsyncController.message
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /public/*file               controllers.Assets.versioned(path="/public", file : Asset)
+
+
+
+#//////////////////#
+#/////LOGIN////////#
+#//////////////////#
+
+POST /login                                 controllers.ConnectionController.authenticate
+
 
 #//////////////////#
 #//////USER////////#

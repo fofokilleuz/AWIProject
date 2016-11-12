@@ -10,6 +10,7 @@
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
 GET		/manageProduct			    controllers.Assets.at(path="/public/html", file="ManageProduct.html")
+GET     /allUsers                   controllers.Assets.at(path="/public/html", file="AllUSers.html")
 
 
 # An example controller showing how to use dependency injection

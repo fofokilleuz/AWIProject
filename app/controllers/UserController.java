@@ -5,7 +5,6 @@ import play.libs.Json;
 
 import model.User;
 import model.Product;
-import model.ShoppingCart;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
@@ -19,8 +18,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's user.
- */
-
+*/
 public class UserController extends Controller {
     
     
@@ -52,14 +50,13 @@ public class UserController extends Controller {
 	
 	/** To get all users
      * 
-     * call with ???
+     * call with $http.get('/users')
      * 
      */
 	public 	Result getAllUser()
 	{
 	    List<User> users = User.find.where().eq("status", 0).findList();
 		return ok(Json.toJson(users));
-		
 	}
 	
 	/** To get one user by Id
@@ -134,8 +131,7 @@ public class UserController extends Controller {
 	}
 	
 	
-		public Result addProduct(long idUser,long idProduct)
-	{
+		public Result addProduct(long idUser,long idProduct){
 	    System.out.println("addProduct");
 
 	    
@@ -143,42 +139,30 @@ public class UserController extends Controller {
 	    User u = User.getUserById(idUser);
 	    if(u==null)
 	    {
-	        return badRequest("404 - User Not Found");
+	        return ok("404 - Not Found");
 	    }
-	    if(p==null){
-	        return badRequest("404 - Product Not Found");
-	        
+	    else
+	    {
+	        u.addProduct(p);
+	        u.save();
+	        return ok("200 - ok");
 	    }
-	    u.addProduct(p);
-	    u.save();
-	    return ok("200 - ok");
 	    
 	}
 	
-	public Result getProductShoppingCartByNum(long idUser, long numP){
-	    User u = User.getUserById(idUser);
-	    if(u==null){
-	        return badRequest("404 - User Not Found");
-	    }
-	    Product p = u.getProductShoppingCartByNum(numP);
-	    return ok(Json.toJson(p));
-	    }
-	    
-	 public Result deleteProductShoppingCartByNum(long idUser,long numP){
-	     User u = User.getUserById(idUser);
-	     if(u==null){
-	         return badRequest("404 - User Not Found");
-	     }
-	     u.deleteProductShoppingCartByNum(numP);
-	     return ok("200 - ok");
-	 }
-	 
-	 public Result sommeProductShoppingCart(long idUser){
-	     User u = User.getUserById(idUser);
-	     if(u==null){
-	         return badRequest("404 - User Not Found");
-	     }
-	     Double total = u.sommeProductShoppingCart();
-	     return ok(Json.toJson(total));
-	 }
+	//A COMPLETER
+	public Result getProductShoppingCartByNum(Long idUser, Long numL){
+	    return badRequest("Expecting Json data");
+	}
+	
+	public Result deleteProductShoppingCartByNum(Long idUser,Long numL){
+	    return badRequest("Expecting Json data");
+	}
+	
+	public Result sommeProductShoppingCart(Long idUser){
+	    return badRequest("Expecting Json data");
+	}
+	
+	
+	
 }

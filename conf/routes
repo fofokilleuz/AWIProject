@@ -9,6 +9,7 @@
 # TO SHOW PAGES
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
+GET     /allUsers                   controllers.Assets.at(path="/public/html", file="AllUsers.html")
 
 
 # An example controller showing how to use dependency injection

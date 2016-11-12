@@ -1,5 +1,6 @@
 var app = angular.module("myApp", []);
 
+//to control the ManageUser.html page
 app.controller("manageUserCtrl", function($scope, $http) {
     
     $scope.createUser = function () {
@@ -54,6 +55,17 @@ app.controller("manageUserCtrl", function($scope, $http) {
                 $scope.resultUpdate = "An error was occured!" + firstname + email;
         });
     };
+});
+
+
+
+app.controller("allUsersCtrl", function($scope, $http) {
     
+    $http.get("/users").then(function(response) {
+        var users = $scope.users = response.data;
+        $scope.id =response.data.id;
+    }, function (response) {
+        $scope.users = "An error was occured!" ;
+    });
     
 });

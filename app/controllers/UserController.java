@@ -17,8 +17,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's user.
- */
-
+*/
 public class UserController extends Controller {
     
     
@@ -58,7 +57,6 @@ public class UserController extends Controller {
 	{
 	    List<User> users = User.find.where().eq("status", 0).findList();
 		return ok(Json.toJson(users));
-		
 	}
 	
 	/** To get one user by Id

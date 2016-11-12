@@ -5,6 +5,7 @@ import play.libs.Json;
 
 import model.User;
 import model.Product;
+import model.ShoppingCart;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
@@ -18,7 +19,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's user.
-*/
+ */
+
 public class UserController extends Controller {
     
     
@@ -57,6 +59,7 @@ public class UserController extends Controller {
 	{
 	    List<User> users = User.find.where().eq("status", 0).findList();
 		return ok(Json.toJson(users));
+		
 	}
 	
 	/** To get one user by Id
@@ -160,4 +163,22 @@ public class UserController extends Controller {
 	    Product p = u.getProductShoppingCartByNum(numP);
 	    return ok(Json.toJson(p));
 	    }
+	    
+	 public Result deleteProductShoppingCartByNum(long idUser,long numP){
+	     User u = User.getUserById(idUser);
+	     if(u==null){
+	         return badRequest("404 - User Not Found");
+	     }
+	     u.deleteProductShoppingCartByNum(numP);
+	     return ok("200 - ok");
+	 }
+	 
+	 public Result sommeProductShoppingCart(long idUser){
+	     User u = User.getUserById(idUser);
+	     if(u==null){
+	         return badRequest("404 - User Not Found");
+	     }
+	     Double total = u.sommeProductShoppingCart();
+	     return ok(Json.toJson(total));
+	 }
 }

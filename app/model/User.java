@@ -53,6 +53,8 @@ import java.util.List;
 	    @Constraints.Required
 	    public int status;
 	    
+	    public String token;
+	    
 	    @ManyToMany(cascade=CascadeType.ALL)
 	    public List<Product> shoppingCart = new ArrayList<Product>();
 	    
@@ -69,6 +71,8 @@ import java.util.List;
 			this.postalCode = postalCode;
 			this.city = city;
 			this.status = status;
+			this.token = null;
+			
 
 		}
 		
@@ -119,6 +123,11 @@ import java.util.List;
 		     this.status=status;
 		 }
 		 
+		 public void setToken(String token)
+		 {
+		     this.token = token;
+		 }
+		 
 		 public void addProduct(Product p)
 		 {
 		     this.shoppingCart.add(p);
@@ -152,12 +161,18 @@ import java.util.List;
 		     return total;
 		 }
 		 
-		 public static boolean verification(String email, String password){
+		 public static User verification(String email, String password){
 		     User u = User.find.where().eq("email",email).eq("password",password).findUnique();
-		     if(u!=null){
-		         return true;
-		     }else{
-		         return false;
+		     return u;
+		 }
+		 
+		 public static User isConnected(int id,String token)
+		 {
+		     User u = User.find.byId((long)id);
+		     if(u.token == token)
+		     {
+		        return u;
 		     }
+		        return null;
 		 }
 	}

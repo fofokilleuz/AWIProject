@@ -133,8 +133,6 @@ public class UserController extends Controller {
 	
 		public Result addProduct(long idUser,long idProduct){
 	    System.out.println("addProduct");
-
-	    
 	    Product p = Product.getProductById(idProduct);
 	    User u = User.getUserById(idUser);
 	    if(u==null)
@@ -143,7 +141,7 @@ public class UserController extends Controller {
 	    }
 	    else
 	    {
-	        u.addProduct(p);
+	        u.addProduct(1,p.price,p);
 	        u.save();
 	        return ok("200 - ok");
 	    }

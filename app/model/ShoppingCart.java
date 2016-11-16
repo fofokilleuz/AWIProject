@@ -49,4 +49,12 @@ import model.Product;
 	        return ShoppingCart.find.byId(id);
 	    }
 	    
+	    public ShoppingCart addLineShoppingCart(int q, Double sp,Product p){
+	        
+	        LineShoppingCart lsc = new LineShoppingCart(q,sp,p);
+	        //lsc.save();
+	        this.lineShoppingCarts.add(lsc);
+	        return this;
+	    }
+	    
 	}

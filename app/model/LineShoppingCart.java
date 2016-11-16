@@ -31,18 +31,16 @@ import model.Product;
 	    public int quantity;
 	    
 	    @Constraints.Required
-	    public long sellPrice;
+	    public Double sellPrice;
 	    
 	    @ManyToMany(cascade=CascadeType.ALL)
 	    public Product product;
 	    
-	 
-	    public LineShoppingCart(int quantity, long sellPrice, Product product) {
+	    public LineShoppingCart(int quantity, Double sellPrice, Product product) {
 			super();
 			this.product=product;
 			this.quantity=quantity;
 			this.sellPrice=sellPrice;
-    
 		}
 		
 	   public static Finder<Long, LineShoppingCart> find = new Finder<Long,LineShoppingCart>(LineShoppingCart.class);
@@ -51,7 +49,7 @@ import model.Product;
 	        this.quantity = quantity;
 	    }
 	    
-	    public void setSellePrice(long sellPrice){
+	    public void setSellePrice(Double sellPrice){
 	        this.sellPrice=sellPrice;
 	    }
 	    

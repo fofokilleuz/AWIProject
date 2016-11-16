@@ -62,6 +62,17 @@ var idProduct           = document.getElementById("idProduct").value;
 
 }
 
+
+function validateOrder(formValidateOrder) {
+
+var idUser              = document.getElementById("idUserOrder").value;
+   $.ajax({
+   				url : '/user/'+idUser+'/order/', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+            });
+
+}
+
 </SCRIPT>
 
 <p>Create Produt<p>
@@ -97,7 +108,14 @@ var idProduct           = document.getElementById("idProduct").value;
 <form method="post" name="formAddProduct" action="UserController">
    <input type=number name="idUser" id="idUser" />
    <input type=number name="idProduct" id="idProduct" />
+   <input type=number name="quantityP" id="quantityP" />
    <INPUT TYPE="button" NAME="bouton" VALUE="ADDPRODUCTUSER" onClick="addProductUser(formAddProduct)">
+</form>
+
+<p>Validate Order</p>
+<form method="post" name="formValidateOrder" action="UserController">
+   <input type=number name="idUser" id="idUserOrder" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="Order" onClick="validateOrder(formValidateOrder)">
 </form>
 
 

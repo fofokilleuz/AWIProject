@@ -17,6 +17,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ShoppingCart;
+
 	@Entity
 	public class User extends Model {
 
@@ -55,8 +57,8 @@ import java.util.List;
 	    
 	    public String token;
 	    
-	    @ManyToMany(cascade=CascadeType.ALL)
-	    public List<Product> shoppingCart = new ArrayList<Product>();
+	    @OneToOne(cascade=CascadeType.ALL)
+	    public ShoppingCart shoppingCart;
 	    
 	    
 		public User(String email, String firstname, String lastname, String password, String mobile, String address,
@@ -72,8 +74,7 @@ import java.util.List;
 			this.city = city;
 			this.status = status;
 			this.token = null;
-			
-
+			this.shoppingCart = new ShoppingCart();
 		}
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
@@ -128,9 +129,11 @@ import java.util.List;
 		     this.token = token;
 		 }
 		 
-		 public void addProduct(Product p)
+		 
+		 public void addProduct(int quantity, Double sellPrice, Product p)
 		 {
-		     this.shoppingCart.add(p);
+		     this.shoppingCart = this.shoppingCart.addLineShoppingCart(quantity,sellPrice,p);
+		     this.shoppingCart.save();
 		 }
 		 
 		 public static List<User> getAllUser()
@@ -143,6 +146,7 @@ import java.util.List;
 		     return User.find.byId(id);
 		 }
 		 
+		 /*
 		 public Product getProductShoppingCartByNum(long numP){
 		     int num = (int) numP;
 		     return this.shoppingCart.get(num);
@@ -159,7 +163,7 @@ import java.util.List;
 		         total = total + this.shoppingCart.get(i).price;
 		     }
 		     return total;
-		 }
+		 }*/
 		 
 		 public static User verification(String email, String password){
 		     User u = User.find.where().eq("email",email).eq("password",password).findUnique();

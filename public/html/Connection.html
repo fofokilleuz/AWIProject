@@ -1,72 +1,44 @@
-<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<SCRIPT LANGUAGE="javascript">
-
-function authenticate(formAuthenticate) {
-
-var userName     	= document.getElementById("userName").value;
-var mdp	 	= document.getElementById("mdp").value;
-
-
-
-   $.ajax({
-   				url : '/login', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-                data : { userName : userName, mdp : mdp},
-            });
-
-}
-
-function isConnected(){
-    var id = getCookie("idGoldFish");
-    var token = getCookie("tokenGoldFish");
-     $.ajax({
-   				url : '/login/'+token+'/user/'+id, // La ressource ciblé
-                type : 'GET', // Le type de la requête HTTP.
-            });
-
-}
-
-function getCookie(name){
-    if(document.cookie.length == 0)
-       return null;
-
-     var regSepCookie = new RegExp('(; )', 'g');
-     var cookies = document.cookie.split(regSepCookie);
-
-     for(var i = 0; i < cookies.length; i++){
-       var regInfo = new RegExp('=', 'g');
-       var infos = cookies[i].split(regInfo);
-       if(infos[0] == name){
-         return unescape(infos[1]);
-       }
-     }
-     return null;
-}
-
-function deconnection(formDeconnection){
-         $.ajax({
-   				url : '/deconnection', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-            });
-}
+<!doctype html>
+<html>
+  <head>
+    <title>Users</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <script type="text/javascript" src="./public/js/controller/manageLogin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="manageLoginCtrl">
+    <div class="container">
 
 
-isConnected();
+    <p>Add Authenticater</p>
+        <form ng-submit="authenticate()" class="col s12">
+            <input type=text name="userName" ng-model="userName" />
+            <input type=text name="mdp" ng-model="mdp" />
+            <input type="submit" class="waves-effect waves-light btn">
+            {{resultLogin}}
+            {{dataafficher}}
+            {{isConnected}}
+        </form>
 
-</SCRIPT>
+    <p>Deconnection</p>
+        <form ng-submit="deconnection()" class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+            {{isntConnected}}
+        </form>
+
+    </div>
+    
+  </body>
+</html>
 
 
-<p>Add Authenticater</p>
-<form method="post" name="formAuthenticate" action="ConnectionController">
-   <input type=text name="userName" id="userName" />
-   <input type=text name="mdp" id="mdp" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="CONNECTION" onClick="authenticate(formAuthenticate)">
-</form>
 
-<p>Deconnection</p>
-<form method="post" name="formDeconnection" action="ConnectionController">
-   <INPUT TYPE="button" NAME="bouton" VALUE="Deconnection" onClick="deconnection(formDeconnection)">
-</form>
+
+
+
 
 
 

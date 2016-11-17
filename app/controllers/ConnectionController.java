@@ -35,31 +35,68 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 public class ConnectionController extends Controller {
   
+    /*
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	    	  String firstname = json.findPath("firstname").textValue();
+	    	  String lastname = json.findPath("lastname").textValue();
+	    	  String password = json.findPath("password").textValue();
+	    	  String mobile = json.findPath("mobile").textValue();
+	    	  String address = json.findPath("address").textValue();
+	    	  String postalCode = json.findPath("postalCode").textValue();
+	    	  String city = json.findPath("city").textValue();
+              System.out.println("Fonction UdapteUser");
+	          User u = User.find.byId(id);
+	    if(u!=null) {
+	        if(firstname != null)
+	            {u.setFirstname(firstname);}
+	        if(lastname != null)
+	            {u.setLastname(lastname);}
+	        if(password != null)
+	            {u.setPassword(password);}
+	        if(mobile != null)
+	            {u.setMobile(mobile);}
+	        if(address != null)
+	            {u.setAddress(address);}
+	        if(postalCode != null)
+	            {u.setPostalCode(postalCode);}
+	        if(city != null)
+	            {u.setCity(city);}
+	        u.save();
+	   }
+	   return ok("200 - ok");
+	   }*/
   
   public Result authenticate(){
 	      
-	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String userName = values.get("userName")[0];
-	    String mdp = values.get("mdp")[0];
-	     System.out.println(userName);
-	    Seller s = Seller.verification(userName,mdp);
-	    User u = User.verification(userName,mdp);
-	    SecureRandom random = new SecureRandom();
-	    String token = new BigInteger(130, random).toString(32);
-	    if(u !=null){
-	       u.setToken(token);
-	       u.save();
-	       String id = Long.toString(u.id);
-	       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
-	       (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
-	    } else if(s != null){
-	       s.setToken(token);
-	       s.save();
-	       String id = Long.toString(s.id);
-	       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
-	       (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
-	    }
-	    return ok("ok");
+	    //Map<String, String[]> values = request().body().asFormUrlEncoded();
+	    JsonNode json = request().body().asJson();
+	    if(json == null) {
+	        return badRequest("Expecting Json data");
+	     } else {
+	        String userName = json.findPath("userName").textValue();
+	        String mdp = json.findPath("mdp").textValue();
+	        System.out.println(userName);
+	        Seller s = Seller.verification(userName,mdp);
+	        User u = User.verification(userName,mdp);
+	        SecureRandom random = new SecureRandom();
+	        String token = new BigInteger(130, random).toString(32);
+	        if(u !=null){
+	            u.setToken(token);
+	            u.save();
+	            String id = Long.toString(u.id);
+	            return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
+	            (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
+	       } else if(s != null){
+	            s.setToken(token);
+	            s.save();
+	            String id = Long.toString(s.id);
+	            return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
+	            (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
+	       }
+	       return ok("ok");
+	       }
   } 
   
   public Result isConnnected(String token,Long id){

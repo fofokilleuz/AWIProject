@@ -41,7 +41,6 @@ public class ConnectionController extends Controller {
 	    String email = values.get("email")[0];
 	    String mdp = values.get("mdp")[0];
 	    User u = User.verification(email,mdp);
-	    System.out.println(u.id);
 	    SecureRandom random = new SecureRandom();
 	    String token = new BigInteger(130, random).toString(32);
 	    if(u !=null){
@@ -64,5 +63,11 @@ public class ConnectionController extends Controller {
 	          return ok(Json.toJson(true));
 	      }
     }
+    
+  public Result deconnection(){
+      response().discardCookie("idGoldFish");
+      response().discardCookie("tokenGoldFish");
+      return ok("200 - OK");
+  }
     
 }

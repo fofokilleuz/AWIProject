@@ -169,10 +169,13 @@ import model.ShoppingCart;
 		     return u;
 		 }
 		 
-		 public static User isConnected(int id,String token)
+		 public static User isConnected(Long id,String token)
 		 {
-		     User u = User.find.byId((long)id);
-		     if(u.token == token)
+		     
+		     User u = User.find.byId(id);
+		     System.out.println(u.token);
+		     System.out.println(token);
+		     if(u.token.equals(token))
 		     {
 		        return u;
 		     }

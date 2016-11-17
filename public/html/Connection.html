@@ -17,12 +17,12 @@ var mdp	 	= document.getElementById("mdp").value;
 }
 
 function isConnected(){
-    var id = getCookie("id");
-    var token = getCookie("token");
+    var id = getCookie("idGoldFish");
+    var token = getCookie("tokenGoldFish");
+    alert(token);
      $.ajax({
-   				url : '/user/'+id+'/login/'+token, // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-                data : { email : email, mdp : mdp},
+   				url : '/login/'+token+'/user/'+id, // La ressource ciblé
+                type : 'GET', // Le type de la requête HTTP.
             });
 
 }

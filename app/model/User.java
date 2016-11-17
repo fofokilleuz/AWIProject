@@ -17,6 +17,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.ShoppingCart;
+
 	@Entity
 	public class User extends Model {
 
@@ -53,8 +55,10 @@ import java.util.List;
 	    @Constraints.Required
 	    public int status;
 	    
-	    @ManyToMany(cascade=CascadeType.ALL)
-	    public List<Product> shoppingCart = new ArrayList<Product>();
+	    public String token;
+	    
+	    @OneToOne(cascade=CascadeType.PERSIST)
+	    public ShoppingCart shoppingCart;
 	    
 	    
 		public User(String email, String firstname, String lastname, String password, String mobile, String address,
@@ -69,7 +73,8 @@ import java.util.List;
 			this.postalCode = postalCode;
 			this.city = city;
 			this.status = status;
-
+			this.token = null;
+			this.shoppingCart = new ShoppingCart();
 		}
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
@@ -119,9 +124,15 @@ import java.util.List;
 		     this.status=status;
 		 }
 		 
-		 public void addProduct(Product p)
+		 public void setToken(String token)
 		 {
-		     this.shoppingCart.add(p);
+		     this.token = token;
+		 }
+		 
+		 
+		 public void addProduct(int quantity, Double sellPrice, Product p)
+		 {
+		     this.shoppingCart = this.shoppingCart.setLineShoppingCart(quantity,sellPrice,p);
 		 }
 		 
 		 public static List<User> getAllUser()
@@ -134,6 +145,7 @@ import java.util.List;
 		     return User.find.byId(id);
 		 }
 		 
+		 /*
 		 public Product getProductShoppingCartByNum(long numP){
 		     int num = (int) numP;
 		     return this.shoppingCart.get(num);
@@ -150,14 +162,20 @@ import java.util.List;
 		         total = total + this.shoppingCart.get(i).price;
 		     }
 		     return total;
+		 }*/
+		 
+		 public static User verification(String email, String password){
+		     User u = User.find.where().eq("email",email).eq("password",password).findUnique();
+		     return u;
 		 }
 		 
-		 public static boolean verification(String email, String password){
-		     User u = User.find.where().eq("email",email).eq("password",password).findUnique();
-		     if(u!=null){
-		         return true;
-		     }else{
-		         return false;
+		 public static User isConnected(int id,String token)
+		 {
+		     User u = User.find.byId((long)id);
+		     if(u.token == token)
+		     {
+		        return u;
 		     }
+		        return null;
 		 }
 	}

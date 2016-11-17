@@ -43,7 +43,10 @@ PUT     /user/:id                           controllers.UserController.UpdateUse
 PUT     /user/:idUser/product/:idProduct    controllers.UserController.addProduct(idUser : Long, idProduct : Long)
 GET     /user/:idUser/shoppingCart/:numL    controllers.UserController.getProductShoppingCartByNum(idUser : Long, numL : Long)
 DELETE  /user/:idUser/shoppingCart/:numL    controllers.UserController.deleteProductShoppingCartByNum(idUser : Long,numL : Long)
-GET     /user/:idUser/shoppingCartTotal    controllers.UserController.sommeProductShoppingCart(idUser : Long)
+GET     /user/:idUser/shoppingCartTotal     controllers.UserController.sommeProductShoppingCart(idUser : Long)
+POST    /user/:idUser/order                 controllers.OrderController.validateOrder(idUser : Long)
+
+GET     /lineShoppingCart                   controllers.UserController.getAllLineShoppingCart
 
 #////////////////////#
 #//////SELLER////////#

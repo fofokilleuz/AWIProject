@@ -9,6 +9,13 @@ import java.text.*;
 import play.mvc.*;
 import views.html.*;
 
+
+import play.mvc.Controller;
+import play.mvc.Http;
+import play.mvc.Result;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import play.api.libs.Codecs;
 import play.libs.Json;
 
@@ -28,28 +35,34 @@ public class ConnectionController extends Controller {
   
   
   public Result authenticate(){
-      /*
-      JsonNode json = request().body().asJson();
-	    if(json == null) {
-	        return badRequest("Expecting Json data");
-	     } else {
-	    	  String email = json.findPath("email").textValue();
-	    	  String password = json.findPath("password").textValue();
-
-	    	  return ok(Json.toJson(u));
-	      } */
 	      
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String email = values.get("email")[0];
 	    String mdp = values.get("mdp")[0];
-	    boolean verification = User.verification(email,mdp);
-	    System.out.println(verification);
+	    User u = User.verification(email,mdp);
+	    System.out.println(u.id);
 	    String token = "ceci_est_un_exemple";
-	    if(verification == true){
-	       // Ok("Success").withCookies(Cookie("Authenticate", token));
+	    if(u !=null){
+	       u.setToken(token);
+	       u.save();
+	       String id = Long.toString(u.id);
+	       return ok("Success").withCookies(new Http.Cookie("token", token, null, "/", "localhost",false,false)).withCookies
+	       (new Http.Cookie("id",id , null, "/", "localhost", false, false));
 	    }
 	    return ok("ok");
-
-  }  
+  } 
+  
+  public Result isConnnected(){
+      /* String token = Http.Request.Cookies.get("LeToken").value();
+       int id = Integer.parseInt(Http.Request.Cookies.get("id").value());
+       User u = User.isConnected(id,token);
+       if(u!=null){
+           return ok("Connected");
+       }
+       else{
+           return ok("Not Connected");
+       }*/
+       return ok("Ok Goole montre moi des glasage de cupcake");
+    }
     
 }

@@ -11,7 +11,7 @@ import views.html.*;
 
 import play.api.libs.Codecs;
 import play.libs.Json;
-
+import model.LineShoppingCart;
 import com.fasterxml.jackson.databind.JsonNode;
 
 
@@ -133,8 +133,6 @@ public class UserController extends Controller {
 	
 		public Result addProduct(long idUser,long idProduct){
 	    System.out.println("addProduct");
-
-	    
 	    Product p = Product.getProductById(idProduct);
 	    User u = User.getUserById(idUser);
 	    if(u==null)
@@ -143,11 +141,17 @@ public class UserController extends Controller {
 	    }
 	    else
 	    {
-	        u.addProduct(p);
+	        u.addProduct(1,p.price,p);
 	        u.save();
 	        return ok("200 - ok");
 	    }
 	    
+	}
+	
+	public Result getAllLineShoppingCart()
+	{
+	   List<LineShoppingCart> l = LineShoppingCart.find.all();
+	   return ok(Json.toJson(l));
 	}
 	
 	//A COMPLETER

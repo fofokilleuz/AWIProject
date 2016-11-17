@@ -57,7 +57,7 @@ import model.ShoppingCart;
 	    
 	    public String token;
 	    
-	    @OneToOne(cascade=CascadeType.ALL)
+	    @OneToOne(cascade=CascadeType.PERSIST)
 	    public ShoppingCart shoppingCart;
 	    
 	    
@@ -132,8 +132,7 @@ import model.ShoppingCart;
 		 
 		 public void addProduct(int quantity, Double sellPrice, Product p)
 		 {
-		     this.shoppingCart = this.shoppingCart.addLineShoppingCart(quantity,sellPrice,p);
-		     this.shoppingCart.save();
+		     this.shoppingCart = this.shoppingCart.setLineShoppingCart(quantity,sellPrice,p);
 		 }
 		 
 		 public static List<User> getAllUser()

@@ -32,6 +32,9 @@ import play.data.validation.*;
 	    @Constraints.Required
 	    public String description;
 	    
+	    @ManyToMany(cascade=CascadeType.PERSIST)
+	    public LineShoppingCart lineShoppingCart;
+	    
 	    	public Product(String ref, String name, Double price, Integer availableQuantity, String description) {
 			super();
 			this.ref = ref;

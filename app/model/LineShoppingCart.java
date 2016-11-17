@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Product;
+import model.ShoppingCart;
 
 	@Entity
 	public class LineShoppingCart extends Model {
@@ -33,8 +34,11 @@ import model.Product;
 	    @Constraints.Required
 	    public Double sellPrice;
 	    
-	    @ManyToMany(cascade=CascadeType.ALL)
+	    @ManyToMany(cascade=CascadeType.PERSIST)
 	    public Product product;
+	    
+	    @ManyToOne(cascade=CascadeType.PERSIST)
+	    public ShoppingCart shoppingCart;
 	    
 	    public LineShoppingCart(int quantity, Double sellPrice, Product product) {
 			super();

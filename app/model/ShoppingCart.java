@@ -30,12 +30,15 @@ import model.Product;
 	    public long id;
 	    
 	    
-	    @OneToMany(cascade=CascadeType.ALL)
-	    public List<LineShoppingCart> lineShoppingCarts = new ArrayList<LineShoppingCart>();
+	    @OneToMany(cascade=CascadeType.PERSIST)
+	    public List<LineShoppingCart> lineShoppingCarts ;
 	    
+	    @OneToOne(cascade=CascadeType.PERSIST)
+	    public User u;
 	 
 	    public ShoppingCart() {
 			super();
+			this.lineShoppingCarts = new ArrayList<LineShoppingCart>();
 		}
 		
 	   public static Finder<Long, ShoppingCart> find = new Finder<Long,ShoppingCart>(ShoppingCart.class);
@@ -49,10 +52,9 @@ import model.Product;
 	        return ShoppingCart.find.byId(id);
 	    }
 	    
-	    public ShoppingCart addLineShoppingCart(int q, Double sp,Product p){
+	    public ShoppingCart setLineShoppingCart(int q, Double sp,Product p){
 	        
 	        LineShoppingCart lsc = new LineShoppingCart(q,sp,p);
-	        //lsc.save();
 	        this.lineShoppingCarts.add(lsc);
 	        return this;
 	    }

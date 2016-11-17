@@ -18,10 +18,11 @@ import java.util.Map;
 import java.util.UUID;
 import play.api.libs.Codecs;
 import play.libs.Json;
-
+import java.math.BigInteger;
 import play.api.mvc.Cookie;
 import play.api.http.HeaderNames.*;
 import play.api.mvc.DiscardingCookie;
+import java.security.SecureRandom;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
@@ -41,7 +42,8 @@ public class ConnectionController extends Controller {
 	    String mdp = values.get("mdp")[0];
 	    User u = User.verification(email,mdp);
 	    System.out.println(u.id);
-	    String token = "ceci_est_un_exemple";
+	    SecureRandom random = new SecureRandom();
+	    String token = new BigInteger(130, random).toString(32);
 	    if(u !=null){
 	       u.setToken(token);
 	       u.save();
@@ -52,17 +54,15 @@ public class ConnectionController extends Controller {
 	    return ok("ok");
   } 
   
-  public Result isConnnected(){
-      /* String token = Http.Request.Cookies.get("LeToken").value();
-       int id = Integer.parseInt(Http.Request.Cookies.get("id").value());
-       User u = User.isConnected(id,token);
-       if(u!=null){
-           return ok("Connected");
-       }
-       else{
-           return ok("Not Connected");
-       }*/
-       return ok("Ok Goole montre moi des glasage de cupcake");
+  public Result isConnnected(String token,Long id){
+      	      User u = User.isConnected(id,token);
+	      if(u==null){
+	          System.out.println("false");
+	          return ok(Json.toJson(false));
+	      }else{
+	          System.out.println("true");
+	          return ok(Json.toJson(true));
+	      }
     }
     
 }

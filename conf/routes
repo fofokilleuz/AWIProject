@@ -30,6 +30,7 @@ GET     /public/*file               controllers.Assets.versioned(path="/public",
 
 POST /login                                 controllers.ConnectionController.authenticate
 GET /login/:token/user/:id                 controllers.ConnectionController.isConnnected(token : String,id : Long)
+POST /deconnection                          controllers.ConnectionController.deconnection
 
 
 #//////////////////#

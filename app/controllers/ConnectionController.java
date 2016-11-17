@@ -73,4 +73,10 @@ public class ConnectionController extends Controller {
 	      }
     }
     
+  public Result deconnection(){
+      response().discardCookie("idGoldFish");
+      response().discardCookie("tokenGoldFish");
+      return ok("200 - OK");
+  }
+    
 }

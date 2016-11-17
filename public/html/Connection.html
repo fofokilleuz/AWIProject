@@ -19,7 +19,6 @@ var mdp	 	= document.getElementById("mdp").value;
 function isConnected(){
     var id = getCookie("idGoldFish");
     var token = getCookie("tokenGoldFish");
-    alert(token);
      $.ajax({
    				url : '/login/'+token+'/user/'+id, // La ressource ciblé
                 type : 'GET', // Le type de la requête HTTP.
@@ -44,6 +43,13 @@ function getCookie(name){
      return null;
 }
 
+function deconnection(formDeconnection){
+         $.ajax({
+   				url : '/deconnection', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+            });
+}
+
 
 isConnected();
 
@@ -51,11 +57,17 @@ isConnected();
 
 
 <p>Add Authenticater</p>
-<form method="post" name="formAuthenticate" action="UserController">
+<form method="post" name="formAuthenticate" action="ConnectionController">
    <input type=text name="userName" id="userName" />
    <input type=text name="mdp" id="mdp" />
    <INPUT TYPE="button" NAME="bouton" VALUE="CONNECTION" onClick="authenticate(formAuthenticate)">
 </form>
+
+<p>Deconnection</p>
+<form method="post" name="formDeconnection" action="ConnectionController">
+   <INPUT TYPE="button" NAME="bouton" VALUE="Deconnection" onClick="deconnection(formDeconnection)">
+</form>
+
 
 
 

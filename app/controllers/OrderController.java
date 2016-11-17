@@ -25,8 +25,8 @@ public class OrderController extends Controller {
   
   	public Result validateOrder(long idUser){
 	    User u = User.getUserById(idUser);
-	    Command c = new Command(u.shoppingCart);
-	    c.save();
+	    //Command c = new Command(u.shoppingCart);
+	    //c.save();
 	    return ok("200 - ok");
 	}
 	

@@ -141,7 +141,21 @@ import model.ShoppingCart;
 		 
 		 public void addProduct(int quantity, Double sellPrice, Product p)
 		 {
-		     this.shoppingCart = this.shoppingCart.setLineShoppingCart(quantity,sellPrice,p);
+		     LineShoppingCart lsc = this.shoppingCart.addLineShoppingCart(quantity,sellPrice,p);
+		     if(this.shoppingCart.lineShoppingCarts == null){
+		         List<LineShoppingCart> Llsc = new ArrayList<LineShoppingCart>();
+		         System.out.println("NULl");
+		         lsc.save();
+		         Llsc.add(lsc);
+		         this.shoppingCart.setLineShoppingCarts(Llsc);
+		         this.shoppingCart.save();
+		     }else{
+		         System.out.println("PAS NULL");
+		        List<LineShoppingCart> Llsc = this.shoppingCart.lineShoppingCarts;
+		        Llsc.add(lsc);
+		        this.shoppingCart.setLineShoppingCarts(Llsc);  
+		     }
+		   
 		 }
 		 
 		 public static List<User> getAllUser()

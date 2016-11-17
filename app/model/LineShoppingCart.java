@@ -66,4 +66,8 @@ import model.ShoppingCart;
 	        return LineShoppingCart.find.byId(id);
 	    }
 	    
+	    public static List<LineShoppingCart> getLineShoppingCart(Long id){
+	        return LineShoppingCart.find.where().eq("shoppingCart.id",id).findList();
+	    }
+	    
 	}

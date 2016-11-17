@@ -168,6 +168,9 @@ public class UserController extends Controller {
 	    return badRequest("Expecting Json data");
 	}
 	
-	
+	public Result getAllLineShoppingCartByUser(Long idUser, Long idLine){
+	    List<LineShoppingCart> Llsc = LineShoppingCart.getLineShoppingCart(idLine);
+	    return ok(Json.toJson(Llsc));
+	}
 	
 }

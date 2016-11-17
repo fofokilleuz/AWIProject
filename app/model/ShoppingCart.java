@@ -52,11 +52,15 @@ import model.Product;
 	        return ShoppingCart.find.byId(id);
 	    }
 	    
-	    public ShoppingCart setLineShoppingCart(int q, Double sp,Product p){
+	    public LineShoppingCart addLineShoppingCart(int q, Double sp,Product p){
 	        
 	        LineShoppingCart lsc = new LineShoppingCart(q,sp,p);
-	        this.lineShoppingCarts.add(lsc);
-	        return this;
+	        return lsc;
+	    }
+	    
+	    public void setLineShoppingCarts(List<LineShoppingCart> Llsc){
+	        
+	       this.lineShoppingCarts = Llsc;
 	    }
 	    
 	}

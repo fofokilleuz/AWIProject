@@ -49,6 +49,7 @@ GET     /user/:idUser/shoppingCartTotal     controllers.UserController.sommeProd
 POST    /user/:idUser/order                 controllers.OrderController.validateOrder(idUser : Long)
 
 GET     /lineShoppingCart                   controllers.UserController.getAllLineShoppingCart
+GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineShoppingCartByUser(idUser : Long,idLine : Long)
 
 #////////////////////#
 #//////SELLER////////#

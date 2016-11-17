@@ -4,6 +4,7 @@ import java.util.*;
 import play.libs.Json;
 
 import model.User;
+import model.Seller;
 import model.Product;
 import java.text.*;
 import play.mvc.*;
@@ -38,16 +39,23 @@ public class ConnectionController extends Controller {
   public Result authenticate(){
 	      
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	    String email = values.get("email")[0];
+	    String userName = values.get("userName")[0];
 	    String mdp = values.get("mdp")[0];
-	    User u = User.verification(email,mdp);
-	    System.out.println(u.id);
+	     System.out.println(userName);
+	    Seller s = Seller.verification(userName,mdp);
+	    User u = User.verification(userName,mdp);
 	    SecureRandom random = new SecureRandom();
 	    String token = new BigInteger(130, random).toString(32);
 	    if(u !=null){
 	       u.setToken(token);
 	       u.save();
 	       String id = Long.toString(u.id);
+	       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
+	       (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
+	    } else if(s != null){
+	       s.setToken(token);
+	       s.save();
+	       String id = Long.toString(s.id);
 	       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
 	       (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
 	    }

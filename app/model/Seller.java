@@ -57,6 +57,8 @@ import java.util.List;
 	    @Constraints.Required
 	    public String siret;
 	    
+	    public String token;
+	    
 	    @ManyToMany(cascade=CascadeType.ALL)
 	    public List<Product> products = new ArrayList<Product>();
 	    
@@ -74,6 +76,7 @@ import java.util.List;
 			this.city = city;
 			this.siret = siret;
 			this.urlweb = urlweb;
+			this.token = null;
 		}
 		
 		 public static Finder<Long, Seller> find = new Finder<Long,Seller>(Seller.class);
@@ -133,6 +136,11 @@ import java.util.List;
 		     this.urlweb=urlweb;
 		 }
 		 
+		 public void setToken(String token)
+		 {
+		     this.token = token;
+		 }
+		 
 		 	 public void addProduct(Product p)
 		 {
 		     this.products.add(p);
@@ -154,6 +162,23 @@ import java.util.List;
 		     return s.products;
 		 }
 		 
+		 public static Seller verification(String userName, String password){
+		     Seller s = Seller.find.where().eq("userName",userName).eq("password",password).findUnique();
+		     return s;
+	 }
+		 
+	 public static Seller isConnected(Long id,String token)
+		 {
+		     
+		     Seller s = Seller.find.byId(id);
+		     System.out.println(s.token);
+		     System.out.println(token);
+		     if(s.token.equals(token))
+		     {
+		        return s;
+		     }
+		        return null;
+		 }
 	
 
 	}

@@ -7,7 +7,8 @@ app.controller("manageUserCtrl", function($scope, $http) {
         var data = {
                     firstname : $scope.firstname, 
                     lastname : $scope.lastname, 
-                    email : $scope.email, 
+                    email : $scope.email,
+                    userName : $scope.userName,
                     password : $scope.password, 
                     mobile : $scope.mobile, 
                     address : $scope.address, 

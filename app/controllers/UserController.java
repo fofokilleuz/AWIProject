@@ -35,6 +35,7 @@ public class UserController extends Controller {
 	    	  String firstname = json.findPath("firstname").textValue();
 	    	  String lastname = json.findPath("lastname").textValue();
 	    	  String email = json.findPath("email").textValue();
+	    	  String userName = json.findPath("userName").textValue();
 	    	  String password = json.findPath("password").textValue();
 	    	  String mobile = json.findPath("mobile").textValue();
 	    	  String address = json.findPath("address").textValue();
@@ -42,7 +43,7 @@ public class UserController extends Controller {
 	    	  String city = json.findPath("city").textValue();
 	    	  int status = 0 ;
 	    	  System.out.println("CREATEUSER");
-	    	  User u = new User(email,firstname,lastname,password,mobile,address,postalCode,city,status);  
+	    	  User u = new User(email,userName,firstname,lastname,password,mobile,address,postalCode,city,status);  
 	    	  u.save();
 	    	  return ok(Json.toJson(u));
 	      }

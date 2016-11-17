@@ -31,6 +31,9 @@ import model.ShoppingCart;
 	    public String email;
 	    
 	    @Constraints.Required
+	    public String userName;
+	    
+	    @Constraints.Required
 	    public String firstname;
 	    
 	    @Constraints.Required
@@ -61,10 +64,11 @@ import model.ShoppingCart;
 	    public ShoppingCart shoppingCart;
 	    
 	    
-		public User(String email, String firstname, String lastname, String password, String mobile, String address,
+		public User(String email, String userName, String firstname, String lastname, String password, String mobile, String address,
 				String postalCode, String city,int status) {
 			super();
 			this.email = email;
+			this.userName = userName;
 			this.firstname = firstname;
 			this.lastname = lastname;
 			this.password = password;
@@ -82,6 +86,11 @@ import model.ShoppingCart;
 		 public void setEmail(String email)
 		 {
 		     this.email=email;
+		 }
+		 
+		  public void setUserName(String userName)
+		 {
+		     this.userName=userName;
 		 }
 		 
 		 public void setFirstname(String firstname)
@@ -164,8 +173,8 @@ import model.ShoppingCart;
 		     return total;
 		 }*/
 		 
-		 public static User verification(String email, String password){
-		     User u = User.find.where().eq("email",email).eq("password",password).findUnique();
+		 public static User verification(String userName, String password){
+		     User u = User.find.where().eq("userName",userName).eq("password",password).findUnique();
 		     return u;
 		 }
 		 

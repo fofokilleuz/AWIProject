@@ -3,7 +3,7 @@
 
 function authenticate(formAuthenticate) {
 
-var email     	= document.getElementById("email").value;
+var userName     	= document.getElementById("userName").value;
 var mdp	 	= document.getElementById("mdp").value;
 
 
@@ -11,7 +11,7 @@ var mdp	 	= document.getElementById("mdp").value;
    $.ajax({
    				url : '/login', // La ressource ciblé
                 type : 'POST', // Le type de la requête HTTP.
-                data : { email : email, mdp : mdp},
+                data : { userName : userName, mdp : mdp},
             });
 
 }
@@ -52,7 +52,7 @@ isConnected();
 
 <p>Add Authenticater</p>
 <form method="post" name="formAuthenticate" action="UserController">
-   <input type=text name="email" id="email" />
+   <input type=text name="userName" id="userName" />
    <input type=text name="mdp" id="mdp" />
    <INPUT TYPE="button" NAME="bouton" VALUE="CONNECTION" onClick="authenticate(formAuthenticate)">
 </form>

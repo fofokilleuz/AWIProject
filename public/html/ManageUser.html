@@ -30,8 +30,8 @@
         </div>
         <div class="row">
             <div class="col s12 m6">
-           	    <label>Email* : </label>
-           	    <input type="email" name="email" ng-model="email" required />
+           	    <label>Username* : </label>
+           	    <input type="text" name="userName" ng-model="userName" required />
             </div>
             <div class="col s12 m6">
        	        <label>Password* : </label>
@@ -40,14 +40,20 @@
         </div>
         <div class="row">
             <div class="col s12 m6">
-               	<label>Phone number* : </label>
-               	<input type="number" ng-minlength="10" ng-maxlength="10" name="mobile" ng-model="mobile" required />
+           	    <label>Email* : </label>
+           	    <input type="email" name="email" ng-model="email" required />
             </div>
             <div class="col s12 m6">
+               	<label>Phone number* : </label>
+               	<input type="text" name="mobile" ng-model="mobile" required />
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col s12">
        	        <label>Address* : </label>
        	        <input type="text" name="address" ng-model="address" required />
             </div>
-        </div> 
+        </div>
         <div class="row">
             <div class="col s12 m6">
        	        <label>Postal Code* : </label>
@@ -116,7 +122,7 @@
     </div>
     <div class="col s12 m6">
         <label>Password</label>
-            <input type="password" name="passwordUpdate" ng-model="passwordUpdate"/>
+        <input type="password" name="passwordUpdate" ng-model="passwordUpdate"/>
     </div>
     <div class="col s12 m6">
        	<label>Email : </label>

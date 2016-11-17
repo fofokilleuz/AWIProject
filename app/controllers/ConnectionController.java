@@ -46,8 +46,8 @@ public class ConnectionController extends Controller {
 	       u.setToken(token);
 	       u.save();
 	       String id = Long.toString(u.id);
-	       return ok("Success").withCookies(new Http.Cookie("token", token, null, "/", "localhost",false,false)).withCookies
-	       (new Http.Cookie("id",id , null, "/", "localhost", false, false));
+	       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
+	       (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false));
 	    }
 	    return ok("ok");
   } 

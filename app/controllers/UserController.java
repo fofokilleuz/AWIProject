@@ -5,13 +5,14 @@ import play.libs.Json;
 
 import model.User;
 import model.Product;
+import model.LineBasket;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
 
 import play.api.libs.Codecs;
 import play.libs.Json;
-import model.LineShoppingCart;
+import model.LineBasket;
 import com.fasterxml.jackson.databind.JsonNode;
 
 
@@ -136,22 +137,23 @@ public class UserController extends Controller {
 	    System.out.println("addProduct");
 	    Product p = Product.getProductById(idProduct);
 	    User u = User.getUserById(idUser);
-	    if(u==null)
+	    if(u==null || p == null)
 	    {
 	        return ok("404 - Not Found");
 	    }
 	    else
 	    {
-	        u.addProduct(1,p.price,p);
-	        u.save();
+	        System.out.println("addProduct");
+	        LineBasket lsc = new LineBasket(1,p.price,p,u);
+	        lsc.save();
 	        return ok("200 - ok");
 	    }
 	    
 	}
 	
-	public Result getAllLineShoppingCart()
+	public Result getAllLineBasket()
 	{
-	   List<LineShoppingCart> l = LineShoppingCart.find.all();
+	   List<LineBasket> l = LineBasket.find.all();
 	   return ok(Json.toJson(l));
 	}
 	
@@ -168,9 +170,9 @@ public class UserController extends Controller {
 	    return badRequest("Expecting Json data");
 	}
 	
-	public Result getAllLineShoppingCartByUser(Long idUser, Long idLine){
-	    List<LineShoppingCart> Llsc = LineShoppingCart.getLineShoppingCart(idLine);
-	    return ok(Json.toJson(Llsc));
+	public Result getAllLineBasketByUser(Long idUser, Long idLine){
+	    //List<LineShoppingCart> Llsc = LineShoppingCart.getLineShoppingCart(idLine);
+	    return ok(Json.toJson("Salut"));
 	}
 	
 }

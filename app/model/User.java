@@ -9,7 +9,7 @@ import com.avaje.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 import com.avaje.ebean.Model;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import play.api.libs.Codecs;
 
@@ -17,15 +17,14 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.ShoppingCart;
 
 	@Entity
 	public class User extends Model {
 
 	    @Id
 	    @GeneratedValue
-	    @Column(name = "id", updatable = false, nullable = false)
-	    public long id;
+	    @Column(name = "idUser", updatable = false, nullable = false)
+	    public long idUser;
 	    
 	    @Constraints.Required
 	    public String email;
@@ -59,9 +58,10 @@ import model.ShoppingCart;
 	    public int status;
 	    
 	    public String token;
-	    
-	    @OneToOne(cascade=CascadeType.PERSIST)
-	    public ShoppingCart shoppingCart;
+    
+        @OneToMany(cascade=CascadeType.ALL)
+        @JsonBackReference
+	    public List<LineBasket> basket;
 	    
 	    
 		public User(String email, String userName, String firstname, String lastname, String password, String mobile, String address,
@@ -78,7 +78,6 @@ import model.ShoppingCart;
 			this.city = city;
 			this.status = status;
 			this.token = null;
-			this.shoppingCart = new ShoppingCart();
 		}
 		
 		 public static Finder<Long, User> find = new Finder<Long,User>(User.class);
@@ -138,25 +137,6 @@ import model.ShoppingCart;
 		     this.token = token;
 		 }
 		 
-		 
-		 public void addProduct(int quantity, Double sellPrice, Product p)
-		 {
-		     LineShoppingCart lsc = this.shoppingCart.addLineShoppingCart(quantity,sellPrice,p);
-		     if(this.shoppingCart.lineShoppingCarts == null){
-		         List<LineShoppingCart> Llsc = new ArrayList<LineShoppingCart>();
-		         System.out.println("NULl");
-		         lsc.save();
-		         Llsc.add(lsc);
-		         this.shoppingCart.setLineShoppingCarts(Llsc);
-		         this.shoppingCart.save();
-		     }else{
-		         System.out.println("PAS NULL");
-		        List<LineShoppingCart> Llsc = this.shoppingCart.lineShoppingCarts;
-		        Llsc.add(lsc);
-		        this.shoppingCart.setLineShoppingCarts(Llsc);  
-		     }
-		   
-		 }
 		 
 		 public static List<User> getAllUser()
 		 {

@@ -4,18 +4,28 @@ package model;
 import java.util.*;
 
 import javax.persistence.*;
+import play.db.ebean.*;
+import com.avaje.ebean.*;
+import play.data.format.*;
+import play.data.validation.*;
+import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.*;
+import com.sun.org.apache.bcel.internal.classfile.Code;
+import play.api.libs.Codecs;
+
 
 import com.avaje.ebean.Model;
 import play.data.format.*;
 import play.data.validation.*;
+import com.fasterxml.jackson.annotation.JsonManagedReference;;
 
 	@Entity
 	public class Product extends Model {
 
 	    @Id
 	    @GeneratedValue
-	    @Column(name = "id", updatable = false, nullable = false)
-	    public long id;
+	    @Column(name = "idProduct", updatable = false, nullable = false)
+	    public long idProduct;
 	    
 	    @Constraints.Required
 	    public String ref;
@@ -32,8 +42,9 @@ import play.data.validation.*;
 	    @Constraints.Required
 	    public String description;
 	    
-	    @ManyToMany(cascade=CascadeType.PERSIST)
-	    public LineShoppingCart lineShoppingCart;
+	    @JsonBackReference
+	    @OneToMany(cascade=CascadeType.ALL)
+	    public List<LineBasket> basket;
 	    
 	    	public Product(String ref, String name, Double price, Integer availableQuantity, String description) {
 			super();

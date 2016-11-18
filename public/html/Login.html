@@ -19,18 +19,17 @@
     <script type="text/javascript" src="./public/js/app.js"></script>
   </head>
   
-  <body ng-app="myApp" ng-controller="manageLoginCtrl">
+<body ng-app="myApp" ng-controller="manageLoginCtrl">
  
 <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/loginPlease">Login</a></li>
+        <li class="active"><a href="#">Login</a></li>
         <li><a href="/newUserAccount">Create a simple account</a></li>
         <li><a href="/newSellerAccount">Create a seller account</a></li>
       </ul>
-
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="/loginPlease">Login</a></li>
+        <li class="active"><a href="#">Login</a></li>
         <li><a href="/newUserAccount">Create a simple account</a></li>
         <li><a href="/newSellerAccount">Create a seller account</a></li>
       </ul>
@@ -38,36 +37,12 @@
     </div>
 </nav>
 
-<!-- Banner to create an account -->
-<div id="index-banner" class="parallax-container">
-  <div class="section no-pad-bot">
-    <div class="container"><br/>
-        <h1 class="header center orange-text">Welcome !</h1>
-        <div class="row center">
-            <h5 class="header col s12 white-text light">GoldFish ? What is it ?</h5>
-            <h5 class="header col s12 white-text light">You have just to create an account to discover the application !</h5>
-        </div><br/>
-        <div class="row center">
-            <a href="/newUserAccount" class="btn-large waves-effect waves-light orange">Create a simple account</a>
-        </div>
-        <div class="row center">
-            <a href="/newSellerAccount" class="btn-large waves-effect waves-light orange">Create a seller account</a>
-        </div>
-      </div>
-    </div>
-  <div class="parallax"><img src="./public/images/parallax-fish.jpeg" alt="parallax img fish"></div>
-</div>
-<!-- end -->
 
-<!-- Container -->
 <div class="container">
     <div class="section">    
         <div class="row center">
-            <h5 class="header col s12 light">You have already an account ? </h5>
-        </div>
-        <div class="row center">
         <div class="col l6 m6 s12 offset-l3 offset-m3">
-            <h5  class="header center orange-text">Please login !</h5>
+            <h5  class="header center orange-text">Enter your Username and Password</h5>
             <form ng-submit="authenticate()" class="col s12">
                 <input type=text name="userName" ng-model="userName" />
                 <input type=text name="mdp" ng-model="mdp" />
@@ -77,13 +52,19 @@
                 {{isConnected}}
             </form>
         </div>
+        <!--<div class="col l6 m6 s12">
+            <h5  class="header col s12 light">Deconnection</h5>
+            <form ng-submit="deconnection()" class="col s12">
+                <input type="submit" class="waves-effect waves-light btn">
+                {{isntConnected}}
+            </form>
+        </div>-->
         </div>
 
     </div>
 </div>
-<!-- end -->
- 
- 
+
+
 <div footer></div>
  
 

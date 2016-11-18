@@ -9,6 +9,7 @@
 # TO SHOW PAGES
 GET     /                           controllers.Assets.at(path="/public/html", file="Connection.html")
 GET     /newUserAccount             controllers.Assets.at(path="/public/html", file="CreateSimpleAccount.html")
+GET     /newSellerAccount             controllers.Assets.at(path="/public/html", file="CreateSellerAccount.html")
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
 GET		/manageProduct			    controllers.Assets.at(path="/public/html", file="ManageProduct.html")
@@ -49,8 +50,8 @@ DELETE  /user/:idUser/shoppingCart/:numL    controllers.UserController.deletePro
 GET     /user/:idUser/shoppingCartTotal     controllers.UserController.sommeProductShoppingCart(idUser : Long)
 POST    /user/:idUser/order                 controllers.OrderController.validateOrder(idUser : Long)
 
-GET     /lineShoppingCart                                  controllers.UserController.getAllLineBasket
-GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineBasketByUser(idUser : Long,idLine : Long)
+GET     /lineShoppingCart                   controllers.UserController.getAllLineShoppingCart
+GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineShoppingCartByUser(idUser : Long,idLine : Long)
 
 #////////////////////#
 #//////SELLER////////#

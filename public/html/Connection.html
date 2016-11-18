@@ -16,6 +16,7 @@
     
     <script type="text/javascript" src="./public/js/controller/manageLogin.js"></script>
     <script type="text/javascript" src="./public/js/init.js"></script>
+    <script type="text/javascript" src="./public/js/app.js"></script>
   </head>
   
   <body ng-app="myApp" ng-controller="manageLoginCtrl">
@@ -25,13 +26,13 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="#">Login</a></li>
         <li><a href="/newUserAccount">Create a simple account</a></li>
-        <li><a href="#">Create a seller account</a></li>
+        <li><a href="/newSellerAccount">Create a seller account</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Login</a></li>
-        <li><a href="#">Create a simple account</a></li>
-        <li><a href="#">Create a seller account</a></li>
+        <li><a href="/newUserAccount">Create a simple account</a></li>
+        <li><a href="/newSellerAccount">Create a seller account</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -59,9 +60,9 @@
 <!-- end -->
 
 <!-- Section invite to create an account -->
-  <div class="container">
+<div class="container">
     <div class="section">    
-            <div class="row center">
+        <div class="row center">
             <h5 class="header col s12 light">You have already an account ? </h5>
         </div>
         <div class="row center">
@@ -87,18 +88,12 @@
 
     </div>
 </div>
+<!-- end -->
+ 
+ 
+<div footer></div>
+ 
 
- 
-<footer class="page-footer orange">
-    <div class="footer-copyright">
-      <div class="container">
-      Made by Geoffray Faustine, Beulé Jérémy, Bordessoules Emmeran et Zaho Shui
-      </div>
-    </div>
-</footer>
-  
-  
- 
   </body>
 </html>
 

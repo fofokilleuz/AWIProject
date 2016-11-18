@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <title>New account</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/main.css">
+    <script type="text/javascript" src="./public/js/controller/manageSeller.js"></script>
+    <script type="text/javascript" src="./public/js/init.js"></script>
+    <script type="text/javascript" src="./public/js/app.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="manageSellerCtrl">
+  
+<!-- navbar -->  
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Login</a></li>
+        <li><a href="/newUserAccount">Create a simple account</a></li>
+        <li class="active"><a href="#">Create a seller account</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">Login</a></li>
+        <li><a href="/newUserAccount">Create a simple account</a></li>
+        <li class="active"><a href="#">Create a seller account</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+<!-- end -->
+
+
+<!-- form to create a simple user -->
+<div class="container">
+<div class="section"><br/>
+    <div class="row center">
+        <h4 class="header col s12 orange-text">Create a seller account</h4>
+    </div><br/>
+<div class="row">
+
+
+       <form ng-submit="createSeller()" class="col s12">
+    <div class="row">
+    <div class="col s12 m6">
+        <label>User name : </label>
+   		<input type="text" name="userName" placeholder="the name you wan't to use to loggin" ng-model="userName" />
+    </div>
+    <div class="col s12 m6">
+        <label>FirstName : </label>
+   		<input type="text" name="firstname" ng-model="firstname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Lastname : </label>
+   		<input type="text" name="lastname" ng-model="lastname" />
+    </div>
+    <div class="col s12 m6">
+        <label>Password : </label>
+   		<input type="password" name="password" ng-model="password" />
+    </div>
+    <div class="col s12 m6">
+        <label>Email : </label>
+   		<input type="text" name="email" ng-model="email" />
+    </div>
+    <div class="col s12 m6">
+        <label>mobile : </label>
+   		<input type="text" name="mobile" ng-model="mobile" />
+    </div>
+    <div class="col s12 m6">
+        <label>address : </label>
+   		<input type="text" name="address" ng-model="address" />
+    </div>
+    <div class="col s12 m6">
+        <label>postalCode : </label>
+   		<input type="text" name="postalCode" ng-model="postalCode" />
+    </div>
+    <div class="col s12 m6">
+        <label>City : </label>
+   		<input type="text" name="city" ng-model="city" />
+    </div>
+    <div class="col s12 m6">
+        <label>Siret : </label>
+   		<input type="text" name="siret" ng-model="siret" />
+    </div>
+    <div class="col s12 m6">
+        <label>UrlWeb : </label>
+   		<input type="text" name="urlweb" ng-model="urlweb" />
+    </div>
+    <div class="col s12">
+        <input type="submit" class="waves-effect waves-light btn">
+        {{ resultCreate }}
+    </div></div>
+    </form>
+
+
+</div>
+</div>
+</div>
+<!-- end form -->
+
+
+<div footer></div>
+
+
+  </body>
+</html>

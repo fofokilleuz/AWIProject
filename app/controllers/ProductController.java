@@ -17,7 +17,9 @@ import views.html.*;
 public class ProductController extends Controller {
 
 	public Result createProduct()
-	{
+	{   
+	    //Fonction Plus necéssaire
+	    /*
 	    Map<String, String[]> values = request().body().asFormUrlEncoded();  
 	    String ref = values.get("ref")[0];
 	    String name = values.get("name")[0];
@@ -30,6 +32,8 @@ public class ProductController extends Controller {
 	    p.save();
         
 	    return ok("200 - OK");
+	    */
+	    return ok("200 - ok");
 	}
 	
 	public 	Result getAllProduct()

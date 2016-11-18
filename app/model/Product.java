@@ -47,16 +47,17 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;;
 	    public List<LineBasket> basket;
 	    
 	    @JsonBackReference
-	    @OneToMany(cascade=CascadeType.ALL)
-	    public List<Seller> sellers;
+	    @ManyToOne(cascade=CascadeType.ALL)
+	    public Seller seller;
 	    
-	    	public Product(String ref, String name, Double price, Integer availableQuantity, String description) {
+	    	public Product(String ref, String name, Double price, Integer availableQuantity, String description, Seller seller) {
 			super();
 			this.ref = ref;
 			this.name = name;
 			this.price = price;
 			this.availableQuantity = availableQuantity;
 			this.description = description;
+			this.seller = seller;
 		}
 		
 		 public static Finder<Long, Product> find = new Finder<Long,Product>(Product.class);

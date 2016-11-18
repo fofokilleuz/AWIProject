@@ -6,7 +6,7 @@ import play.libs.Json;
 import model.User;
 import model.Product;
 
-import model.Command;
+//import model.Command;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
@@ -30,7 +30,7 @@ public class OrderController extends Controller {
 	    return ok("200 - ok");
 	}
 	
-    public Result getAllOrder(){
+    /*public Result getAllOrder(){
         List<Command> commands = Command.getAllCommand();
         if(commands != null){
             return ok(Json.toJson(commands));
@@ -38,7 +38,7 @@ public class OrderController extends Controller {
         else{
             return badRequest("404 : Not Found");
         }
-    }
+    }*/
 	
     
 }

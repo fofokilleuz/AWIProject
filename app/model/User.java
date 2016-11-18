@@ -9,6 +9,7 @@ import com.avaje.ebean.*;
 import play.data.format.*;
 import play.data.validation.*;
 import com.avaje.ebean.Model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.*;
 import com.sun.org.apache.bcel.internal.classfile.Code;
 import play.api.libs.Codecs;

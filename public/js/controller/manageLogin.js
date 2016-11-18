@@ -24,17 +24,28 @@ app.controller("manageLoginCtrl", function($scope, $http, $cookies) {
         
         var id = $cookies.get("idGoldFish");
         var token = $cookies.get("tokenGoldFish");
-
+    if (token !== undefined){
+        //we verify is the person have a cookie
         $http.get("/login/" + token + "/user/" + id).then(function(response) {
-            $scope.isConnected = "Vous êtes connecté" + id + token;
+            //if the person have a cookie we verify if its a simple user
+            $http.get("/user/" + id).then(function(response) {
+                window.location.assign("/homeUser")
+            }, function (response) {
+                 $scope.isConnected = "it's not a simple user" ;
+             });
+             $http.get("/seller/" + id).then(function(response) {
+                   //window.location.assign("/homeSeller")
+            }, function (response) {
+                 $scope.isConnected = "it's not a seller" ;
+             });
         }, function (response) {
-            $scope.isConnected = "Vous n'êtes pas connecté ";
+            $scope.isConnected = "Don't try to hack our site with modify your cookies !";
         });
+    } else {
+        $scope.isConnected = "You aren't connected";
+    }
     };
-    
 
-    
-    //
     $scope.isConnected();
 
 });

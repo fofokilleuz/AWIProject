@@ -46,6 +46,10 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;;
 	    @OneToMany(cascade=CascadeType.ALL)
 	    public List<LineBasket> basket;
 	    
+	    @JsonBackReference
+	    @OneToMany(cascade=CascadeType.ALL)
+	    public List<Seller> sellers;
+	    
 	    	public Product(String ref, String name, Double price, Integer availableQuantity, String description) {
 			super();
 			this.ref = ref;

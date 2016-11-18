@@ -59,6 +59,7 @@ import java.util.List;
 	    
 	    public String token;
 	    
+	    @JsonManagedReference
 	    @ManyToMany(cascade=CascadeType.ALL)
 	    public List<Product> products = new ArrayList<Product>();
 	    

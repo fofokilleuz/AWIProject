@@ -6,7 +6,8 @@ import play.libs.Json;
 import model.User;
 import model.Product;
 
-import model.Command;
+import model.LineCommand;
+import model.LineBasket;
 import java.text.*;
 import play.mvc.*;
 import views.html.*;
@@ -21,16 +22,15 @@ import com.fasterxml.jackson.databind.JsonNode;
  * This controller contains an action to handle HTTP requests
  * to the application's user.
 */
-public class OrderController extends Controller {
+public class CommandController extends Controller {
   
   	public Result validateOrder(long idUser){
-	    User u = User.getUserById(idUser);
-	    //Command c = new Command(u.shoppingCart);
+        List<LineBasket> basket = LineBasket.getBasketByUser(idUser);
 	    //c.save();
 	    return ok("200 - ok");
 	}
 	
-    public Result getAllOrder(){
+    /*public Result getAllOrder(){
         List<Command> commands = Command.getAllCommand();
         if(commands != null){
             return ok(Json.toJson(commands));
@@ -38,7 +38,7 @@ public class OrderController extends Controller {
         else{
             return badRequest("404 : Not Found");
         }
-    }
+    }*/
 	
     
 }

@@ -67,7 +67,7 @@ function validateOrder(formValidateOrder) {
 
 var idUser              = document.getElementById("idUserOrder").value;
    $.ajax({
-   				url : '/user/'+idUser+'/order/', // La ressource ciblé
+   				url : '/user/'+idUser+'/command/', // La ressource ciblé
                 type : 'POST', // Le type de la requête HTTP.
             });
 

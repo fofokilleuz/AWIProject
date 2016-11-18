@@ -1,4 +1,4 @@
-package model;
+/*package model;
 
 
 import java.util.*;
@@ -66,3 +66,4 @@ import model.Product;
 	    }
 	    
 	}
+*/

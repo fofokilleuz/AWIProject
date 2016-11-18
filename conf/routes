@@ -48,8 +48,8 @@ DELETE  /user/:idUser/shoppingCart/:numL    controllers.UserController.deletePro
 GET     /user/:idUser/shoppingCartTotal     controllers.UserController.sommeProductShoppingCart(idUser : Long)
 POST    /user/:idUser/order                 controllers.OrderController.validateOrder(idUser : Long)
 
-GET     /lineShoppingCart                   controllers.UserController.getAllLineShoppingCart
-GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineShoppingCartByUser(idUser : Long,idLine : Long)
+GET     /lineShoppingCart                                  controllers.UserController.getAllLineBasket
+GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineBasketByUser(idUser : Long,idLine : Long)
 
 #////////////////////#
 #//////SELLER////////#

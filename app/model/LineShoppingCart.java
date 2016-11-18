@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Product;
-import model.ShoppingCart;
+//import model.ShoppingCart;
 
 	@Entity
 	public class LineShoppingCart extends Model {

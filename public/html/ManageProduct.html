@@ -2,22 +2,6 @@
 <SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 <SCRIPT LANGUAGE="javascript">
 
-function creationProduct(fromCreationProduct) {
-
-var ref 	= document.getElementById("ref").value;
-var name	 	= document.getElementById("name").value;
-var price 		= document.getElementById("price").value;
-var qty 	= document.getElementById("qty").value;
-var desc 		= document.getElementById("desc").value;
-
-
-   $.ajax({
-   				url : '/product', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-                data : { ref : ref, name : name, price : price, qty : qty, desc : desc},
-            });
-
-}
 
 function deletion(formDeletion) {
 
@@ -67,7 +51,7 @@ function validateOrder(formValidateOrder) {
 
 var idUser              = document.getElementById("idUserOrder").value;
    $.ajax({
-   				url : '/user/'+idUser+'/order/', // La ressource ciblé
+   				url : '/user/'+idUser+'/command/', // La ressource ciblé
                 type : 'POST', // Le type de la requête HTTP.
             });
 
@@ -75,16 +59,7 @@ var idUser              = document.getElementById("idUserOrder").value;
 
 </SCRIPT>
 
-<p>Create Produt<p>
 
-<form method="post" name="fromCreationProduct" action="ProductController">
-   <input type="text" name="ref" id="ref" />
-   <input type="text" name="name" id="name" />
-   <input type="text" name="price" id="price" />
-   <input type="number" name="qty" id="qty"/>
-   <input type="text" name="desc" id="desc" />
-   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="creationProduct(fromCreationProduct)">
-</form>
 
 <p>Deletion Product</p>
 

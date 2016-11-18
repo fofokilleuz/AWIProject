@@ -59,7 +59,8 @@ import java.util.List;
 	    
 	    public String token;
 	    
-	    @ManyToMany(cascade=CascadeType.ALL)
+	    @JsonManagedReference
+	    @OneToMany(cascade=CascadeType.ALL)
 	    public List<Product> products = new ArrayList<Product>();
 	    
 		public Seller(String userName, String email, String firstname, String lastname, String password, String mobile, String address,

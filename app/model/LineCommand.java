@@ -20,7 +20,7 @@ import java.util.List;
 import model.Product;
 
 	@Entity
-	public class LineBasket extends Model {
+	public class LineCommand extends Model {
 	    
 	    @Id
 	    @GeneratedValue
@@ -41,15 +41,23 @@ import model.Product;
 	    @JsonManagedReference
 	    public User user;
 	    
-	    public LineBasket(int quantity, Double sellPrice, Product product,User user) {
+	    @Constraints.Required
+	    public String etat;
+	    
+	    @Constraints.Required
+	    public Date date;
+	    
+	    public LineCommand(int quantity, Double sellPrice, Product product,User user,String etat) {
 			super();
 			this.product=product;
 			this.quantity=quantity;
 			this.sellPrice=sellPrice;
 			this.user=user;
+			this.etat=etat;
+			
 		}
 		
-	   public static Finder<Long, LineBasket> find = new Finder<Long,LineBasket>(LineBasket.class);
+	   public static Finder<Long, LineCommand> find = new Finder<Long,LineCommand>(LineCommand.class);
 	    
 	   public void setQuantity(int quantity){
 	        this.quantity = quantity;
@@ -61,19 +69,6 @@ import model.Product;
 	    
 	    public void setProduct(Product product){
 	        this.product=product;
-	    }
-	    
-	    public static LineBasket getLineShoppingCartId(Long id)
-	    {
-	        return LineBasket.find.byId(id);
-	    }
-	    
-	    public static List<LineBasket> getLineShoppingCart(Long id){
-	        return LineBasket.find.where().eq("shoppingCart.id",id).findList();
-	    }
-	    
-	    public static List<LineBasket> getBasketByUser(long idUser){
-	        return null;
 	    }
 	    
 	}

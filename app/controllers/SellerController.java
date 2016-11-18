@@ -162,14 +162,12 @@ public class SellerController extends Controller {
 	    	  double price = json.findPath("price").doubleValue();
 	    	  int qty = json.findPath("qty").intValue();
 	    	  String desc = json.findPath("desc").textValue();
-              Product p = new Product(ref,name,price,qty,desc);
-              p.save();
               Seller s = Seller.getSellerById(id);
 	          if(s==null) {
 	                return ok("404 - Not Found");
 	          } else {
-	                s.addProduct(p);
-	                s.save();
+	                Product p = new Product(ref,name,price,qty,desc,s);
+                    p.save();
 	                return ok("200 - ok");
 	          }
 	     }

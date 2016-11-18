@@ -2,7 +2,7 @@ var app = angular.module("myApp", ['ngCookies']);
 
 //to control the ManageUser.html page
 app.controller("manageLoginCtrl", function($scope, $http, $cookies) {
-
+    
     /* function authenticate(formAuthenticate) {
         var userName = document.getElementById("userName").value;
         var mdp	= document.getElementById("mdp").value;
@@ -20,7 +20,7 @@ app.controller("manageLoginCtrl", function($scope, $http, $cookies) {
         var data = {
             userName : $scope.userName,
             mdp : $scope.mdp
-        }
+        };
         $http.post('/login', data).then(function (response) {
             if (response.data)
             $scope.resultLogin = "You are connected!";
@@ -29,7 +29,7 @@ app.controller("manageLoginCtrl", function($scope, $http, $cookies) {
                 $scope.dataafficher = data.userName;
         });
         
-    }
+    };
     
     /*function isConnected(){
         var id = getCookie("idGoldFish");
@@ -51,7 +51,7 @@ app.controller("manageLoginCtrl", function($scope, $http, $cookies) {
         }, function (response) {
             $scope.isConnected = "Vous n'êtes pas connecté ";
         });
-    }
+    };
     
     
     /*function getCookie(name){
@@ -77,14 +77,7 @@ app.controller("manageLoginCtrl", function($scope, $http, $cookies) {
         }, function (response) {
             $scope.isntConnected = "Vous n'êtes pas déconnecté ";
         });
-    }
-    
-    function deconnection(formDeconnection){
-         $.ajax({
-   				url : '/deconnection', // La ressource ciblé
-                type : 'POST', // Le type de la requête HTTP.
-            });
-    }
+    };
     
     
     //

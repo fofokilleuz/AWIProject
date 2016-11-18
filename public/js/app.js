@@ -1,4 +1,1 @@
-angular.module('MyApp', [
-    'ngRoute',
-    'ngCookies'
-])
+angular.module('MyApp', ['ngRoute', 'ngCookies'])

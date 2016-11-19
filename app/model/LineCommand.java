@@ -73,4 +73,8 @@ import model.Product;
 	        this.product=product;
 	    }
 	    
+	    public List<LineCommand> getLineCommandBySeller(Long idUser){
+	        return LineCommand.find.select("product.seller.idSeller").where().eq("user.idUser",idUser).orderBy("product.seller.idSeller").findList();
+	    }
+	    
 	}

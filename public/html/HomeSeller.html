@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script type="text/javascript" src="./public/js/controller/manageHomeSeller.js"></script>
+    <script type="text/javascript" src="./public/js/init.js"></script>
+    <script type="text/javascript" src="./public/js/app.js"></script>
+  </head>
+  
+<body ng-app="myApp" ng-controller="manageHomeSellerCtrl">
+ 
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">All Shops</a></li>
+        <li><a href="#">My Shops</a></li>
+        <li><a href="#">My Account</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">All Shops</a></li>
+        <li><a href="#">My Shops</a></li>
+        <li><a href="#">My Account</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+
+
+<div class="col l6 m6 s12">
+            <h5  class="header col s12 light">Deconnection</h5>
+            <form ng-submit="deconnection()" class="col s12">
+                <input type="submit" class="waves-effect waves-light btn">
+                {{isntConnected}}
+            </form>
+        </div>
+
+
+
+<div footer></div>
+ 
+
+  </body>
+</html>

@@ -1,7 +1,7 @@
 var app = angular.module("myApp", ['ngCookies']);
 
-//to control the HomeUser.html page
-app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies) {
+//to control the HomeSeller.html page
+app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookies) {
     
     $scope.deconnection = function() {
 
@@ -16,9 +16,9 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
     $scope.isConnected = function() {
         
         var id = $cookies.get("idGoldFish");
-            //if the person have a cookie we verify if its a simple user
-            $http.get("/user/" + id).then(function(response) {
-                //if a simple user with this id existwe verify token
+            //if the person have a cookie we verify if its a seller
+            $http.get("/seller/" + id).then(function(response) {
+                //if a seller with this id exist we verify token
                 var token = $cookies.get("tokenGoldFish");
                 var tokenU = response.data.token;
                 if (token != tokenU ) {

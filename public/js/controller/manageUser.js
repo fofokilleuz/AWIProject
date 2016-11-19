@@ -1,7 +1,7 @@
 var app = angular.module("myApp", []);
 
 //to control the ManageUser.html page
-app.controller("manageUserCtrl", function($scope, $http) {
+app.controller("manageUserCtrl", function($scope,  $window, $http) {
     
     $scope.createUser = function () {
         var data = {
@@ -18,7 +18,7 @@ app.controller("manageUserCtrl", function($scope, $http) {
 
         $http.post('/user', data).then(function (response) {
             if (response.data)
-            $scope.resultCreate = "User was successfully created!";
+            window.location.assign("/loginPlease");
         }, function (response) {
                 $scope.resultCreate = "An error was occured!";
         });

@@ -1,6 +1,6 @@
 var app = angular.module("myApp", []);
 
-app.controller("manageSellerCtrl", function($scope, $http) {
+app.controller("manageSellerCtrl", function($scope,  $window, $http) {
     
     $scope.createSeller = function () {
         var data = {
@@ -19,7 +19,7 @@ app.controller("manageSellerCtrl", function($scope, $http) {
 
         $http.post('/seller', data).then(function (response) {
             if (response.data)
-            $scope.resultCreate = "Seller was successfully created!";
+            window.location.assign("/loginPlease");
         }, function (response) {
                 $scope.resultCreate = "An error was occured!";
         });

@@ -19,6 +19,12 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
     }, function (response) {
     });
     
+    $http.get("/products").then(function(response) {
+        var products = $scope.products = response.data;
+    }, function (response) {
+        $scope.users = "An error was occured!" ;
+    }); 
+    
     $scope.updatePersonalInfo = function () {
         var idUser = $cookies.get("idGoldFish");
         var data = {

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>Welcome</title>
+    <title>Shop</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
     
@@ -22,16 +22,16 @@
 <body ng-app="myApp" ng-controller="manageHomeUserCtrl">
  
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/homeUser" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/shop">Shop</a></li>
+        <li class="active"><a href="#">Shop</a></li>
         <li><a href="#">My journals</a></li>
         <li><a href="/myUserAccount">My account</a></li>
         <li><a ng-click="deconnection()" href="#">Logout</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="/shop">Shop</a></li>
+        <li class="active"><a href="#">Shop</a></li>
         <li><a href="#">My journals</a></li>
         <li><a href="/myUserAccount">My account</a></li>
         <li><a ng-click="deconnection()" href="#">Logout</a></li>
@@ -40,19 +40,33 @@
     </div>
 </nav>
 
-
-
 <div class="container">
-    <div class="section">   
+    <div class="section"> 
     
-        <div class="row center"><br/>
-        Welcome {{userName}} ! 
-        </div>
+        <table class="highlight">
         
+        <thead>
+          <tr>
+              <th data-field="name">Product name</th>
+              <th data-field="price">Product price</th>
+              <th data-field="qty">Available Quantity</th>
+              <th data-field="description">Description</th>
+          </tr>
+        </thead>
+
+        <tbody ng-repeat="product in products">
+          <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.availableQuantity}}</td>
+            <td>{{product.description}}</td>
+          </tr>
+        </tbody>
+        
+      </table>
+    
     </div>
 </div>
-
-
 
 <div footer></div>
  

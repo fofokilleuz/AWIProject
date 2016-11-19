@@ -16,6 +16,7 @@ GET     /homeSeller                 controllers.Assets.at(path="/public/html", f
 GET     /myUserAccount              controllers.Assets.at(path="/public/html", file="MyUserAccount.html")
 GET     /mySellerAccount            controllers.Assets.at(path="/public/html", file="MySellerAccount.html")
 GET     /myShop                     controllers.Assets.at(path="/public/html", file="MyShop.html")
+GET     /shop                       controllers.Assets.at(path="/public/html", file="AllProducts.html")
 
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")

@@ -14,6 +14,8 @@ import play.api.libs.Codecs;
 import play.libs.Json;
 import model.LineBasket;
 import com.fasterxml.jackson.databind.JsonNode;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 /**
@@ -28,7 +30,7 @@ public class UserController extends Controller {
      * call with $http.post('/user', data)
      * 
      */
-    public Result createUser() {
+    public Result createUser() throws NoSuchAlgorithmException {
 	    JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
@@ -44,7 +46,13 @@ public class UserController extends Controller {
 	    	  String city = json.findPath("city").textValue();
 	    	  int status = 0 ;
 	    	  System.out.println("CREATEUSER");
-	    	  User u = new User(email,userName,firstname,lastname,password,mobile,address,postalCode,city,status);  
+	    	  MessageDigest mDigest = MessageDigest.getInstance("SHA-256");
+              byte[] result = mDigest.digest(password.getBytes());
+              StringBuffer mdpHash = new StringBuffer();
+              for (int i = 0; i < result.length; i++) {
+                mdpHash.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+              }
+	    	  User u = new User(email,userName,firstname,lastname,mdpHash.toString(),mobile,address,postalCode,city,status);  
 	    	  u.save();
 	    	  return ok(Json.toJson(u));
 	      }

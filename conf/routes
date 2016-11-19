@@ -22,6 +22,8 @@ GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="Manage
 GET		/manageProduct			    controllers.Assets.at(path="/public/html", file="ManageProduct.html")
 GET     /allUsers                   controllers.Assets.at(path="/public/html", file="AllUSers.html")
 
+GET     /user/manageDiary           controllers.Assets.at(path="/public/html", file="ManageDiary.html")
+
 
 # An example controller showing how to use dependency injection
 GET     /count                      controllers.CountController.count
@@ -71,6 +73,14 @@ GET     /user/:idUser/basket/seller   controllers.CommandController.getAllSeller
 POST    /user/:idUser/command         controllers.CommandController.validateOrder(idUser : Long)
 GET     /user/:idUser/command         controllers.CommandController.getLineCommandByUser(idUser :   Long)
 GET     /user/:idUser/command/etat=Validate controllers.CommandController.getLineCommandValidate(idUser : Long)
+
+#/////////////////////#
+#//////Diary//////////#
+#/////////////////////#
+
+POST    /user/:idUser/diary                      controllers.DiaryController.createDiary(idUser : Long);
+POST    /user/:idUser/diary/:idDiary/goal        controllers.GoalController.createGoal(idUser : Long, idDiary : Long);
+POST    /user/:idUser/diary/:idDiary/entry       controllers.EntryController.createEntry(idUser : Long, idDiary : Long);
 
 #////////////////////#
 #//////SELLER////////#

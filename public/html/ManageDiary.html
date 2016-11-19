@@ -4,13 +4,11 @@
 
 
 function createDiary(formCreateDiary) {
-
+alert("CreateDiary");
 var id 	= document.getElementById("idUser").value;
-var name 	= document.getElementById("name").value;
+var name 	= document.getElementById("nameDiary").value;
 var description 	= document.getElementById("description").value;
 
-
-alert(id)
 
    $.ajax({
    				url : '/user/'+id+'/diary', // La ressource ciblé
@@ -20,14 +18,14 @@ alert(id)
 
 }
 function createGoal(formCreateGoal) {
-
+alert("CreateGoal");
 var idUser 	= document.getElementById("idUser").value;
 var idDiary 	= document.getElementById("idDiary").value;
 var name 	= document.getElementById("nameGoal").value;
 var description 	= document.getElementById("descriptionGoal").value;
 
 
-alert(id)
+alert(idUser);
 
    $.ajax({
    				url : '/user/'+idUser+'/diary/'+idDiary+'/goal', // La ressource ciblé
@@ -37,14 +35,14 @@ alert(id)
 
 }
 
-function createEntry(formCreateGoal) {
-
+function createEntry(formCreateEntry) {
+alert("CreateEntry");
 var idUser 	= document.getElementById("idUser").value;
 var idDiary 	= document.getElementById("idDiary").value;
-var description 	= document.getElementById("descriptionGoal").value;
+var description 	= document.getElementById("descriptionEntry").value;
 
 
-alert(id)
+alert(idUser);
 
    $.ajax({
    				url : '/user/'+idUser+'/diary/'+idDiary+'/entry', // La ressource ciblé
@@ -73,15 +71,15 @@ alert(id)
 <form method="post" name="formCreateGoal" action="GoalController">
    <input type="Number" name="idUser" id="idUser" />
    <input type="Number" name="idDiary" id="idDiary" />
+   <input type="text" name="nameGoal" id="nameGoal" />
    <input type="text" name="descriptionGoal" id="descriptionGoal" />
    <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="createGoal(formCreateGoal)">
 </form>
 
-<p>Create Goal</p>
+<p>Create Entry</p>
 <form method="post" name="formCreateEntry" action="EntryController">
    <input type="Number" name="idUser" id="idUser" />
    <input type="Number" name="idDiary" id="idDiary" />
-   <input type="text" name="nameEntry" id="nameEntry" />
    <input type="text" name="descriptionEntry" id="descriptionEntry" />
    <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="createEntry(formCreateEntry)">
 </form>

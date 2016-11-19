@@ -81,7 +81,7 @@ GET     /user/:idUser/command/etat=Validate controllers.CommandController.getLin
 POST    /user/:idUser/diary                      controllers.DiaryController.createDiary(idUser : Long)
 POST    /user/:idUser/diary/:idDiary/goal        controllers.GoalController.createGoal(idUser : Long, idDiary : Long)
 POST    /user/:idUser/diary/:idDiary/entry       controllers.EntryTextController.createEntryText(idUser : Long, idDiary : Long)
-
+GET     /user/:idUser/diaries                    controllers.DiaryController.getAllDiaryByUserId(idUser : Long)
 #////////////////////#
 #//////SELLER////////#
 #////////////////////#

@@ -30,7 +30,6 @@ public class DiaryController extends Controller {
      * 
      */
     public Result createDiary(Long idUser){
-        System.out.println("CREATE DIARY");
 	    /*JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
@@ -46,6 +45,7 @@ public class DiaryController extends Controller {
 	          }
 	          Diary d = new Diary(name,description,u);
 	          d.save();
+	          System.out.println("Diary save");
 	    	  return ok("200 - ok");
 	      }
 	      

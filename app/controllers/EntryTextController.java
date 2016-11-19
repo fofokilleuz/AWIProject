@@ -29,14 +29,12 @@ public class EntryTextController extends Controller {
      * 
      */
     public Result createEntryText(Long idUser, Long idDiary){
-        System.out.println("CREATE TextEntry");
 	    /*JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
 	    	  String description = json.findPath("description").textValue();*/
               Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	          String name = values.get("name")[0];
 	          String description = values.get("description")[0];
 	          Diary d = Diary.getDiaryById(idDiary);
 	          if(d==null){

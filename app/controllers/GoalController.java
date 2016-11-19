@@ -29,7 +29,7 @@ public class GoalController extends Controller {
      * 
      */
     public Result createGoal(Long idUser, Long idDiary){
-        System.out.println("CREATE TextEntry");
+        System.out.println("CREATE Goal");
 	    /*JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");

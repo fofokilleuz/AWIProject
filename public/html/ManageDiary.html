@@ -1,0 +1,91 @@
+<p>Manage Diary/p>
+<SCRIPT type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<SCRIPT LANGUAGE="javascript">
+
+
+function createDiary(formCreateDiary) {
+
+var id 	= document.getElementById("idUser").value;
+var name 	= document.getElementById("name").value;
+var description 	= document.getElementById("description").value;
+
+
+alert(id)
+
+   $.ajax({
+   				url : '/user/'+id+'/diary', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+                data : { name : name, description : description},
+            });
+
+}
+function createGoal(formCreateGoal) {
+
+var idUser 	= document.getElementById("idUser").value;
+var idDiary 	= document.getElementById("idDiary").value;
+var name 	= document.getElementById("nameGoal").value;
+var description 	= document.getElementById("descriptionGoal").value;
+
+
+alert(id)
+
+   $.ajax({
+   				url : '/user/'+idUser+'/diary/'+idDiary+'/goal', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.4
+                data : { name : name, description : description},
+            });
+
+}
+
+function createEntry(formCreateGoal) {
+
+var idUser 	= document.getElementById("idUser").value;
+var idDiary 	= document.getElementById("idDiary").value;
+var description 	= document.getElementById("descriptionGoal").value;
+
+
+alert(id)
+
+   $.ajax({
+   				url : '/user/'+idUser+'/diary/'+idDiary+'/entry', // La ressource ciblé
+                type : 'POST', // Le type de la requête HTTP.
+                data : {description : description},
+            });
+
+}
+
+
+</SCRIPT>
+
+
+
+
+
+<p>Create Diary</p>
+<form method="post" name="formCreateDiary" action="DiaryController">
+   <input type="Number" name="idUser" id="idUser" />
+   <input type="text" name="nameDiary" id="nameDiary" />
+   <input type="text" name="description" id="description" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="createDiary(formCreateDiary)">
+</form>
+
+<p>Create Goal</p>
+<form method="post" name="formCreateGoal" action="GoalController">
+   <input type="Number" name="idUser" id="idUser" />
+   <input type="Number" name="idDiary" id="idDiary" />
+   <input type="text" name="descriptionGoal" id="descriptionGoal" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="createGoal(formCreateGoal)">
+</form>
+
+<p>Create Goal</p>
+<form method="post" name="formCreateEntry" action="EntryController">
+   <input type="Number" name="idUser" id="idUser" />
+   <input type="Number" name="idDiary" id="idDiary" />
+   <input type="text" name="nameEntry" id="nameEntry" />
+   <input type="text" name="descriptionEntry" id="descriptionEntry" />
+   <INPUT TYPE="button" NAME="bouton" VALUE="CREATE" onClick="createEntry(formCreateEntry)">
+</form>
+
+
+
+

@@ -74,6 +74,10 @@ import java.util.List;
         @JsonBackReference
 	    public List<LineBasket> basket;
 	    
+	    @OneToMany(cascade=CascadeType.ALL)
+	    @JsonManagedReference
+	    public List<Diary> diaries;
+	    
 	    
 		public User(String email, String userName, String firstname, String lastname, String password, String mobile, String address,
 				String postalCode, String city,int status) {
@@ -159,25 +163,7 @@ import java.util.List;
 		     return User.find.byId(id);
 		 }
 		 
-		 /*
-		 public Product getProductShoppingCartByNum(long numP){
-		     int num = (int) numP;
-		     return this.shoppingCart.get(num);
-		 }
-		 
-		 public void deleteProductShoppingCartByNum(long numP){
-		     int num = (int) numP;
-		     this.shoppingCart.remove(num);
-		 }
-		 
-		 public Double sommeProductShoppingCart(){
-		     Double total = 0.0;
-		     for(int i=0;i<this.shoppingCart.size();i++){
-		         total = total + this.shoppingCart.get(i).price;
-		     }
-		     return total;
-		 }*/
-		 
+
 		 public static User verification(String userName, String password){
 		     User u = User.find.where().eq("userName",userName).eq("password",password).findUnique();
 		     return u;

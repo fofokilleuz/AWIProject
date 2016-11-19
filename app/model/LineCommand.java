@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Product;
+import model.LineBasket;
 
 	@Entity
 	public class LineCommand extends Model {
@@ -49,13 +50,13 @@ import model.Product;
 	    @Constraints.Required
 	    public Date date;
 	    
-	    public LineCommand(int quantity, Double sellPrice, Product product,User user,String etat) {
+	    public LineCommand(int quantity, Double sellPrice, Product product,User user) {
 			super();
 			this.product=product;
 			this.quantity=quantity;
 			this.sellPrice=sellPrice;
 			this.user=user;
-			this.etat=etat;
+			this.etat="En cours de validation";
 			
 		}
 		
@@ -73,8 +74,18 @@ import model.Product;
 	        this.product=product;
 	    }
 	    
-	    public List<LineCommand> getLineCommandBySeller(Long idUser){
-	        return LineCommand.find.select("product.seller.idSeller").where().eq("user.idUser",idUser).orderBy("product.seller.idSeller").findList();
+	    public static List<LineCommand> getLineCommandByUser(long idUser){
+	        return LineCommand.find.where().eq("user.idUser",idUser).findList();
 	    }
+	    
+	    public static List<LineCommand> getLineCommandValidate(long idUser){
+	        return LineCommand.find.where().eq("etat","validate").orderBy("user.idUser").findList();
+	    }
+	    
+	    public static void createLineCommand(LineBasket lb){
+	        LineCommand lc = new LineCommand(lb.quantity,lb.sellPrice,lb.product,lb.user);
+	        lc.save();
+	    }
+	    
 	    
 	}

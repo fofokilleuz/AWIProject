@@ -22,7 +22,8 @@ import java.math.BigInteger;
 import play.api.http.HeaderNames.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
+import model.LineBasket;
+import model.LineCommand;
 
 
 /**
@@ -31,11 +32,36 @@ import com.fasterxml.jackson.databind.JsonNode;
  */
 
 public class CommandController extends Controller {
+    
   
-  public Result validateOrder(Long idUser){
-      
-      return ok("200 - ok");
-  }
+    public Result validateOrder(Long idUser){
+      List<LineBasket> basket = LineBasket.getBasketByUser(idUser);
+      for(int i =0; i < basket.size(); i++){
+          LineCommand.createLineCommand(basket.get(i));
+        }
+       List<LineCommand> Llc = LineCommand.getLineCommandByUser(idUser);
+       LineBasket.deleteBasketByUser(idUser);
+       return ok(Json.toJson(Llc));
+    }
+    
+    public Result getAllSellerfromLineBaskettByIdUser(Long idUser){
+      List<LineBasket> basket = LineBasket.getAllSellerfromLineBaskettByIdUser(idUser);
+ 
+      return ok(Json.toJson(basket));
+    }
+    
+    public Result getLineCommandByUser(Long idUser){
+        List<LineCommand> Llc = LineCommand.getLineCommandByUser(idUser);
+        return ok(Json.toJson(Llc));
+    }
+    
+    public Result getLineCommandValidate(long idUser){
+        List<LineCommand> Llc = LineCommand.getLineCommandValidate(idUser);
+        return ok(Json.toJson(Llc));
+    }
+    
+  
+    
 
     
 }

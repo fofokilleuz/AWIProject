@@ -27,34 +27,44 @@ import java.util.List;
 	    @Column(name = "idUser", updatable = false, nullable = false)
 	    public long idUser;
 	    
+	    @Constraints.MaxLength(80)
 	    @Constraints.Required
 	    public String email;
 	    
+	    @Constraints.MaxLength(20)
 	    @Constraints.Required
 	    public String userName;
 	    
+	    @Constraints.MaxLength(30)
 	    @Constraints.Required
 	    public String firstname;
 	    
+	    @Constraints.MaxLength(30)
 	    @Constraints.Required
 	    public String lastname;
 	    
+	    @Constraints.MaxLength(30)
 	    @Constraints.Required
 	    public String password;
 	    
+	    @Constraints.MaxLength(12)
 	    @Constraints.Required
 	    public String mobile;
 	    
+	    @Constraints.MaxLength(80)
 	    @Constraints.Required
 	    public String address;
 	    
+	    @Constraints.MaxLength(5)
 	    @Constraints.Required
 	    public String postalCode;
 	    
+	    @Constraints.MaxLength(40)
 	    @Constraints.Required
 	    public String city;
 	    
 	    // 0 SimpleUser | 1 Admind
+	    @Constraints.MaxLength(1)
 	    @Constraints.Required
 	    public int status;
 	    

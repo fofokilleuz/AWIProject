@@ -30,15 +30,19 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;;
 	    @Constraints.Required
 	    public String ref;
 	    
+	    @Constraints.MaxLength(40)
 	    @Constraints.Required
 	    public String name;
 	    
+	    @Constraints.MaxLength(6)
 	    @Constraints.Required
 	    public Double price;
 	    
+	    @Constraints.MaxLength(4)
 	    @Constraints.Required
 	    public Integer availableQuantity;
 	    
+	    @Constraints.MaxLength(300)
 	    @Constraints.Required
 	    public String description;
 	    

@@ -109,15 +109,26 @@ public class ConnectionController extends Controller {
 	       }
   } 
   
-  public Result isConnnected(String token,Long id){
-      	 User u = User.isConnected(id,token);
-	      if(u==null){
+  public Result isConnnected(String token, String role, Long id){
+      if(role=="su"){
+          User u = User.isConnected(id,token);
+          if(u==null){
 	          System.out.println("false");
 	          return ok(Json.toJson(false));
 	      }else{
 	          System.out.println("true");
 	          return ok(Json.toJson(true));
 	      }
+      }else{
+      	 Seller s = Seller.isConnected(id,token);
+      	 if(s==null){
+	          System.out.println("false");
+	          return ok(Json.toJson(false));
+	      }else{
+	          System.out.println("true");
+	          return ok(Json.toJson(true));
+	      }
+      }
     }
     
   public Result deconnection(){

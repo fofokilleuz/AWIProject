@@ -22,6 +22,12 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
     }, function (response) {
     });
     
+    $http.get("/seller/" + idSeller + "/products").then(function(response) {
+        var products = $scope.products = response.data;
+    }, function (response) {
+        $scope.users = "An error was occured!" ;
+    });
+    
     $scope.updatePersonalInfo = function () {
         var idSeller = $cookies.get("idGoldFish");
         var data = {
@@ -55,6 +61,30 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
         });
     };
     
+    $scope.createProductToSeller = function() {
+        var idSeller =  $cookies.get("idGoldFish");        
+        var data = {
+                    ref : $scope.ref, 
+                    name : $scope.productName, 
+                    price : $scope.price, 
+                    qty : $scope.quantity, 
+                    desc : $scope.description
+        };
+        $http.post('/seller/' + idSeller + "/product", data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+        });
+    };
+    
+    $scope.deleteProduct = function () {
+        $http.delete('/product/' + idDelete).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultDelete = "An error was occured!" ;
+        });
+    };
     
     $scope.deconnection = function() {
         

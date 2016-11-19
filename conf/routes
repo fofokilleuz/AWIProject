@@ -15,6 +15,7 @@ GET     /homeUser                   controllers.Assets.at(path="/public/html", f
 GET     /homeSeller                 controllers.Assets.at(path="/public/html", file="HomeSeller.html")
 GET     /myUserAccount              controllers.Assets.at(path="/public/html", file="MyUserAccount.html")
 GET     /mySellerAccount            controllers.Assets.at(path="/public/html", file="MySellerAccount.html")
+GET     /myShop                     controllers.Assets.at(path="/public/html", file="MyShop.html")
 
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
@@ -37,7 +38,7 @@ GET     /public/*file               controllers.Assets.versioned(path="/public",
 #//////////////////#
 
 POST /login                                 controllers.ConnectionController.authenticate
-GET /login/:token/user/:id                  controllers.ConnectionController.isConnnected(token : String,id : Long)
+GET /login/:token/:role/user/:id            controllers.ConnectionController.isConnnected(token : String,role : String,id : Long)
 POST /deconnection                          controllers.ConnectionController.deconnection
 
 

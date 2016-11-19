@@ -29,7 +29,7 @@ app.controller("manageLoginCtrl", function($scope, $window, $http, $cookies) {
 
     if (token !== undefined){
         //we verify is the person have a correct token
-        $http.get("/login/" + token + "/user/" + id).then(function(response) {
+        $http.get("/login/" + token + "/"+ role + "/user/" + id).then(function(response) {
             //if the person have a cookie we verify if its a simple user or seller
             if (role == "su"){
                 window.location.assign("/homeUser");

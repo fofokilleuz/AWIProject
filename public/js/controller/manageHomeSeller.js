@@ -24,6 +24,7 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
     
     $http.get("/seller/" + idSeller + "/products").then(function(response) {
         var products = $scope.products = response.data;
+        $scope.idProduct = products.idProduct;
     }, function (response) {
         $scope.users = "An error was occured!" ;
     });
@@ -78,7 +79,8 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
     };
     
     $scope.deleteProduct = function () {
-        $http.delete('/product/' + idDelete).then(function (response) {
+        var idDel = $scope.idProduct;
+        $http.delete('/product/' + idDel).then(function (response) {
             if (response.data)
                 window.location.reload();
         }, function (response) {
@@ -89,7 +91,7 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
     $scope.deconnection = function() {
         
         $http.post("/deconnection").then(function(response) {
-            window.location.assign("/")
+            window.location.assign("/");
         }, function (response) {
             $scope.isntConnected = "Vous n'êtes pas déconnecté ";
         });
@@ -105,10 +107,10 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
                 var token = $cookies.get("tokenGoldFish");
                 var tokenU = response.data.token;
                 if (token != tokenU ) {
-                    window.location.assign("/")
+                    window.location.assign("/");
                 }
             }, function (response) {
-                 window.location.assign("/")
+                 window.location.assign("/");
              });
 
     };

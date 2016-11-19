@@ -77,7 +77,7 @@
                     </div>
                     <div class="card-action">
                         <a href="#">Update</a>
-                        <a href="#" ng-click="deleteProduct()">Delete</a>
+                        <a href="#deleteProduct">Delete</a>
                     </div>
                 </div>
             </div>
@@ -117,6 +117,25 @@
             <div class="col s12 m6">
                 <label>Description</label>
                 <input type="text" name="description" ng-model="description" />
+            </div>
+            <div class="row center">
+                <div class="col s12"><br/>
+                    <input type="submit" value="Submit" class="btn-large waves-effect waves-light orange">
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+  
+    <div id="deleteProduct" class="modal">
+    <div class="modal-content">
+      <h4>WARNING</h4><br/>
+        <div class="row">
+        <form ng-submit="" class="col s12">
+            <div class="col s12 m6">
+                Your are going to delete the product : {{product.name}}
+                <input type="hidden" name="idProduct" ng-model="idProduct" value="{{product.idProduct}}"/>
             </div>
             <div class="row center">
                 <div class="col s12"><br/>

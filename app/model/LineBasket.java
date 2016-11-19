@@ -78,4 +78,16 @@ import model.Product;
 	        return null;
 	    }
 	    
+	    public static List<LineBasket> getAllSellerfromLineBaskettByIdUser(Long idUser){
+	        return LineBasket.find.select("product.seller.id").where().eq("user.idUser",idUser).findList();
+	    }
+	    
+	    public static List<LineBasket> getBasketByUser(Long idUser){
+	        return LineBasket.find.where().eq("user.idUser",idUser).findList();
+	    }
+	    
+	    public static void  deleteBasketByUser(long idUser){
+	        Ebean.deleteAll(LineBasket.find.where().eq("user.idUser",idUser).findList());
+	    }
+	    
 	}

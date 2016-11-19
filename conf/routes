@@ -56,8 +56,21 @@ GET     /user/:idUser/shoppingCart/:numL    controllers.UserController.getProduc
 DELETE  /user/:idUser/shoppingCart/:numL    controllers.UserController.deleteProductShoppingCartByNum(idUser : Long,numL : Long)
 GET     /user/:idUser/shoppingCartTotal     controllers.UserController.sommeProductShoppingCart(idUser : Long)
 
+#//////////////////////////#
+#//////ShoppingCart////////#
+#//////////////////////////#
+
 GET     /lineShoppingCart                   controllers.UserController.getAllLineBasket
 GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineBasketByUser(idUser : Long,idLine : Long)
+
+#/////////////////////#
+#//////Command////////#
+#/////////////////////#
+
+GET     /user/:idUser/basket/seller   controllers.CommandController.getAllSellerfromLineBaskettByIdUser(idUser : Long)
+POST    /user/:idUser/command         controllers.CommandController.validateOrder(idUser : Long)
+GET     /user/:idUser/command         controllers.CommandController.getLineCommandByUser(idUser :   Long)
+GET     /user/:idUser/command/etat=Validate controllers.CommandController.getLineCommandValidate(idUser : Long)
 
 #////////////////////#
 #//////SELLER////////#

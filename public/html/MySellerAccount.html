@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My account</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script type="text/javascript" src="./public/js/controller/manageHomeSeller.js"></script>
+    <script type="text/javascript" src="./public/js/init.js"></script>
+    <script type="text/javascript" src="./public/js/app.js"></script>
+  </head>
+  
+<body ng-app="myApp" ng-controller="manageHomeSellerCtrl">
+ 
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/homeSeller" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">All Shops</a></li>
+        <li><a href="#">My Shops</a></li>
+        <li class="active"><a href="#">My Account</a></li>
+        <li><a ng-click="deconnection()" href="#">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="#">All Shops</a></li>
+        <li><a href="#">My Shops</a></li>
+        <li class="active"><a href="#">My Account</a></li>
+        <li><a ng-click="deconnection()" href="#">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="section">  
+    
+    <div class="row center">
+            <h2 class="header col s12 light">{{userName}}'s account</h2>
+    </div>
+    
+    <div class="row">
+        
+        <div class="col s12 m6">
+          <div class="icon-block">
+            <!-- Modal Trigger -->
+            <div class="col s2 m4">
+                <a class="btn-floating btn waves-effect waves-light orange right" href="#updateInfo"><i class="material-icons">mode_edit</i></a>
+            </div>
+            <div class="col s10 m8">
+            <h5>Personal informations</h5>
+                <ul>
+                    <li> Username : {{userName}} </li>
+                    <li class="light"> Firstname : {{firstname}} </li>
+                    <li class="light"> Lastname : {{lastname}} </li>
+                    <li class="light"> Phone : {{mobile}} </li>
+                    <li class="light"> Email : {{email}} </li>
+                    <li class="light"> Website : {{urlweb}} </li>
+                    <li class="light"> Siret : {{siret}} </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m6">
+          <div class="icon-block">
+            <!-- Modal Trigger -->
+            <div class="col s2 m4">
+                <a class="btn-floating btn waves-effect waves-light orange right" href="#updateAddress"><i class="material-icons">mode_edit</i></a>
+            </div>
+            <div class="col s10 m8">
+            <h5>Address</h5>
+                <ul>
+                    <li> {{address}} </li>
+                    <li class="light"> {{postalCode}} {{city}}</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+        
+    <div class="row center">
+        <div class="col s12">
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="medium material-icons">credit_card</i></h2>
+            <h5 class="center">Command</h5>
+            <p class="light">No command yet</p>
+          </div>
+        </div>
+    </div>
+        
+    </div>
+</div>
+
+  <!-- Modal Structure -->
+  <div id="updateInfo" class="modal">
+    <div class="modal-content">
+      <h4>Update personal informations</h4><br/>
+        <div class="row">
+        <form ng-submit="updatePersonalInfo()" class="col s12">
+            <div class="col s12 m6">
+                <label>Firstname</label>
+                <input type="text" name="firstnameUpdate" ng-model="firstnameUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Lastname</label>
+                <input type="text" name="lastnameUpdate" ng-model="lastnameUpdate" />
+            </div>
+            <div class="col s12 m6">
+               	<label>Email : </label>
+               	<input type="email" name="emailUpdate" ng-model="emailUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Phone</label>
+                <input type="tel" name="mobileUpdate" ng-model="mobileUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Website (url)</label>
+                <input type="text" name="urlwebUpdate" ng-model="urlwebUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Siret</label>
+                <input type="text" name="siretUpdate" ng-model="siretUpdate" />
+            </div>
+            <div class="row center">
+                <div class="col s12"><br/>
+                    <input type="submit" value="Update" class="btn-large waves-effect waves-light orange">
+                    {{resultUpdate}}
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+
+  <div id="updateAddress" class="modal">
+    <div class="modal-content">
+      <h4>Update Address informations</h4><br/>
+        <div class="row">
+        <form ng-submit="updateAddress()" class="col s12">
+            <div class="col s12">
+                <label>Adress</label>
+                <input type="text" name="addressUpdate" ng-model="addressUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Postal code</label>
+                <input type="text" name="postalCodeUpdate" ng-model="postalCodeUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>City</label>
+                <input type="text" name="city" ng-model="cityUpdate" />
+            </div>  
+            <div class="row center">
+                <div class="col s12"><br/>
+                    <input type="submit" value="Update" class="btn-large waves-effect waves-light orange">
+                    {{resultUpdate}}
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+
+
+
+<div footer></div>
+ 
+
+  </body>
+</html>

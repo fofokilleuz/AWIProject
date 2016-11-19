@@ -13,6 +13,9 @@ GET     /newSellerAccount           controllers.Assets.at(path="/public/html", f
 GET     /loginPlease                controllers.Assets.at(path="/public/html", file="Login.html")
 GET     /homeUser                   controllers.Assets.at(path="/public/html", file="HomeUser.html")
 GET     /homeSeller                 controllers.Assets.at(path="/public/html", file="HomeSeller.html")
+GET     /myUserAccount              controllers.Assets.at(path="/public/html", file="MyUserAccount.html")
+GET     /mySellerAccount            controllers.Assets.at(path="/public/html", file="MySellerAccount.html")
+
 GET		/manageUser				    controllers.Assets.at(path="/public/html", file="ManageUser.html")
 GET		/manageSeller			    controllers.Assets.at(path="/public/html", file="ManageSeller.html")
 GET		/manageProduct			    controllers.Assets.at(path="/public/html", file="ManageProduct.html")

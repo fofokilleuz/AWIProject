@@ -3,6 +3,56 @@ var app = angular.module("myApp", ['ngCookies']);
 //to control the HomeUser.html page
 app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies) {
     
+    var idUser = $cookies.get("idGoldFish");
+    
+    $http.get("/user/" + idUser).then(function(response) {
+        var user = response.data;
+        $scope.idUser = user.idUser;
+        $scope.email = user.email;
+        $scope.userName = user.userName;
+        $scope.firstname = user.firstname;
+        $scope.lastname = user.lastname;
+        $scope.mobile = user.mobile;
+        $scope.address = user.address;
+        $scope.postalCode = user.postalCode;
+        $scope.city = user.city;
+    }, function (response) {
+    });
+    
+    $scope.updatePersonalInfo = function () {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    firstname : $scope.firstnameUpdate, 
+                    lastname : $scope.lastnameUpdate, 
+                    email : $scope.emailUpdate,
+                    mobile : $scope.mobileUpdate
+        };
+
+        $http.put('/user/' + idUser, data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultUpdate = "An error was occured!";
+        });
+    };
+    
+    $scope.updateAddress = function () {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    address : $scope.addressUpdate, 
+                    postalCode : $scope.postalCodeUpdate, 
+                    city : $scope.cityUpdate 
+        };
+
+        $http.put('/user/' + idUser, data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultUpdate = "An error was occured!";
+        });
+    };
+    
+    
     $scope.deconnection = function() {
 
         $http.post("/deconnection").then(function(response) {

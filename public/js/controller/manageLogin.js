@@ -37,7 +37,7 @@ app.controller("manageLoginCtrl", function($scope, $window, $http, $cookies) {
                  window.location.assign("/homeSeller");
             }
         }, function (response) {
-            $scope.resultLogin = "isn't log";
+            $scope.isConnected = "Cookies have been modified";
         });
     }
     };

@@ -3,6 +3,23 @@ var app = angular.module("myApp", ['ngCookies']);
 //to control the HomeUser.html page
 app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies) {
     
+    var idUser = $cookies.get("idGoldFish");
+    
+    $http.get("/user/" + idUser).then(function(response) {
+        var user = response.data;
+        $scope.idUser = user.idUser;
+        $scope.email = user.email;
+        $scope.userName = user.userName;
+        $scope.firstname = user.firstname;
+        $scope.lastname = user.lastname;
+        $scope.mobile = user.mobile;
+        $scope.address = user.address;
+        $scope.postalCode = user.postalCode;
+        $scope.city = user.city;
+    }, function (response) {
+    });
+    
+    
     $scope.deconnection = function() {
 
         $http.post("/deconnection").then(function(response) {

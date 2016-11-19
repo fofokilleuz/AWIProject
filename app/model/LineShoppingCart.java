@@ -28,9 +28,11 @@ import model.Product;
 	    @Column(name = "id", updatable = false, nullable = false)
 	    public long id;
 	    
+	    @Constraints.MaxLength(4)
 	    @Constraints.Required
 	    public int quantity;
 	    
+	    @Constraints.MaxLength(6)
 	    @Constraints.Required
 	    public Double sellPrice;
 	    

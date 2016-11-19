@@ -13,7 +13,8 @@ import play.api.libs.Codecs;
 import play.libs.Json;
 
 import com.fasterxml.jackson.databind.JsonNode;
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's Seller.
@@ -27,7 +28,7 @@ public class SellerController extends Controller {
      * call with $http.post('/seller', data)
      * 
      */
-    public Result createSeller() {
+    public Result createSeller() throws NoSuchAlgorithmException{
 	    JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
@@ -44,7 +45,14 @@ public class SellerController extends Controller {
 	    	  String siret = json.findPath("siret").textValue();
 	    	  String urlweb = json.findPath("urlweb").textValue();
 	    	  
-              Seller s = new Seller(userName,email,firstname,lastname,password,mobile,address,postalCode,city,siret,urlweb);
+	    	  MessageDigest mDigest = MessageDigest.getInstance("SHA-256");
+              byte[] result = mDigest.digest(password.getBytes());
+              StringBuffer mdpHash = new StringBuffer();
+              for (int i = 0; i < result.length; i++) {
+                mdpHash.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+              }
+	    	  
+              Seller s = new Seller(userName,email,firstname,lastname,mdpHash.toString(),mobile,address,postalCode,city,siret,urlweb);
               s.save();
 	    	  return ok("200 - OK");
 	      }

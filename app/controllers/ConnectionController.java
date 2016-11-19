@@ -26,6 +26,8 @@ import play.api.mvc.DiscardingCookie;
 import java.security.SecureRandom;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 
 /**
@@ -68,7 +70,7 @@ public class ConnectionController extends Controller {
 	   return ok("200 - ok");
 	   }*/
   
-  public Result authenticate(){
+  public Result authenticate() throws NoSuchAlgorithmException{
 	      
 	    //Map<String, String[]> values = request().body().asFormUrlEncoded();
 	    JsonNode json = request().body().asJson();
@@ -76,10 +78,16 @@ public class ConnectionController extends Controller {
 	        return badRequest("Expecting Json data");
 	     } else {
 	        String userName = json.findPath("userName").textValue();
-	        String mdp = json.findPath("mdp").textValue();
+	        String password = json.findPath("mdp").textValue();
 	        System.out.println(userName);
-	        Seller s = Seller.verification(userName,mdp);
-	        User u = User.verification(userName,mdp);
+	        MessageDigest mDigest = MessageDigest.getInstance("SHA-256");
+            byte[] result = mDigest.digest(password.getBytes());
+            StringBuffer mdpHash = new StringBuffer();
+            for (int i = 0; i < result.length; i++) {
+            mdpHash.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+            }
+	        Seller s = Seller.verification(userName,mdpHash.toString());
+	        User u = User.verification(userName,mdpHash.toString());
 	        SecureRandom random = new SecureRandom();
 	        String token = new BigInteger(130, random).toString(32);
 	        if(u !=null){
@@ -102,7 +110,7 @@ public class ConnectionController extends Controller {
   } 
   
   public Result isConnnected(String token,Long id){
-      	      User u = User.isConnected(id,token);
+      	 User u = User.isConnected(id,token);
 	      if(u==null){
 	          System.out.println("false");
 	          return ok(Json.toJson(false));

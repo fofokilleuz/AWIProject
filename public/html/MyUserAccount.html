@@ -43,13 +43,22 @@
 
 
 <div class="container">
-    <div class="section">   
+    <div class="section">  
     
-        <div class="row center">
+    <div class="row center">
+            <h2 class="header col s12 light">{{userName}}'s account</h2>
+    </div>
+    
+    <div class="row">
+        
         <div class="col s12 m6">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="medium material-icons">perm_identity</i></h2>
-            <h5 class="center">Personal informations</h5>
+            <!-- Modal Trigger -->
+            <div class="col s2 m4">
+                <a class="btn-floating btn waves-effect waves-light orange right" href="#updateInfo"><i class="material-icons">mode_edit</i></a>
+            </div>
+            <div class="col s10 m8">
+            <h5>Personal informations</h5>
                 <ul>
                     <li> Username : {{userName}} </li>
                     <li class="light"> Firstname : {{firstname}} </li>
@@ -57,22 +66,30 @@
                     <li class="light"> Phone : {{mobile}} </li>
                     <li class="light"> Email : {{email}} </li>
                 </ul>
+            </div>
           </div>
         </div>
 
         <div class="col s12 m6">
           <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="medium material-icons">room</i></h2>
-            <h5 class="center">Address</h5>
+            <!-- Modal Trigger -->
+            <div class="col s2 m4">
+                <a class="btn-floating btn waves-effect waves-light orange right" href="#updateAddress"><i class="material-icons">mode_edit</i></a>
+            </div>
+            <div class="col s10 m8">
+            <h5>Address</h5>
                 <ul>
-                    <li> Address : {{address}} </li>
+                    <li> {{address}} </li>
                     <li class="light"> {{postalCode}} {{city}}</li>
                 </ul>
+            </div>
           </div>
         </div>
-        </div>
         
-        <div class="row center">
+        
+    </div>
+        
+    <div class="row center">
         <div class="col s12">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="medium material-icons">credit_card</i></h2>
@@ -80,10 +97,71 @@
             <p class="light">No order yet</p>
           </div>
         </div>
-        </div>
+    </div>
         
     </div>
 </div>
+
+  <!-- Modal Structure -->
+  <div id="updateInfo" class="modal">
+    <div class="modal-content">
+      <h4>Update personal informations</h4><br/>
+        <div class="row">
+        <form ng-submit="updatePersonalInfo()" class="col s12">
+            <div class="col s12 m6">
+                <label>Firstname</label>
+                <input type="text" name="firstnameUpdate" ng-model="firstnameUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Lastname</label>
+                <input type="text" name="lastnameUpdate" ng-model="lastnameUpdate" />
+            </div>
+            <div class="col s12 m6">
+               	<label>Email : </label>
+               	<input type="email" name="emailUpdate" ng-model="emailUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Phone</label>
+                <input type="tel" name="mobileUpdate" ng-model="mobileUpdate" />
+            </div>
+            <div class="row center">
+                <div class="col s12"><br/>
+                    <input type="submit" value="Update" class="btn-large waves-effect waves-light orange">
+                    {{resultUpdate}}
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+
+  <div id="updateAddress" class="modal">
+    <div class="modal-content">
+      <h4>Update Address informations</h4><br/>
+        <div class="row">
+        <form ng-submit="updateAddress()" class="col s12">
+            <div class="col s12">
+                <label>Adress</label>
+                <input type="text" name="addressUpdate" ng-model="addressUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Postal code</label>
+                <input type="text" name="postalCodeUpdate" ng-model="postalCodeUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>City</label>
+                <input type="text" name="city" ng-model="cityUpdate" />
+            </div>  
+            <div class="row center">
+                <div class="col s12"><br/>
+                    <input type="submit" value="Update" class="btn-large waves-effect waves-light orange">
+                    {{resultUpdate}}
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
 
 
 

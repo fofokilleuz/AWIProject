@@ -19,6 +19,39 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
     }, function (response) {
     });
     
+    $scope.updatePersonalInfo = function () {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    firstname : $scope.firstnameUpdate, 
+                    lastname : $scope.lastnameUpdate, 
+                    email : $scope.emailUpdate,
+                    mobile : $scope.mobileUpdate
+        };
+
+        $http.put('/user/' + idUser, data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultUpdate = "An error was occured!";
+        });
+    };
+    
+    $scope.updateAddress = function () {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    address : $scope.addressUpdate, 
+                    postalCode : $scope.postalCodeUpdate, 
+                    city : $scope.cityUpdate 
+        };
+
+        $http.put('/user/' + idUser, data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultUpdate = "An error was occured!";
+        });
+    };
+    
     
     $scope.deconnection = function() {
 

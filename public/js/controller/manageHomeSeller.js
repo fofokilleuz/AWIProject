@@ -3,8 +3,61 @@ var app = angular.module("myApp", ['ngCookies']);
 //to control the HomeSeller.html page
 app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookies) {
     
+    
+    var idSeller = $cookies.get("idGoldFish");
+    $scope.idSeller = idSeller;
+    
+    $http.get("/seller/" + idSeller).then(function(response) {
+        var seller = response.data;
+        $scope.email = seller.email;
+        $scope.userName = seller.userName;
+        $scope.firstname = seller.firstname;
+        $scope.lastname = seller.lastname;
+        $scope.mobile = seller.mobile;
+        $scope.address = seller.address;
+        $scope.postalCode = seller.postalCode;
+        $scope.city = seller.city;
+        $scope.siret = seller.siret;
+        $scope.urlweb = seller.urlweb;
+    }, function (response) {
+    });
+    
+    $scope.updatePersonalInfo = function () {
+        var idSeller = $cookies.get("idGoldFish");
+        var data = {
+                    firstname : $scope.firstnameUpdate, 
+                    lastname : $scope.lastnameUpdate, 
+                    email : $scope.emailUpdate,
+                    mobile : $scope.mobileUpdate,
+                    siret : $scope.siretUpdate,
+                    urlweb : $scope.urlwebUpdate
+        };
+        $http.put('/seller/' + idSeller, data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultUpdate = "An error was occured!";
+        });
+    };
+    
+    $scope.updateAddress = function () {
+        var idSeller = $cookies.get("idGoldFish");
+        var data = {
+                    address : $scope.addressUpdate, 
+                    postalCode : $scope.postalCodeUpdate, 
+                    city : $scope.cityUpdate 
+        };
+        $http.put('/seller/' + idSeller, data).then(function (response) {
+            if (response.data)
+                window.location.reload();
+        }, function (response) {
+                $scope.resultUpdate = "An error was occured!";
+        });
+    };
+    
+    
     $scope.deconnection = function() {
-
+        
         $http.post("/deconnection").then(function(response) {
             window.location.assign("/")
         }, function (response) {

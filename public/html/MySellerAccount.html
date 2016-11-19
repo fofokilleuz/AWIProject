@@ -14,26 +14,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
-    <script type="text/javascript" src="./public/js/controller/manageHomeUser.js"></script>
+    <script type="text/javascript" src="./public/js/controller/manageHomeSeller.js"></script>
     <script type="text/javascript" src="./public/js/init.js"></script>
     <script type="text/javascript" src="./public/js/app.js"></script>
   </head>
   
-<body ng-app="myApp" ng-controller="manageHomeUserCtrl">
+<body ng-app="myApp" ng-controller="manageHomeSellerCtrl">
  
 <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/homeUser" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/homeSeller" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">My journals</a></li>
-        <li class="active"><a href="#">My account</a></li>
+        <li><a href="#">All Shops</a></li>
+        <li><a href="#">My Shops</a></li>
+        <li class="active"><a href="#">My Account</a></li>
         <li><a ng-click="deconnection()" href="#">Logout</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Shop</a></li>
-        <li><a href="#">My journals</a></li>
-        <li class="active"><a href="#">My account</a></li>
+        <li><a href="#">All Shops</a></li>
+        <li><a href="#">My Shops</a></li>
+        <li class="active"><a href="#">My Account</a></li>
         <li><a ng-click="deconnection()" href="#">Logout</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -65,6 +65,8 @@
                     <li class="light"> Lastname : {{lastname}} </li>
                     <li class="light"> Phone : {{mobile}} </li>
                     <li class="light"> Email : {{email}} </li>
+                    <li class="light"> Website : {{urlweb}} </li>
+                    <li class="light"> Siret : {{siret}} </li>
                 </ul>
             </div>
           </div>
@@ -86,15 +88,14 @@
           </div>
         </div>
         
-        
     </div>
         
     <div class="row center">
         <div class="col s12">
           <div class="icon-block">
             <h2 class="center light-blue-text"><i class="medium material-icons">credit_card</i></h2>
-            <h5 class="center">Orders</h5>
-            <p class="light">No order yet</p>
+            <h5 class="center">Command</h5>
+            <p class="light">No command yet</p>
           </div>
         </div>
     </div>
@@ -123,6 +124,14 @@
             <div class="col s12 m6">
                 <label>Phone</label>
                 <input type="tel" name="mobileUpdate" ng-model="mobileUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Website (url)</label>
+                <input type="text" name="urlwebUpdate" ng-model="urlwebUpdate" />
+            </div>
+            <div class="col s12 m6">
+                <label>Siret</label>
+                <input type="text" name="siretUpdate" ng-model="siretUpdate" />
             </div>
             <div class="row center">
                 <div class="col s12"><br/>

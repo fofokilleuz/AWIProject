@@ -19,6 +19,8 @@ import play.data.format.*;
 import play.data.validation.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;;
 
+
+
 	@Entity
 	public class Product extends Model {
 

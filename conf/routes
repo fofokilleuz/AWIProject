@@ -11,6 +11,7 @@
 GET     /                           controllers.Assets.at(path="/public/html", file="Connection.html")
 GET     /newUserAccount             controllers.Assets.at(path="/public/html", file="CreateSimpleAccount.html")
 GET     /newSellerAccount           controllers.Assets.at(path="/public/html", file="CreateSellerAccount.html")
+GET     /loginPlease                controllers.Assets.at(path="/public/html", file="Login.html")
 
 GET     /homeUser                   controllers.Assets.at(path="/public/html", file="HomeUser.html")
 GET     /homeSeller                 controllers.Assets.at(path="/public/html", file="HomeSeller.html")
@@ -46,7 +47,7 @@ GET     /public/*file               controllers.Assets.versioned(path="/public",
 GET		/logGoogle							controllers.ConnectionController.doGet
 GET		/loginGoogle						controllers.ConnectionController.authenticateGoogle
 POST	/login                              controllers.ConnectionController.authenticate
-GET 	/login/:token/user/:id              controllers.ConnectionController.isConnnected(token : String,id : Long)
+GET     /login/:token/:role/user/:id        controllers.ConnectionController.isConnnected(token : String, role : String, id : Long)
 POST 	/deconnection                       controllers.ConnectionController.deconnection
 
 

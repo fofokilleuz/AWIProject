@@ -40,23 +40,56 @@
     </div>
 </nav>
 
-<div class="container">
-    <h1 class="header center orange-text">Welcome to the shop !</h1>
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container"><br/>
+        <h2 class="header center orange-text">Welcome to the Shop !</h2><br/>
+        
+        
+        <div class="row center">
+        <div class="col s12 m8 offset-m2">
+        
+            <h5 class="header col s12 white-text light">Refine your search :</h5>
+            
+            <div class="col s12 m6">
+                <input type="text" ng-model="byKeyWords" placeholder="Search by key words">
+            </div>
+            
+            <div class="col s12 m6">
+                <input type="text" ng-model="byName.name" placeholder="Search by products">
+            </div>
+            
+            <div input-field class="col s12 m6 offset-m3"><br/>
+                <select class="browser-default" name="repeatSelect" id="repeatSelect" ng-model="bySeller">
+                    <option value="">All sellers</option>
+                    <option ng-repeat="seller in sellers">{{seller.userName}}</option>
+                </select>
+            </div>
+            
+        </div>    
+        </div><br/>
+        
+        
+      </div>
+    </div>
+  <div class="parallax"><img src="./public/images/parallax-fish.jpeg" alt="parallax img fish"></div>
+</div>
 
-    <div class="section"> 
-    
+
+<div class="container">
+    <div class="section">     
         <table class="highlight">
         
         <thead>
           <tr>
               <th data-field="name">Product</th>
-              <th data-field="name" class="center">Price</th>
+              <th data-field="price" class="center">Price</th>
               <th data-field="description">Description</th>
           </tr>
         </thead>
 
-        <tbody ng-repeat="product in products">
-          <tr>
+        <tbody ng-repeat="seller in sellers | filter: bySeller">
+          <tr ng-repeat="product in seller.products | filter: byKeyWords | filter : byName">
             <td>{{product.name}}</td>
             <td class="center">{{product.price}} €</td>
             <td>{{product.description}}</td>

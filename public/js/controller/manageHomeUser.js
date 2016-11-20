@@ -19,8 +19,8 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
     }, function (response) {
     });
     
-    $http.get("/products").then(function(response) {
-        var products = $scope.products = response.data;
+    $http.get("/sellers").then(function(response) {
+        var sellers = $scope.sellers = response.data;
     }, function (response) {
         $scope.users = "An error was occured!" ;
     }); 

@@ -62,7 +62,7 @@ import java.util.List;
 	    @Constraints.MaxLength(40)
 	    @Constraints.Required
 	    public String city;
-	    
+
 	    // 0 SimpleUser | 1 Admind
 	    @Constraints.MaxLength(1)
 	    @Constraints.Required

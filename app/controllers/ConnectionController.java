@@ -110,7 +110,7 @@ public class ConnectionController extends Controller {
   } 
   
   public Result isConnnected(String token, String role, Long id){
-      if(role=="su"){
+      if(role.equals("su")){
           User u = User.isConnected(id,token);
           if(u==null){
 	          System.out.println("false");

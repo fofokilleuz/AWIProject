@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My Diaries</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"  media="screen,projection">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <script type="text/javascript" src="./public/js/controller/manageHomeUser.js"></script>
+    <script type="text/javascript" src="./public/js/init.js"></script>
+    <script type="text/javascript" src="./public/js/app.js"></script>
+  </head>
+  
+<body ng-app="myApp" ng-controller="manageHomeUserCtrl">
+ 
+<nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/homeUser" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/shop">Shop</a></li>
+        <li class="active"><a href="#">My Diaries</a></li>
+        <li><a href="/myUserAccount">My account</a></li>
+        <li><a ng-click="deconnection()" href="#">Logout</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/shop">Shop</a></li>
+        <li class="active"><a href="#">My Diaries</a></li>
+        <li><a href="/myUserAccount">My account</a></li>
+        <li><a ng-click="deconnection()" href="#">Logout</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+</nav>
+
+<div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container"><br/>
+        <h1 class="header center orange-text">{{userName}}'s Diaries</h1>
+        <div class="row center">
+            <h5 class="header col s12 white-text light">Welcome to your DiaryBoard !</h5>
+        </div><br/>
+        <!-- Modal Trigger -->
+        <div class="row center">
+            <a class="btn-large waves-effect waves-light orange" href="#createDiary">Add a new Diary</a>
+        </div>
+      </div>
+    </div>
+  <div class="parallax"><img src="./public/images/parallax-fish.jpeg" alt="parallax img fish"></div>
+</div>
+
+
+
+<div class="container">
+    <div class="section">  
+    
+    <div class="row">
+        
+        <div class="col s12 m12">
+{{diaries}}
+            <div class="col s12 m6" ng-repeat="diary in diaries track by diary.id">
+                <div class="card blue lighten-5">
+                    <div class="card-content">
+                        <span class="card-title">{{diary.nameDiary}}</span>
+                        <p class="right">{{diary.dateCreation}}</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="#createGoal">Add Goal</a>
+                        
+                            <!-- Modal Structure -->
+                            <div id="createGoal" class="modal">
+                                <div class="modal-content">
+                                    <h4>Create a Goal</h4><br/>
+                                    <div class="row">
+                                        <form ng-submit="createGoal(diary.id)" class="col s12">
+                                        <div class="col s12 m6">
+                                            <label>Name*</label>
+                                            <input type="text" name="nameGoal" ng-model="nameGoal" />
+                                        </div>
+                                        <div class="col s12 m6">
+                                            <label>Descritpion*</label>
+                                            <input type="text" name="descriptionGoal" ng-model="descriptionGoal" />
+                                        </div>
+                                        <div class="row center">
+                                            <div class="col s12"><br/>{{result}}
+                                                <input type="submit" value="Submit" class="btn-large waves-effect waves-light orange">
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <a href="#createEntry" >Add Entry</a>
+                        
+                        <!-- Modal Structure -->
+                            <div id="createEntry" class="modal">
+                                <div class="modal-content">
+                                    <h4>Create an Entry</h4><br/>
+                                    <div class="row">
+                                        <form ng-submit="createEntry(diary.id)" class="col s12">
+                                        <div class="col s12 m6">
+                                            <label>Descritpion*</label>
+                                            <input type="text" name="description" ng-model="description" />
+                                        </div>
+                                        <div class="row center">
+                                            <div class="col s12"><br/>{{result}}
+                                                <input type="submit" value="Submit" class="btn-large waves-effect waves-light orange">
+                                            </div>
+                                        </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+
+          
+        </div>
+        
+    </div>
+        
+        
+    </div>
+</div>
+
+
+  <!-- Modal Structure -->
+  <div id="createDiary" class="modal">
+    <div class="modal-content">
+      <h4>Create a new Diary</h4><br/>
+        <div class="row">
+        <form ng-submit="createDiary()" class="col s12">
+            <div class="col s12 m6">
+                <label>Name*</label>
+                <input type="text" name="nameDiary" ng-model="nameDiary" />
+            </div>
+            <div class="col s12 m6">
+                <label>Description*</label>
+                <input type="text" name="description" ng-model="description" />
+            </div>
+            <div class="row center">
+                <div class="col s12"><br/>{{result}}
+                    <input type="submit" value="Submit" class="btn-large waves-effect waves-light orange">
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+  </div>
+  
+
+<div footer></div>
+ 
+
+  </body>
+</html>

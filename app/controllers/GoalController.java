@@ -23,21 +23,20 @@ import com.fasterxml.jackson.databind.JsonNode;
 public class GoalController extends Controller {
     
     
-    /** To create an diary
+    /** To create an goal
      * 
      * call with $http.post('/user/:idUser/diary', data)
      * 
      */
     public Result createGoal(Long idUser, Long idDiary){
         System.out.println("CREATE Goal");
-	    /*JsonNode json = request().body().asJson();
+	    JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
-	    	  String description = json.findPath("description").textValue();*/
-              Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	          String name = values.get("name")[0];
-	          String description = values.get("description")[0];
+	          System.out.println(json);
+	    	  String name = json.findPath("nameGoal").textValue();
+	    	  String description = json.findPath("description").textValue();
 	          Diary d = Diary.getDiaryById(idDiary);
 	          if(d==null){
 	              return badRequest("Diary not found");
@@ -47,4 +46,6 @@ public class GoalController extends Controller {
 	    	  return ok("200 - ok");
 	      }
 	}
+	
+}
 	

@@ -24,14 +24,14 @@
 <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/homeSeller" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">All Shops</a></li>
+        <li><a href="/shops">All Products</a></li>
         <li class="active"><a href="#">My Shop</a></li>
         <li><a href="/mySellerAccount">My Account</a></li>
         <li><a ng-click="deconnection()" href="#">Logout</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">All Shops</a></li>
+        <li><a href="/shops">All Products</a></li>
         <li class="active"><a href="#">My Shop</a></li>
         <li><a href="/mySellerAccount">My Account</a></li>
         <li><a ng-click="deconnection()" href="#">Logout</a></li>
@@ -67,17 +67,17 @@
         
         <div class="col s12 m12">
 
-            <div class="col s12 m6" ng-repeat="product in products">
+            <div class="col s12 m6" ng-repeat="product in products track by product.idProduct">
                 <div class="card blue lighten-5">
                     <div class="card-content">
-                        <span class="card-title">{{product.ref}} - {{product.name}}</span>
+                        <span class="card-title">{{product.idProduct}} - {{product.name}}</span>
                         <p>Price : {{product.price}} €</p>
                         <p>Quantity : {{product.availableQuantity}}</p>
                         <p>Quantity : {{product.description}}</p>
                     </div>
                     <div class="card-action">
                         <a href="#">Update</a>
-                        <a href="#deleteProduct">Delete</a>
+                        <a href="" ng-click="deleteProduct(product.idProduct)">Delete</a>
                     </div>
                 </div>
             </div>

@@ -29,13 +29,13 @@ public class EntryTextController extends Controller {
      * 
      */
     public Result createEntryText(Long idUser, Long idDiary){
-	    /*JsonNode json = request().body().asJson();
+	    JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
-	    	  String description = json.findPath("description").textValue();*/
-              Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	          String description = values.get("description")[0];
+	    	  String description = json.findPath("description").textValue();
+              //Map<String, String[]> values = request().body().asFormUrlEncoded();  
+	          //String description = values.get("description")[0];
 	          Diary d = Diary.getDiaryById(idDiary);
 	          if(d==null){
 	              return badRequest("Diary not found");
@@ -45,4 +45,6 @@ public class EntryTextController extends Controller {
 	    	  return ok("200 - ok");
 	      }
 	}
+	
+}
 	

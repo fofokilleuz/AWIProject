@@ -25,6 +25,15 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
         $scope.users = "An error was occured!" ;
     }); 
     
+    $http.get("/user/" + idUser + "/diaries").then(function(response) {
+        var diaries = $scope.diaries = response.data;
+    }, function (response) {
+        $scope.diaries = "An error was occured!" ;
+    }); 
+
+
+
+//FOR ACCOUNT    
     $scope.updatePersonalInfo = function () {
         var idUser = $cookies.get("idGoldFish");
         var data = {
@@ -57,6 +66,46 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
                 $scope.resultUpdate = "An error was occured!";
         });
     };
+    
+    
+//FOR DIARY
+    $scope.createDiary = function() {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    name : $scope.nameDiary, 
+                    description : $scope.description
+        };
+        $http.post('/user/' + idUser + "/diary", data).then(function (response) {
+            window.location.reload();
+        }, function (response) {
+            $scope.resultUpdate = "An error was occured!";
+        });
+    }
+    
+    $scope.createGoal = function(idDiary) {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    name : $scope.nameGoal,
+                    description : $scope.descriptionGoal
+        };
+        $http.post('/user/' + idUser + "/diary/" + idDiary +"/goal", data).then(function (response) {
+            window.location.reload();
+        }, function (response) {
+            $scope.resultAddProducttoSeller = "An error was occured!";
+        });
+    }
+    
+    $scope.createEntry = function(idDiary) {
+        var idUser = $cookies.get("idGoldFish");
+        var data = {
+                    description : $scope.descriptionEntry
+        };
+        $http.post('/user/' + idUser + "/diary/" + idDiary +"/entry", data).then(function (response) {
+            window.location.reload();
+        }, function (response) {
+            $scope.resultAddProducttoSeller = "An error was occured!";
+        });
+    }
     
     
     $scope.deconnection = function() {

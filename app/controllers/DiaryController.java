@@ -30,15 +30,15 @@ public class DiaryController extends Controller {
      * 
      */
     public Result createDiary(Long idUser){
-	    /*JsonNode json = request().body().asJson();
+	    JsonNode json = request().body().asJson();
 	    if(json == null) {
 	        return badRequest("Expecting Json data");
 	     } else {
 	    	  String name = json.findPath("name").textValue();
-	    	  String description = json.findPath("description").textValue();*/
-              Map<String, String[]> values = request().body().asFormUrlEncoded();  
-	          String name = values.get("name")[0];
-	          String description = values.get("description")[0];
+	    	  String description = json.findPath("description").textValue();
+              //Map<String, String[]> values = request().body().asFormUrlEncoded();  
+	          //String name = values.get("name")[0];
+	          //String description = values.get("description")[0];
 	          User u = User.getUserById(idUser);
 	          if(u==null){
 	              return badRequest("User not found");
@@ -48,6 +48,7 @@ public class DiaryController extends Controller {
 	          System.out.println("Diary save");
 	    	  return ok("200 - ok");
 	      }
+    }
 	      
 	 public Result getAllDiaryByUserId(Long idUser){
 	     List<Diary> diaries = Diary.getAllDiaryByUserId(idUser);

@@ -29,6 +29,12 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
         $scope.users = "An error was occured!" ;
     });
     
+    $http.get("/sellers").then(function(response) {
+        var sellers = $scope.sellers = response.data;
+    }, function (response) {
+        $scope.users = "An error was occured!" ;
+    });
+    
     $scope.updatePersonalInfo = function () {
         var idSeller = $cookies.get("idGoldFish");
         var data = {
@@ -78,9 +84,8 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
         });
     };
     
-    $scope.deleteProduct = function () {
-        var idDel = $scope.idProduct;
-        $http.delete('/product/' + idDel).then(function (response) {
+    $scope.deleteProduct = function (idProduct) {
+        $http.delete('/product/' + idProduct).then(function (response) {
             if (response.data)
                 window.location.reload();
         }, function (response) {

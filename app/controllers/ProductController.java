@@ -118,4 +118,8 @@ public class ProductController extends Controller {
 	    }
 	}
 	
+	public Result getQuantityByProductId(long id){
+	    return ok("ok");
+	}
+	
 }

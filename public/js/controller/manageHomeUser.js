@@ -25,6 +25,12 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
         $scope.users = "An error was occured!" ;
     }); 
     
+    $http.get("https://sellbook-polytech.eu-gb.mybluemix.net/products").then(function(response) {
+        var productsInteroperability = $scope.productsInteroperability = response.data;
+    }, function (response) {
+        $scope.users = "An error was occured!" ;
+    });
+    
     $http.get("/user/" + idUser + "/diaries").then(function(response) {
         var diaries = $scope.diaries = response.data;
     }, function (response) {
@@ -136,7 +142,6 @@ app.controller("manageHomeUserCtrl", function($scope,  $window, $http, $cookies)
     };
 
     $scope.isConnected();
-    
     
     
 });

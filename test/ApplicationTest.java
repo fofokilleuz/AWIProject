@@ -19,20 +19,27 @@ import play.twirl.api.Content;
 import static play.test.Helpers.*;
 import static org.junit.Assert.*;
 
+import model.User;
+import model.Seller;
+
 
 /**
  *
  * Simple (JUnit) tests that can call all parts of a play app.
- * If you are interested in mocking a whole application, see the wiki for more details.
  *
  */
 public class ApplicationTest {
 
     @Test
-    public void simpleCheck() {
-        int a = 1 + 1;
-        assertEquals(2, a);
+    public void createUserNotNullCheck() {
+        assertNotNull("should not be null", new User("email","userName","firstname","lastname","mdpHash","1234567890","address","35000","city",0));
     }
+    
+    @Test
+    public void createSellerCheck() {
+        assertNotNull("should not be null", new Seller("userName","email","firstname","lastname","password","1234567890","address","35000","city", "12345617582369", "lolo.fr"));
+    }
+    
 
     @Test
     public void renderTemplate() {

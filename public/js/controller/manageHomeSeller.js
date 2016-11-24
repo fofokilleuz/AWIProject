@@ -29,6 +29,12 @@ app.controller("manageHomeSellerCtrl", function($scope,  $window, $http, $cookie
         $scope.users = "An error was occured!" ;
     });
     
+    $http.get("https://sellbook-polytech.eu-gb.mybluemix.net/products").then(function(response) {
+        var productsInteroperability = $scope.productsInteroperability = response.data;
+    }, function (response) {
+        $scope.users = "An error was occured!" ;
+    });
+    
     $http.get("/sellers").then(function(response) {
         var sellers = $scope.sellers = response.data;
     }, function (response) {

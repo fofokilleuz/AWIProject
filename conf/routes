@@ -115,3 +115,4 @@ GET     /product/:id        controllers.ProductController.getProductById(id : Lo
 DELETE  /product/:id        controllers.ProductController.deleteProductById(id : Long)
 PUT     /product/:id        controllers.ProductController.updateProductById(id : Long)
 POST    /seller/:id/product     controllers.ProductController.createProduct(id  :  Long)
+

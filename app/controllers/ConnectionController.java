@@ -112,7 +112,8 @@ public class ConnectionController extends Controller {
 	        if(u !=null){
 	            u.setToken(token);
 	            u.save();
-	            String id = Long.toString(u.idUser);       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", null,false,false)).withCookies
+	            String id = Long.toString(u.idUser);       
+				return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", null,false,false)).withCookies
 	            (new Http.Cookie("idGoldFish",id , null, "/", null, false, false)).withCookies
 	            (new Http.Cookie("roleGoldFish","su" , null, "/", null, false, false));
 	       } else if(s != null){
@@ -122,6 +123,7 @@ public class ConnectionController extends Controller {
 	            return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", null,false,false)).withCookies
 	            (new Http.Cookie("idGoldFish",id , null, "/", null, false, false)).withCookies
 	            (new Http.Cookie("roleGoldFish","seller" , null, "/", null, false, false));
+
 	       }
 	       return ok("ok");
 	       }

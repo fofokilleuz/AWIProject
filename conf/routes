@@ -60,17 +60,20 @@ GET   	/users      		                controllers.UserController.getAllUser
 GET		/user/:id			                controllers.UserController.getUserById(id : Long)
 DELETE  /user/:id                           controllers.UserController.deleteUserById(id : Long)
 PUT     /user/:id                           controllers.UserController.UpdateUserById(id : Long)
-PUT     /user/:idUser/product/:idProduct    controllers.UserController.addProduct(idUser : Long, idProduct : Long)
+
 GET     /user/:idUser/shoppingCart/:numL    controllers.UserController.getProductShoppingCartByNum(idUser : Long, numL : Long)
 DELETE  /user/:idUser/shoppingCart/:numL    controllers.UserController.deleteProductShoppingCartByNum(idUser : Long,numL : Long)
 GET     /user/:idUser/shoppingCartTotal     controllers.UserController.sommeProductShoppingCart(idUser : Long)
 
 #//////////////////////////#
-#//////ShoppingCart////////#
+#//////Basket////////#
 #//////////////////////////#
 
-GET     /lineShoppingCart                   controllers.UserController.getAllLineBasket
-GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserController.getAllLineBasketByUser(idUser : Long,idLine : Long)
+PUT     /user/:idUser/product/:idProduct                    controllers.BasketLineController.createLineBasket(idUser : Long, idProduct : Long)
+GET     /lineShoppingCart                                   controllers.UserController.getAllLineBasket
+GET     /user/:idUser/lineShoppingCart/:idLine              controllers.UserController.getAllLineBasketByUser(idUser : Long,idLine : Long)
+DELETE /user/:idUser/basket                                 controllers.BasketLineController.deleteBasketByUser(idUser : Long)
+GET     /user/:idUser/basket                                controllers.BasketLineController.getBasketByUser(idUser : Long)
 
 #/////////////////////#
 #//////Command////////#
@@ -79,7 +82,7 @@ GET     /user/:idUser/lineShoppingCart/:idLine             controllers.UserContr
 GET     /user/:idUser/basket/seller   controllers.CommandController.getAllSellerfromLineBaskettByIdUser(idUser : Long)
 POST    /user/:idUser/command         controllers.CommandController.validateOrder(idUser : Long)
 GET     /user/:idUser/command         controllers.CommandController.getLineCommandByUser(idUser :   Long)
-GET     /user/:idUser/command/etat=Validate controllers.CommandController.getLineCommandValidate(idUser : Long)
+GET     /user/:idUser/command/validate controllers.CommandController.getLineCommandValidate(idUser : Long)
 
 #/////////////////////#
 #//////Diary//////////#
@@ -89,6 +92,7 @@ POST    /user/:idUser/diary                      controllers.DiaryController.cre
 POST    /user/:idUser/diary/:idDiary/goal        controllers.GoalController.createGoal(idUser : Long, idDiary : Long)
 POST    /user/:idUser/diary/:idDiary/entry       controllers.EntryTextController.createEntryText(idUser : Long, idDiary : Long)
 GET     /user/:idUser/diaries                    controllers.DiaryController.getAllDiaryByUserId(idUser : Long)
+
 #////////////////////#
 #//////SELLER////////#
 #////////////////////#
@@ -98,7 +102,6 @@ GET   	/sellers      	    	controllers.SellerController.getAllSeller
 GET		/seller/:id			    controllers.SellerController.getSellerById(id : Long)
 DELETE  /seller/:id             controllers.SellerController.deleteSellerById(id : Long)
 PUT     /seller/:id             controllers.SellerController.UpdateSellerById(id : Long)
-POST    /seller/:id/product     controllers.SellerController.addProduct(id  :  Long)
 GET     /seller/:id/products    controllers.SellerController.getAllProduct(id   :   Long)
 
 
@@ -107,12 +110,8 @@ GET     /seller/:id/products    controllers.SellerController.getAllProduct(id   
 #/////////////////////#
 
 
-POST    /product            controllers.ProductController.createProduct
 GET     /products           controllers.ProductController.getAllProduct
 GET     /product/:id        controllers.ProductController.getProductById(id : Long)
 DELETE  /product/:id        controllers.ProductController.deleteProductById(id : Long)
 PUT     /product/:id        controllers.ProductController.updateProductById(id : Long)
-
-
-
-
+POST    /seller/:id/product     controllers.ProductController.createProduct(id  :  Long)

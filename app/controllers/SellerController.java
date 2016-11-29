@@ -160,26 +160,7 @@ public class SellerController extends Controller {
      * call with $http.post('/seller/' + id, data)
      * 
      */
-	public Result addProduct(long id){
-	    JsonNode json = request().body().asJson();
-	    if(json == null) {
-	        return badRequest("Expecting Json data");
-	     } else {
-	    	  String ref = json.findPath("ref").textValue();
-	    	  String name = json.findPath("name").textValue();
-	    	  double price = json.findPath("price").doubleValue();
-	    	  int qty = json.findPath("qty").intValue();
-	    	  String desc = json.findPath("desc").textValue();
-              Seller s = Seller.getSellerById(id);
-	          if(s==null) {
-	                return ok("404 - Not Found");
-	          } else {
-	                Product p = new Product(ref,name,price,qty,desc,s);
-                    p.save();
-	                return ok("200 - ok");
-	          }
-	     }
-	}
+
 	
 	public Result getAllProduct(long id)
 	{

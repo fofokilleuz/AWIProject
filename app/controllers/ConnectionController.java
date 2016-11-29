@@ -112,17 +112,16 @@ public class ConnectionController extends Controller {
 	        if(u !=null){
 	            u.setToken(token);
 	            u.save();
-	            String id = Long.toString(u.idUser);
-	            return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
-	            (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false)).withCookies
-	            (new Http.Cookie("roleGoldFish","su" , null, "/", "localhost", false, false));
+	            String id = Long.toString(u.idUser);       return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", null,false,false)).withCookies
+	            (new Http.Cookie("idGoldFish",id , null, "/", null, false, false)).withCookies
+	            (new Http.Cookie("roleGoldFish","su" , null, "/", null, false, false));
 	       } else if(s != null){
 	            s.setToken(token);
 	            s.save();
 	            String id = Long.toString(s.id);
-	            return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", "localhost",false,false)).withCookies
-	            (new Http.Cookie("idGoldFish",id , null, "/", "localhost", false, false)).withCookies
-	            (new Http.Cookie("roleGoldFish","seller" , null, "/", "localhost", false, false));
+	            return ok("Success").withCookies(new Http.Cookie("tokenGoldFish", token, null, "/", null,false,false)).withCookies
+	            (new Http.Cookie("idGoldFish",id , null, "/", null, false, false)).withCookies
+	            (new Http.Cookie("roleGoldFish","seller" , null, "/", null, false, false));
 	       }
 	       return ok("ok");
 	       }

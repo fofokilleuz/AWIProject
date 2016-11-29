@@ -77,7 +77,7 @@
 
 
 <div class="container">
-    <div class="section">     
+    <div class="section"> 
         <table class="highlight">
         
         <thead>
@@ -93,6 +93,13 @@
             <td>{{product.name}}</td>
             <td class="center">{{product.price}} €</td>
             <td>{{product.description}}</td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr ng-repeat="productI in productsInteroperability | filter: bySeller | filter : byName | filter: byKeyWords">
+            <td>{{productI.nameProduct}}</td>
+            <td class="center">{{productI.priceSeller}} €</td>
+            <td>{{productI.descriptionProduct}} <span class="light">product send by Sellbook</span></td>
           </tr>
         </tbody>
         

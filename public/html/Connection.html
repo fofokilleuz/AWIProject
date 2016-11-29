@@ -7,9 +7,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.5.5/angular-cookies.min.js"></script>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="project/target/node-modules/webjars/npm/node_modules/request/lib/oauth.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -26,14 +24,12 @@
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">GoldFish<i class="material-icons">loyalty</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/loginPlease">Login</a></li>
-		<li><a href="/logGoogle">Login with Google</a></li>
         <li><a href="/newUserAccount">Create a simple account</a></li>
         <li><a href="/newSellerAccount">Create a seller account</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="/loginPlease">Login</a></li>
-		<li><a href="/logGoogle">Login with Google</a></li>
         <li><a href="/newUserAccount">Create a simple account</a></li>
         <li><a href="/newSellerAccount">Create a seller account</a></li>
       </ul>
@@ -48,7 +44,7 @@
         <h1 class="header center orange-text">Welcome !</h1>
         <div class="row center">
             <h5 class="header col s12 white-text light">GoldFish ? What is it ?</h5>
-            <h5 class="header col s12 white-text light">You have just to create an account to discover the application !</h5>
+            <h5 class="header col s12 white-text light">You just have to create an account to discover the application !</h5>
         </div><br/>
         <div class="row center">
             <a href="/newUserAccount" class="btn-large waves-effect waves-light orange">Create a simple account</a>
@@ -89,8 +85,6 @@
             <div class="row center">
    	            <div class="col s12">
                     <input type="submit" value="Submit" class="btn-large waves-effect waves-light orange"><br><br>
-                    <!-- supprimer la ligne ci dessous -->
-                    {{ isConnected }}
                 </div>
             </div>
             </form>

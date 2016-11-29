@@ -70,13 +70,6 @@ import model.Product;
 	        return LineBasket.find.byId(id);
 	    }
 	    
-	    public static List<LineBasket> getLineShoppingCart(Long id){
-	        return LineBasket.find.where().eq("shoppingCart.id",id).findList();
-	    }
-	    
-	    public static List<LineBasket> getBasketByUser(long idUser){
-	        return null;
-	    }
 	    
 	    public static List<LineBasket> getAllSellerfromLineBaskettByIdUser(Long idUser){
 	        return LineBasket.find.select("product.seller.id").where().eq("user.idUser",idUser).findList();

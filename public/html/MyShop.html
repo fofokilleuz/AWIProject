@@ -70,10 +70,10 @@
             <div class="col s12 m6" ng-repeat="product in products track by product.idProduct">
                 <div class="card blue lighten-5">
                     <div class="card-content">
-                        <span class="card-title">{{product.idProduct}} - {{product.name}}</span>
+                        <span class="card-title">{{product.ref}} - {{product.name}}</span>
                         <p>Price : {{product.price}} €</p>
                         <p>Quantity : {{product.availableQuantity}}</p>
-                        <p>Quantity : {{product.description}}</p>
+                        <p>Description : {{product.description}}</p>
                     </div>
                     <div class="card-action">
                         <a href="#">Update</a>
